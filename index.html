@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battleplan v3 — Divorce Gheonea</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #e2e8f0; padding: 20px; line-height: 1.6; min-height: 100vh; }
+
+  .header { text-align: center; padding: 30px 0 20px; border-bottom: 2px solid rgba(99,102,241,0.3); margin-bottom: 24px; }
+  .header h1 { font-size: 28px; color: #f8fafc; margin-bottom: 4px; }
+  .header .version { display: inline-block; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 2px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .header .subtitle { color: #94a3b8; font-size: 14px; margin-bottom: 12px; }
+  .header .warning { background: rgba(127,29,29,0.6); color: #fca5a5; padding: 8px 16px; border-radius: 6px; display: inline-block; font-size: 13px; backdrop-filter: blur(4px); }
+
+  /* Language switcher */
+  .lang-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+  .lang-btn { padding: 8px 24px; border: 2px solid rgba(99,102,241,0.4); border-radius: 20px; background: transparent; color: #94a3b8; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; }
+  .lang-btn:hover { border-color: #6366f1; color: #c7d2fe; }
+  .lang-btn.active { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border-color: transparent; box-shadow: 0 4px 15px rgba(99,102,241,0.4); }
+
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 2px solid rgba(99,102,241,0.2); flex-wrap: wrap; }
+  .tab { padding: 12px 20px; cursor: pointer; border-radius: 10px 10px 0 0; font-size: 14px; font-weight: 600; transition: all 0.2s; border: 1px solid transparent; border-bottom: none; display: flex; align-items: center; gap: 8px; }
+  .tab:hover { background: rgba(99,102,241,0.1); }
+  .tab.active { background: rgba(30,41,59,0.8); color: #818cf8; border-color: rgba(99,102,241,0.3); }
+  .tab-icon { font-size: 18px; }
+  .tab-content { display: none; animation: fadeIn 0.3s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .phase { margin-bottom: 32px; }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .phase-num { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 22px; flex-shrink: 0; }
+  .phase-title { font-size: 20px; font-weight: 700; color: #f8fafc; }
+  .phase-date { color: #818cf8; font-size: 13px; margin-left: auto; background: rgba(99,102,241,0.15); padding: 4px 14px; border-radius: 12px; border: 1px solid rgba(99,102,241,0.2); }
+
+  .node { background: rgba(30,41,59,0.7); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 20px; margin-bottom: 12px; margin-left: 60px; position: relative; backdrop-filter: blur(8px); }
+  .node.current { border-color: #6366f1; box-shadow: 0 0 20px rgba(99,102,241,0.15); }
+  .node.action { border-left: 4px solid #6366f1; }
+  .node.decision { border-left: 4px solid #f59e0b; }
+  .node.success { border-left: 4px solid #22c55e; }
+  .node.danger { border-left: 4px solid #ef4444; }
+  .node.info { border-left: 4px solid #8b5cf6; }
+  .node.worst { border-left: 4px solid #dc2626; background: rgba(127,29,29,0.2); }
+
+  .node-icon { font-size: 28px; position: absolute; top: 14px; right: 16px; }
+  .node-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .node-label.al { color: #818cf8; } .node-label.dl { color: #fbbf24; }
+  .node-label.sl { color: #4ade80; } .node-label.dgl { color: #f87171; }
+  .node-label.il { color: #a78bfa; } .node-label.wl { color: #fb923c; }
+
+  .node h3 { font-size: 16px; margin-bottom: 8px; color: #f8fafc; padding-right: 44px; }
+  .node p { font-size: 14px; color: #94a3b8; }
+  .node ul { margin-top: 8px; padding-left: 20px; }
+  .node li { font-size: 14px; color: #94a3b8; line-height: 1.8; }
+  .node li strong { color: #e2e8f0; }
+
+  .branch { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-left: 60px; margin-bottom: 12px; }
+
+  .connector { margin-left: 82px; height: 28px; border-left: 2px dashed rgba(99,102,241,0.4); position: relative; }
+  .connector::after { content: '▼'; position: absolute; bottom: -6px; left: -7px; color: rgba(99,102,241,0.4); font-size: 11px; }
+  .connector-split { display: flex; justify-content: center; margin-left: 60px; gap: 40%; height: 28px; }
+  .connector-split div { border-left: 2px dashed rgba(99,102,241,0.4); position: relative; }
+  .connector-split div::after { content: '▼'; position: absolute; bottom: -6px; left: -7px; color: rgba(99,102,241,0.4); font-size: 11px; }
+
+  .verdict { padding: 12px 16px; border-radius: 10px; margin-top: 12px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .verdict.go { background: rgba(5,46,22,0.7); color: #4ade80; border: 1px solid rgba(22,101,52,0.5); }
+  .verdict.caution { background: rgba(66,32,6,0.7); color: #fbbf24; border: 1px solid rgba(133,77,14,0.5); }
+  .verdict.stop { background: rgba(69,10,10,0.7); color: #f87171; border: 1px solid rgba(153,27,27,0.5); }
+
+  /* Finance */
+  .fin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .fin-card { background: rgba(30,41,59,0.7); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 20px; backdrop-filter: blur(8px); }
+  .fin-card h3 { font-size: 16px; margin-bottom: 12px; color: #f8fafc; display: flex; align-items: center; gap: 8px; }
+  .fin-card.best { border-color: rgba(34,197,94,0.4); }
+  .fin-card.ok { border-color: rgba(245,158,11,0.4); }
+  .fin-card.bad { border-color: rgba(239,68,68,0.4); }
+  .fin-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(99,102,241,0.1); font-size: 14px; }
+  .fin-row:last-child { border-bottom: none; }
+  .fin-row .label { color: #94a3b8; }
+  .fin-row .value { color: #f8fafc; font-weight: 600; }
+  .fin-row .value.pos { color: #4ade80; } .fin-row .value.neg { color: #f87171; }
+  .fin-row .value.warn { color: #fbbf24; }
+  .fin-row.total { border-top: 2px solid rgba(99,102,241,0.2); margin-top: 4px; padding-top: 10px; }
+  .fin-row.total .label, .fin-row.total .value { font-size: 16px; font-weight: 700; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: rgba(30,41,59,0.7); border: 1px solid rgba(99,102,241,0.15); border-radius: 14px; padding: 16px; text-align: center; backdrop-filter: blur(8px); }
+  .stat-card .icon { font-size: 32px; margin-bottom: 4px; }
+  .stat-card .num { font-size: 28px; font-weight: 800; }
+  .stat-card .lbl { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .section-title { font-size: 18px; font-weight: 700; color: #f8fafc; margin: 28px 0 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(99,102,241,0.2); display: flex; align-items: center; gap: 10px; }
+  .section-title .icon { font-size: 22px; }
+
+  .note { background: rgba(26,26,46,0.8); border: 1px solid rgba(139,92,246,0.3); border-radius: 10px; padding: 16px; margin: 16px 0; }
+  .note p { color: #c4b5fd; font-size: 14px; } .note strong { color: #a78bfa; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { text-align: left; padding: 10px 12px; background: rgba(99,102,241,0.15); color: #e2e8f0; font-size: 13px; border-radius: 4px; }
+  td { padding: 10px 12px; border-bottom: 1px solid rgba(99,102,241,0.1); font-size: 14px; color: #cbd5e1; }
+
+  /* Timeline */
+  .tl-item { display: flex; gap: 16px; margin-bottom: 0; padding: 20px 0; border-left: 3px solid rgba(99,102,241,0.2); margin-left: 20px; padding-left: 24px; position: relative; }
+  .tl-item:last-child { border-left-color: transparent; }
+  .tl-item::before { content: ''; width: 16px; height: 16px; border-radius: 50%; position: absolute; left: -10px; top: 24px; }
+  .tl-item.urgent::before { background: #ef4444; box-shadow: 0 0 12px rgba(239,68,68,0.6); }
+  .tl-item.important::before { background: #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,0.6); }
+  .tl-item.normal::before { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.4); }
+  .tl-item.done::before { background: #22c55e; box-shadow: 0 0 12px rgba(34,197,94,0.6); }
+  .tl-icon { font-size: 32px; flex-shrink: 0; margin-top: -2px; }
+  .tl-content { flex: 1; }
+  .tl-content h4 { font-size: 15px; color: #f8fafc; margin-bottom: 4px; }
+  .tl-content .tl-date { font-size: 12px; color: #818cf8; margin-bottom: 6px; font-weight: 600; }
+  .tl-content p { font-size: 14px; color: #94a3b8; }
+  .tl-content ul { margin-top: 6px; padding-left: 18px; }
+  .tl-content li { font-size: 14px; color: #94a3b8; line-height: 1.7; }
+
+  /* Dossier */
+  .evidence-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(99,102,241,0.1); }
+  .evidence-item:last-child { border-bottom: none; }
+  .ev-icon { font-size: 28px; flex-shrink: 0; }
+  .ev-content { flex: 1; }
+  .ev-content h4 { font-size: 14px; color: #f8fafc; margin-bottom: 2px; }
+  .ev-content p { font-size: 13px; color: #64748b; }
+  .ev-strength { padding: 3px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; flex-shrink: 0; align-self: center; letter-spacing: 0.5px; }
+  .ev-strength.strong { background: rgba(5,46,22,0.7); color: #4ade80; }
+  .ev-strength.medium { background: rgba(66,32,6,0.7); color: #fbbf24; }
+  .ev-strength.weak { background: rgba(69,10,10,0.7); color: #f87171; }
+
+  @media (max-width: 768px) {
+    .branch { grid-template-columns: 1fr; }
+    .fin-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .tabs { gap: 2px; }
+    .tab { padding: 10px 14px; font-size: 13px; }
+    .node { margin-left: 20px; }
+    .connector { margin-left: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="version">⚡ VERSION 3.1 — ACTIEPLAN UPDATE 26/03</div>
+  <h1>
+    <span class="fr">🗡️ Plan de Bataille — Divorce Gheonea</span>
+    <span class="nl" style="display:none">🗡️ Battleplan — Echtscheiding Gheonea</span>
+  </h1>
+  <div class="subtitle">
+    <span class="fr">Stefania Gheonea vs. Marius-Catalin Gheonea — Stratégie & Simulation Financière</span>
+    <span class="nl" style="display:none">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie & Financiële Simulatie</span>
+  </div>
+  <div class="warning">
+    <span class="fr">🔒 CONFIDENTIEL — Uniquement pour Karel Anseeuw & Me Frank Strauven</span>
+    <span class="nl" style="display:none">🔒 VERTROUWELIJK — Enkel voor Karel Anseeuw & Mr. Frank Strauven</span>
+  </div>
+</div>
+
+<div class="lang-switch">
+  <button class="lang-btn active" data-lang="fr">🇫🇷 Français</button>
+  <button class="lang-btn" data-lang="nl">🇧🇪 Nederlands</button>
+</div>
+
+<div class="tabs" id="tabBar">
+  <div class="tab active" data-tab="tree">
+    <span class="tab-icon">🗺️</span>
+    <span class="fr">Arbre de décision</span>
+    <span class="nl" style="display:none">Beslissingsboom</span>
+  </div>
+  <div class="tab" data-tab="finance">
+    <span class="tab-icon">💰</span>
+    <span class="fr">Simulation financière</span>
+    <span class="nl" style="display:none">Financiële simulatie</span>
+  </div>
+  <div class="tab" data-tab="timeline">
+    <span class="tab-icon">📅</span>
+    <span class="fr">Chronologie & Actions</span>
+    <span class="nl" style="display:none">Tijdlijn & Acties</span>
+  </div>
+  <div class="tab" data-tab="dossier">
+    <span class="tab-icon">📋</span>
+    <span class="fr">Force du dossier</span>
+    <span class="nl" style="display:none">Dossierkracht</span>
+  </div>
+  <div class="tab" data-tab="negotiation">
+    <span class="tab-icon">♟️</span>
+    <span class="fr">Stratégie de négociation</span>
+    <span class="nl" style="display:none">Onderhandelingsstrategie</span>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: DECISION TREE ==================== -->
+<div id="tree" class="tab-content active">
+
+  <!-- PHASE 0 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">📍</div>
+      <div class="phase-title">
+        <span class="fr">🏠 Situation Actuelle</span>
+        <span class="nl" style="display:none">🏠 Huidige Situatie</span>
+      </div>
+      <div class="phase-date">25/03/2026</div>
+    </div>
+    <div class="node current">
+      <div class="node-icon">🏚️</div>
+      <div class="node-label il">
+        <span class="fr">Statu quo</span>
+        <span class="nl" style="display:none">Status quo</span>
+      </div>
+      <h3>
+        <span class="fr">Cohabitation — Tongersesteenweg 287, Sint-Truiden</span>
+        <span class="nl" style="display:none">Samenwonend — Tongersesteenweg 287, Sint-Truiden</span>
+      </h3>
+      <ul>
+        <li>📄 <span class="fr">Requête déposée par Me Strauven (24/03/2026)</span><span class="nl" style="display:none">Verzoekschrift ingediend door Mr. Strauven (24/03/2026)</span></li>
+        <li>💊 <span class="fr">Stefania : dépression, anxiété, duloxétine + prégabaline + prazépam</span><span class="nl" style="display:none">Stefania: depressie, angst, duloxetine + pregabaline + prazepam</span></li>
+        <li>⚠️ <span class="fr">Marius : tableau psychotique (paranoïa), refuse médication, narcissique</span><span class="nl" style="display:none">Marius: psychotisch beeld (paranoia), weigert medicatie, narcistisch</span></li>
+        <li>👧👦 <span class="fr">2 enfants : Ysabelle (10 ans) et Dominic (7 ans)</span><span class="nl" style="display:none">2 kinderen: Ysabelle (10j) en Dominic (7j)</span></li>
+        <li>💳 <span class="fr">Charges de crédit : 2.035 €/mois (5 prêts)</span><span class="nl" style="display:none">Schuldenlast: €2.035/maand (5 leningen)</span></li>
+        <li>🏡 <span class="fr">Maison estimée à ±450.000 €</span><span class="nl" style="display:none">Woning geschat op ±€450.000</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#ef4444,#dc2626)">1</div>
+      <div class="phase-title">
+        <span class="fr">⚡ Premiers Pas (Semaine 1-2)</span>
+        <span class="nl" style="display:none">⚡ Eerste Zetten (Week 1-2)</span>
+      </div>
+      <div class="phase-date">⚡ URGENT</div>
+    </div>
+    <div class="node action">
+      <div class="node-icon">⚔️</div>
+      <div class="node-label al">
+        <span class="fr">Actions — à exécuter en parallèle</span>
+        <span class="nl" style="display:none">Acties — parallel uitvoeren</span>
+      </div>
+      <h3>
+        <span class="fr">Construire la pression sur plusieurs fronts</span>
+        <span class="nl" style="display:none">Druk opbouwen via meerdere kanalen</span>
+      </h3>
+      <ul>
+        <li>🚔 <strong>A.</strong> <span class="fr">Plainte pour violence intrafamiliale à la police → PV</span><span class="nl" style="display:none">Aangifte intrafamiliaal geweld bij politie → PV</span></li>
+        <li>🚫 <strong>B.</strong> <span class="fr">Le procureur peut imposer une interdiction temporaire de domicile (14j, prolongeable)</span><span class="nl" style="display:none">Procureur kan tijdelijk huisverbod opleggen (14d, verlengbaar)</span></li>
+        <li>⚖️ <strong>C.</strong> <span class="fr">Me Strauven demande des mesures provisoires urgentes</span><span class="nl" style="display:none">Mr. Strauven vraagt dringende voorlopige maatregelen</span></li>
+        <li>🩺 <strong>D.</strong> <span class="fr">Certificat médical Dr. Anseeuw (dépression, anxiété, idéation suicidaire)</span><span class="nl" style="display:none">Medisch attest Dr. Anseeuw (depressie, angst, suïcidale ideatie)</span></li>
+        <li>📱 <strong>E.</strong> <span class="fr">Collecter les preuves : WhatsApp, SMS, école</span><span class="nl" style="display:none">Bewijsmateriaal verzamelen: WhatsApp, SMS, school</span></li>
+        <li>🧠 <strong>F.</strong> <span class="fr">Consultation psychologue (Stefania + enfants)</span><span class="nl" style="display:none">Psycholoog raadplegen (Stefania + kinderen)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 2 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#f59e0b,#d97706)">2</div>
+      <div class="phase-title">
+        <span class="fr">🏠 Interdiction de domicile — Résultat ?</span>
+        <span class="nl" style="display:none">🏠 Huisverbod — Resultaat?</span>
+      </div>
+    </div>
+    <div class="connector-split"><div></div><div></div></div>
+    <div class="branch">
+      <div class="node success">
+        <div class="node-icon">✅</div>
+        <div class="node-label sl">
+          <span class="fr">Accordée</span><span class="nl" style="display:none">Toegekend</span>
+        </div>
+        <h3><span class="fr">Marius doit quitter le domicile</span><span class="nl" style="display:none">Marius moet woning verlaten</span></h3>
+        <p><span class="fr">Stefania reste avec les enfants. Séparation de fait commence. Position de force.</span><span class="nl" style="display:none">Stefania blijft met kinderen. Feitelijke scheiding begint te lopen. Sterke positie.</span></p>
+        <div class="verdict go"><span class="fr">✅ → Phase 3 : Négociation</span><span class="nl" style="display:none">✅ → Fase 3: Onderhandeling</span></div>
+      </div>
+      <div class="node danger">
+        <div class="node-icon">❌</div>
+        <div class="node-label dgl">
+          <span class="fr">Refusée</span><span class="nl" style="display:none">Geweigerd</span>
+        </div>
+        <h3><span class="fr">Les deux restent dans la maison</span><span class="nl" style="display:none">Beide blijven in de woning</span></h3>
+        <p><span class="fr">Motifs insuffisants. Alternative : logement temporaire OU mesures provisoires tribunal.</span><span class="nl" style="display:none">Onvoldoende grond. Alternatief: tijdelijke woning OF voorlopige maatregelen rechtbank.</span></p>
+        <div class="verdict caution"><span class="fr">⚠️ → Phase 2B : Tribunal de la famille</span><span class="nl" style="display:none">⚠️ → Fase 2B: Familierechtbank</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 2B -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#f59e0b,#d97706)">2B</div>
+      <div class="phase-title">
+        <span class="fr">⚖️ Tribunal de la famille — Mesures provisoires</span>
+        <span class="nl" style="display:none">⚖️ Familierechtbank — Voorlopige Maatregelen</span>
+      </div>
+    </div>
+    <div class="node decision">
+      <div class="node-icon">⚖️</div>
+      <div class="node-label dl">
+        <span class="fr">Le juge décide sur</span><span class="nl" style="display:none">Rechter beslist over</span>
+      </div>
+      <h3><span class="fr">Audience d'introduction</span><span class="nl" style="display:none">Inleidingszitting</span></h3>
+      <ul>
+        <li>🏠 <span class="fr">Qui reste dans le domicile ?</span><span class="nl" style="display:none">Wie blijft in de woning?</span></li>
+        <li>👧👦 <span class="fr">Régime de résidence des enfants (provisoire)</span><span class="nl" style="display:none">Verblijfsregeling kinderen (voorlopig)</span></li>
+        <li>💳 <span class="fr">Qui paie quelles dettes ?</span><span class="nl" style="display:none">Wie betaalt welke schulden?</span></li>
+        <li>💶 <span class="fr">Pension alimentaire provisoire</span><span class="nl" style="display:none">Voorlopige onderhoudsbijdrage</span></li>
+      </ul>
+    </div>
+    <div class="connector-split"><div></div><div></div></div>
+    <div class="branch">
+      <div class="node success">
+        <div class="node-icon">💪</div>
+        <div class="node-label sl">
+          <span class="fr">Favorable à Stefania</span><span class="nl" style="display:none">Gunstig voor Stefania</span>
+        </div>
+        <h3><span class="fr">Stefania + enfants dans la maison</span><span class="nl" style="display:none">Stefania + kinderen in woning</span></h3>
+        <p><span class="fr">Résidence principale chez elle. Marius paie dettes + pension.</span><span class="nl" style="display:none">Hoofdverblijf bij haar. Marius betaalt schulden + onderhoudsbijdrage.</span></p>
+        <div class="verdict go"><span class="fr">✅ → Phase 3 : Négociation</span><span class="nl" style="display:none">✅ → Fase 3: Onderhandeling</span></div>
+      </div>
+      <div class="node danger">
+        <div class="node-icon">⚖️</div>
+        <div class="node-label dgl">
+          <span class="fr">Défavorable / 50-50</span><span class="nl" style="display:none">Ongunstig / 50-50</span>
+        </div>
+        <h3><span class="fr">Le juge décide la coparentalité</span><span class="nl" style="display:none">Rechter beslist co-ouderschap</span></h3>
+        <p><span class="fr">Marius exige 50/50. Hébergement partagé provisoire.</span><span class="nl" style="display:none">Marius eist 50/50. Gedeeld verblijf voorlopig.</span></p>
+        <div class="verdict caution"><span class="fr">⚠️ → Demander enquête sociale + expertise psychiatrique</span><span class="nl" style="display:none">⚠️ → Maatschappelijk onderzoek + psychiatrische expertise vragen</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- MARIUS EIST 50/50 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">💡</div>
+      <div class="phase-title">
+        <span class="fr">🛡️ Si Marius exige la garde 50/50</span>
+        <span class="nl" style="display:none">🛡️ Als Marius 50/50 hoederecht eist</span>
+      </div>
+    </div>
+    <div class="node info">
+      <div class="node-icon">🛡️</div>
+      <div class="node-label il">
+        <span class="fr">Contre-stratégie — 5 arguments solides</span>
+        <span class="nl" style="display:none">Tegenstrategie — 5 sterke argumenten</span>
+      </div>
+      <h3><span class="fr">Pourquoi 50/50 ne sera pas accordé</span><span class="nl" style="display:none">Waarom 50/50 niet zal worden toegekend</span></h3>
+      <ul>
+        <li>🗣️ <strong><span class="fr">Barrière linguistique :</span><span class="nl" style="display:none">Taalbarrière:</span></strong> <span class="fr">Marius ne parle pas néerlandais. École néerlandophone (De Boomhut, Brustem). Ne peut pas aider aux devoirs.</span><span class="nl" style="display:none">Marius spreekt geen Nederlands. Nederlandstalige school (De Boomhut, Brustem). Kan niet helpen met huiswerk.</span></li>
+        <li>👩‍👧‍👦 <strong><span class="fr">Parent principal :</span><span class="nl" style="display:none">Hoofdverzorger:</span></strong> <span class="fr">Stefania fait tout — école, hobby's (piano, dessin, Chiro), logopédie, devoirs.</span><span class="nl" style="display:none">Stefania doet alles — school, hobby's (piano, tekenen, Chiro), logopedie, huiswerk.</span></li>
+        <li>🧠 <strong><span class="fr">État psychique Marius :</span><span class="nl" style="display:none">Psychische toestand Marius:</span></strong> <span class="fr">Expertise psychiatrique → paranoïa + refus médication constaté.</span><span class="nl" style="display:none">Psychiatrische expertise → paranoia + medicatieweigering vastgesteld.</span></li>
+        <li>🏖️ <strong><span class="fr">Absence factuelle :</span><span class="nl" style="display:none">Feitelijke afwezigheid:</span></strong> <span class="fr">Ne s'occupe pas des enfants. Sa mère prend la relève. Projet voyage Portugal.</span><span class="nl" style="display:none">Bekommert zich niet om kinderen. Zijn moeder neemt over. Plan reis Portugal.</span></li>
+        <li>🔍 <strong><span class="fr">Enquête sociale :</span><span class="nl" style="display:none">Maatschappelijk onderzoek:</span></strong> <span class="fr">Le SAJ/expert confirmera que Stefania est le parent principal.</span><span class="nl" style="display:none">SAJ/deskundige zal bevestigen dat Stefania de hoofdverzorger is.</span></li>
+      </ul>
+      <div class="verdict caution"><span class="fr">⚖️ Résultat réaliste : autorité conjointe, résidence principale chez Stefania, hébergement secondaire limité chez Marius</span><span class="nl" style="display:none">⚖️ Realistisch resultaat: gezamenlijk ouderlijk gezag, hoofdverblijf bij Stefania, beperkt secundair verblijf bij Marius</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 3: NÉGOCIATION -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">3</div>
+      <div class="phase-title">
+        <span class="fr">🤝 Négociation — Proposer le Deal</span>
+        <span class="nl" style="display:none">🤝 Onderhandeling — De Deal Voorstellen</span>
+      </div>
+    </div>
+    <div class="node action">
+      <div class="node-icon">🤝</div>
+      <div class="node-label al">
+        <span class="fr">Proposition à Marius (via son avocat)</span>
+        <span class="nl" style="display:none">Voorstel aan Marius (via zijn advocaat)</span>
+      </div>
+      <h3><span class="fr">⭐ Deal : Plus-value contre pension alimentaire</span><span class="nl" style="display:none">⭐ Deal: Overwaarde tegen alimentatie</span></h3>
+      <ul>
+        <li>🏠 <span class="fr">Stefania garde la maison + reprend les prêts (€210-225k)</span><span class="nl" style="display:none">Stefania houdt het huis + neemt leningen over (€210-225k)</span></li>
+        <li>💶 <span class="fr">Marius renonce à sa part de ±€120k de plus-value</span><span class="nl" style="display:none">Marius doet afstand van zijn deel ±€120k overwaarde</span></li>
+        <li>🚫 <span class="fr">En échange : pas de pension alimentaire (valeur ±€80-100k sur 15-18 ans)</span><span class="nl" style="display:none">In ruil: geen alimentatie (waarde ±€80-100k over 15-18 jaar)</span></li>
+        <li>👧👦 <span class="fr">Résidence principale chez Stefania</span><span class="nl" style="display:none">Hoofdverblijf bij Stefania</span></li>
+        <li>📅 <span class="fr">Hébergement secondaire limité (1 week-end sur 2)</span><span class="nl" style="display:none">Beperkt secundair verblijf (1 weekend op 2)</span></li>
+        <li>🆓 <span class="fr">Marius part libre, sans obligations mensuelles</span><span class="nl" style="display:none">Marius vertrekt vrij, zonder maandelijkse verplichtingen</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#f59e0b,#d97706)">4</div>
+      <div class="phase-title">
+        <span class="fr">🎯 Réaction de Marius</span>
+        <span class="nl" style="display:none">🎯 Reactie van Marius</span>
+      </div>
+    </div>
+    <div class="connector-split"><div></div><div></div></div>
+    <div class="branch">
+      <div class="node success">
+        <div class="node-icon">🎉</div>
+        <div class="node-label sl">
+          <span class="fr">D'accord</span><span class="nl" style="display:none">Akkoord</span>
+        </div>
+        <h3><span class="fr">✅ Transaction — Accord amiable</span><span class="nl" style="display:none">✅ Dading — Minnelijk akkoord</span></h3>
+        <ul>
+          <li>📝 <span class="fr">Accord fixé chez le notaire</span><span class="nl" style="display:none">Akkoord vastgelegd bij notaris</span></li>
+          <li>⚖️ <span class="fr">Divorce par consentement mutuel (6 mois)</span><span class="nl" style="display:none">Echtscheiding door onderlinge toestemming (6 maanden)</span></li>
+          <li>🏦 <span class="fr">Stefania refinance : ±1.065 €/mois</span><span class="nl" style="display:none">Stefania herfinanciert: ±€1.065/maand</span></li>
+          <li>🏠 <span class="fr">Les enfants restent chez eux</span><span class="nl" style="display:none">Kinderen blijven in hun thuis</span></li>
+          <li>💨 <span class="fr">Route la plus rapide et la moins chère</span><span class="nl" style="display:none">Snelste en goedkoopste route</span></li>
+        </ul>
+        <div class="verdict go"><span class="fr">🏆 MEILLEUR SCÉNARIO — ±6-9 mois — ±3.000-5.000 €</span><span class="nl" style="display:none">🏆 BESTE SCENARIO — ±6-9 maanden — ±€3.000-5.000</span></div>
+      </div>
+      <div class="node danger">
+        <div class="node-icon">🚫</div>
+        <div class="node-label dgl">
+          <span class="fr">Refuse / bloque</span><span class="nl" style="display:none">Weigert / blokkeert</span>
+        </div>
+        <h3><span class="fr">❌ Marius ne coopère pas</span><span class="nl" style="display:none">❌ Marius werkt niet mee</span></h3>
+        <p><span class="fr">Profil narcissique : exige plus, veut 50/50, bloque tout.</span><span class="nl" style="display:none">Narcistisch profiel: eist meer, wil 50/50, blokkeert alles.</span></p>
+        <div class="verdict stop"><span class="fr">⚠️ → Phase 5 : Escalade</span><span class="nl" style="display:none">⚠️ → Fase 5: Escalatie</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 5: ESCALADE -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#ef4444,#dc2626)">5</div>
+      <div class="phase-title">
+        <span class="fr">🔥 Escalade — Marius bloque</span>
+        <span class="nl" style="display:none">🔥 Escalatie — Marius blokkeert</span>
+      </div>
+    </div>
+    <div class="node action">
+      <div class="node-icon">🔥</div>
+      <div class="node-label al">
+        <span class="fr">Maximiser la pression — 4 pistes en parallèle</span>
+        <span class="nl" style="display:none">Druk maximaliseren — 4 pistes parallel</span>
+      </div>
+      <h3><span class="fr">⚡ Les narcissiques ne répondent pas à la raison, mais à la peur de perdre</span><span class="nl" style="display:none">⚡ Narcisten reageren niet op rede, maar op angst om te verliezen</span></h3>
+    </div>
+    <div class="branch">
+      <div class="node info">
+        <div class="node-icon">🚔</div>
+        <div class="node-label il">
+          <span class="fr">Piste A — Pénal</span><span class="nl" style="display:none">Piste A — Strafrechtelijk</span>
+        </div>
+        <h3><span class="fr">Plainte violence intrafamiliale</span><span class="nl" style="display:none">Klacht intrafamiliaal geweld</span></h3>
+        <ul>
+          <li>🚔 <span class="fr">Plainte : violence psychologique, harcèlement (art. 442bis C.P.)</span><span class="nl" style="display:none">Klacht: psychisch geweld, belaging (art. 442bis Sw.)</span></li>
+          <li>🩺 <span class="fr">Dossier médical comme preuve</span><span class="nl" style="display:none">Medisch dossier als bewijs</span></li>
+          <li>⚖️ <span class="fr">Renforce position dans procédure familiale</span><span class="nl" style="display:none">Versterkt positie in familieprocedure</span></li>
+          <li>📋 <span class="fr">Casier judiciaire → impact autorité parentale</span><span class="nl" style="display:none">Strafblad → impact ouderlijk gezag</span></li>
+        </ul>
+      </div>
+      <div class="node info">
+        <div class="node-icon">🏠</div>
+        <div class="node-label il">
+          <span class="fr">Piste B — Vente forcée</span><span class="nl" style="display:none">Piste B — Gedwongen verkoop</span>
+        </div>
+        <h3><span class="fr">Vente judiciaire de la maison</span><span class="nl" style="display:none">Gerechtelijke verkoop woning</span></h3>
+        <ul>
+          <li>⚖️ <span class="fr">Le juge désigne un notaire pour liquidation-partage</span><span class="nl" style="display:none">Rechter stelt notaris aan voor vereffening-verdeling</span></li>
+          <li>🏠 <span class="fr">Vente publique — Marius ne peut pas bloquer</span><span class="nl" style="display:none">Openbare verkoop — Marius kan niet blokkeren</span></li>
+          <li>💶 <span class="fr">Produit divisé 50/50 après dettes</span><span class="nl" style="display:none">Opbrengst 50/50 na aftrek schulden</span></li>
+          <li>🏢 <span class="fr">Stefania achète un appartement avec ±€111k</span><span class="nl" style="display:none">Stefania koopt appartement met ±€111k</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="node info">
+        <div class="node-icon">🧠</div>
+        <div class="node-label il">
+          <span class="fr">Piste C — Expertise psychiatrique</span><span class="nl" style="display:none">Piste C — Psychiatrische expertise</span>
+        </div>
+        <h3><span class="fr">Expertise psychiatrique judiciaire</span><span class="nl" style="display:none">Gerechtelijke psychiatrische expertise</span></h3>
+        <ul>
+          <li>⚖️ <span class="fr">L'avocat demande une expertise au juge</span><span class="nl" style="display:none">Advocaat vraagt expertise aan rechter</span></li>
+          <li>🧠 <span class="fr">Psychiatre examine Marius (obligatoire)</span><span class="nl" style="display:none">Psychiater onderzoekt Marius (verplicht)</span></li>
+          <li>📋 <span class="fr">Paranoïa + refus médication constaté</span><span class="nl" style="display:none">Paranoia + medicatieweigering vastgesteld</span></li>
+          <li>👧👦 <span class="fr">Base pour autorité parentale exclusive</span><span class="nl" style="display:none">Basis voor exclusief ouderlijk gezag</span></li>
+        </ul>
+      </div>
+      <div class="node info">
+        <div class="node-icon">♟️</div>
+        <div class="node-label il">
+          <span class="fr">Piste D — Négociation 2.0</span><span class="nl" style="display:none">Piste D — Onderhandeling 2.0</span>
+        </div>
+        <h3><span class="fr">Nouveau deal depuis position de force</span><span class="nl" style="display:none">Nieuw voorstel vanuit machtspositie</span></h3>
+        <ul>
+          <li>💪 <span class="fr">Après huisverbod + plainte + expertise : Marius sous pression</span><span class="nl" style="display:none">Na huisverbod + klacht + expertise: Marius onder druk</span></li>
+          <li>⚖️ <span class="fr">Son avocat lui conseillera de transiger</span><span class="nl" style="display:none">Zijn advocaat raadt hem aan om te schikken</span></li>
+          <li>🤝 <span class="fr">Reproposer le deal depuis une position de pouvoir</span><span class="nl" style="display:none">Zelfde deal opnieuw voorstellen vanuit machtspositie</span></li>
+        </ul>
+        <div class="verdict caution"><span class="fr">♟️ Les narcissiques transigent quand l'alternative est pire</span><span class="nl" style="display:none">♟️ Narcisten schikken wanneer het alternatief erger is</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- NEW: WORST CASE — MARIUS WEIGERT ALLES -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#dc2626,#991b1b)">💀</div>
+      <div class="phase-title">
+        <span class="fr">💀 Marius refuse TOUT — Pire scénario</span>
+        <span class="nl" style="display:none">💀 Marius weigert ALLES — Ergste scenario</span>
+      </div>
+    </div>
+    <div class="node worst">
+      <div class="node-icon">🔴</div>
+      <div class="node-label wl">
+        <span class="fr">Scénario confirmé par Stefania — "il ne va pas être d'accord avec tout ça"</span>
+        <span class="nl" style="display:none">Scenario bevestigd door Stefania — "hij gaat met niets akkoord"</span>
+      </div>
+      <h3><span class="fr">⚔️ Stratégie quand Marius bloque sur TOUS les fronts</span><span class="nl" style="display:none">⚔️ Strategie wanneer Marius op ALLE fronten blokkeert</span></h3>
+      <ul>
+        <li>🚫 <strong><span class="fr">Il refuse la pension :</span><span class="nl" style="display:none">Hij weigert alimentatie:</span></strong> <span class="fr">Le juge la fixe d'office. Son opinion ne compte pas.</span><span class="nl" style="display:none">Rechter legt die ambtshalve op. Zijn mening telt niet.</span></li>
+        <li>👧👦 <strong><span class="fr">Il exige 50/50 (pour éviter la pension) :</span><span class="nl" style="display:none">Hij eist 50/50 (om alimentatie te ontwijken):</span></strong> <span class="fr">Enquête sociale + expertise psychiatrique → le juge verra qu'il ne s'occupe pas des enfants.</span><span class="nl" style="display:none">Maatschappelijk onderzoek + psychiatrische expertise → rechter ziet dat hij zich niet bekommert om kinderen.</span></li>
+        <li>🏠 <strong><span class="fr">Il refuse de quitter la maison :</span><span class="nl" style="display:none">Hij weigert het huis te verlaten:</span></strong> <span class="fr">Interdiction de domicile via procureur OU mesures provisoires du juge. Il DEVRA partir.</span><span class="nl" style="display:none">Huisverbod via procureur OF voorlopige maatregelen rechter. Hij MOET vertrekken.</span></li>
+        <li>🏠 <strong><span class="fr">Il refuse de vendre/céder la maison :</span><span class="nl" style="display:none">Hij weigert te verkopen/af te staan:</span></strong> <span class="fr">Vente judiciaire forcée. Le notaire organise. Marius ne peut rien bloquer.</span><span class="nl" style="display:none">Gedwongen gerechtelijke verkoop. Notaris organiseert. Marius kan niets blokkeren.</span></li>
+        <li>💰 <strong><span class="fr">"Pour lui c'est l'argent" :</span><span class="nl" style="display:none">"Voor hem telt alleen geld":</span></strong> <span class="fr">Lui montrer les chiffres : son avocat lui coûtera €10-25k. Le deal lui fait économiser cet argent.</span><span class="nl" style="display:none">Toon hem de cijfers: zijn advocaat kost €10-25k. De deal bespaart hem dat geld.</span></li>
+        <li>⏱️ <strong><span class="fr">Il joue la montre :</span><span class="nl" style="display:none">Hij speelt op tijd:</span></strong> <span class="fr">Après 1 an de séparation → divorce judiciaire automatique (art. 229 §3). Il ne peut pas empêcher le divorce.</span><span class="nl" style="display:none">Na 1 jaar feitelijke scheiding → gerechtelijke echtscheiding automatisch (art. 229 §3). Hij kan de scheiding niet tegenhouden.</span></li>
+      </ul>
+      <div class="verdict stop"><span class="fr">📌 CONCLUSION : Marius peut ralentir, mais il ne peut PAS empêcher. Chaque mois qui passe renforce la position de Stefania.</span><span class="nl" style="display:none">📌 CONCLUSIE: Marius kan vertragen, maar hij kan NIET tegenhouden. Elke maand die verstrijkt versterkt Stefania's positie.</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- PHASE 6: RÉSULTAT -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">6</div>
+      <div class="phase-title">
+        <span class="fr">🏆 Résultat Final</span>
+        <span class="nl" style="display:none">🏆 Eindresultaat</span>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="node success">
+        <div class="node-icon">🏆</div>
+        <div class="node-label sl">
+          <span class="fr">Meilleur cas</span><span class="nl" style="display:none">Beste geval</span>
+        </div>
+        <h3><span class="fr">✅ Transaction / Accord amiable</span><span class="nl" style="display:none">✅ Dading / Minnelijk akkoord</span></h3>
+        <ul>
+          <li>🏠 <span class="fr">Stefania garde la maison (±1.065 €/m)</span><span class="nl" style="display:none">Stefania houdt het huis (±€1.065/m)</span></li>
+          <li>💶 <span class="fr">Pas de paiement à Marius</span><span class="nl" style="display:none">Geen betaling aan Marius</span></li>
+          <li>👧👦 <span class="fr">Résidence principale enfants chez Stefania</span><span class="nl" style="display:none">Hoofdverblijf kinderen bij Stefania</span></li>
+          <li>⏱️ <span class="fr">Durée : 6-9 mois — Coût : ±3.000-5.000 €</span><span class="nl" style="display:none">Duur: 6-9 maanden — Kost: ±€3.000-5.000</span></li>
+        </ul>
+        <div class="verdict go"><span class="fr">✅ Financièrement viable — enfants stables</span><span class="nl" style="display:none">✅ Financieel haalbaar — kinderen stabiel</span></div>
+      </div>
+      <div class="node decision">
+        <div class="node-icon">📊</div>
+        <div class="node-label dl">
+          <span class="fr">Cas réaliste</span><span class="nl" style="display:none">Realistisch geval</span>
+        </div>
+        <h3><span class="fr">📊 Divorce judiciaire + vente maison</span><span class="nl" style="display:none">📊 Gerechtelijke echtscheiding + verkoop woning</span></h3>
+        <ul>
+          <li>🏠 <span class="fr">Maison vendue, chacun ±€111k</span><span class="nl" style="display:none">Woning verkocht, elk ±€111k</span></li>
+          <li>🏢 <span class="fr">Stefania achète appartement (±598 €/m)</span><span class="nl" style="display:none">Stefania koopt appartement (±€598/m)</span></li>
+          <li>💶 <span class="fr">Pension alimentaire ±350 €/m de Marius</span><span class="nl" style="display:none">Alimentatie ±€350/m van Marius</span></li>
+          <li>⏱️ <span class="fr">Durée : 12-18 mois — Coût : ±5.000-10.000 €</span><span class="nl" style="display:none">Duur: 12-18 maanden — Kost: ±€5.000-10.000</span></li>
+        </ul>
+        <div class="verdict caution"><span class="fr">⚠️ Financièrement sûr — enfants déménagent</span><span class="nl" style="display:none">⚠️ Financieel veilig — kinderen verhuizen</span></div>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="node danger" style="grid-column: 1 / -1;">
+        <div class="node-icon">💀</div>
+        <div class="node-label dgl">
+          <span class="fr">Pire cas</span><span class="nl" style="display:none">Ergste geval</span>
+        </div>
+        <h3><span class="fr">💀 Bataille judiciaire prolongée</span><span class="nl" style="display:none">💀 Langdurige gerechtelijke strijd</span></h3>
+        <ul>
+          <li>⏱️ <span class="fr">Procédure dure 2-4 ans</span><span class="nl" style="display:none">Procedure duurt 2-4 jaar</span></li>
+          <li>💰 <span class="fr">Coûts : 10.000-25.000 €+</span><span class="nl" style="display:none">Kosten: €10.000-25.000+</span></li>
+          <li>😓 <span class="fr">Épuisant pour Stefania et les enfants</span><span class="nl" style="display:none">Uitputtend voor Stefania en kinderen</span></li>
+          <li>📌 <span class="fr">Même résultat final, mais plus lent et plus cher</span><span class="nl" style="display:none">Zelfde eindresultaat, maar trager en duurder</span></li>
+        </ul>
+        <div class="verdict stop"><span class="fr">❌ À éviter en construisant la pression tôt</span><span class="nl" style="display:none">❌ Vermijden door vroeg druk op te bouwen</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAB 2: FINANCE ==================== -->
+<div id="finance" class="tab-content">
+
+  <div class="section-title"><span class="icon">📊</span> <span class="fr">Aperçu des prêts</span><span class="nl" style="display:none">Overzicht leningen</span></div>
+
+  <table>
+    <tr>
+      <th><span class="fr">Prêt</span><span class="nl" style="display:none">Lening</span></th>
+      <th><span class="fr">Mensualité</span><span class="nl" style="display:none">Maandbedrag</span></th>
+      <th><span class="fr">Durée restante</span><span class="nl" style="display:none">Resterende duur</span></th>
+      <th><span class="fr">Paiements restants</span><span class="nl" style="display:none">Resterende betalingen</span></th>
+      <th><span class="fr">Capital restant estimé</span><span class="nl" style="display:none">Geschat resterend kapitaal</span></th>
+    </tr>
+    <tr><td>🏠 <span class="fr">Hypothèque</span><span class="nl" style="display:none">Hypotheek</span></td><td>790 €</td><td>17 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></td><td>161.160 €</td><td>130.000-150.000 €</td></tr>
+    <tr><td>🔧 <span class="fr">Rénovation 1</span><span class="nl" style="display:none">Renovatie 1</span></td><td>245 €</td><td>2 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></td><td>5.880 €</td><td>5.000-5.500 €</td></tr>
+    <tr><td>🔧 <span class="fr">Rénovation 2</span><span class="nl" style="display:none">Renovatie 2</span></td><td>500 €</td><td>86 <span class="fr">mois</span><span class="nl" style="display:none">maanden</span></td><td>43.000 €</td><td>35.000-40.000 €</td></tr>
+    <tr><td>🔧 <span class="fr">Rénovation 3</span><span class="nl" style="display:none">Renovatie 3</span></td><td>250 €</td><td>4 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></td><td>12.000 €</td><td>10.000-11.000 €</td></tr>
+    <tr><td>🔧 <span class="fr">Rénovation 4</span><span class="nl" style="display:none">Renovatie 4</span></td><td>250 €</td><td>7 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></td><td>21.000 €</td><td>17.000-19.000 €</td></tr>
+    <tr style="font-weight:700;background:rgba(99,102,241,0.1)"><td>TOTAL</td><td>2.035 €/<span class="fr">m</span><span class="nl" style="display:none">m</span></td><td></td><td>243.040 €</td><td>197.000-225.500 €</td></tr>
+  </table>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="icon">🏡</div><div class="num" style="color:#f8fafc">450k€</div><div class="lbl"><span class="fr">Valeur maison</span><span class="nl" style="display:none">Waarde woning</span></div></div>
+    <div class="stat-card"><div class="icon">💳</div><div class="num" style="color:#f87171">210k€</div><div class="lbl"><span class="fr">Capital restant</span><span class="nl" style="display:none">Resterend kapitaal</span></div></div>
+    <div class="stat-card"><div class="icon">📈</div><div class="num" style="color:#4ade80">240k€</div><div class="lbl"><span class="fr">Plus-value nette</span><span class="nl" style="display:none">Netto overwaarde</span></div></div>
+    <div class="stat-card"><div class="icon">👤</div><div class="num" style="color:#818cf8">120k€</div><div class="lbl"><span class="fr">Part par conjoint</span><span class="nl" style="display:none">Aandeel per partner</span></div></div>
+  </div>
+
+  <div class="note">
+    <p><strong>📌 <span class="fr">Remarque :</span><span class="nl" style="display:none">Opmerking:</span></strong> <span class="fr">Le montant de 270k€ mentionné par Stefania correspond probablement au total des paiements restants (intérêts inclus). Le capital réellement dû est inférieur (±200-225k€). <strong>Un décompte exact à la banque est essentiel.</strong></span><span class="nl" style="display:none">Het bedrag van €270k dat Stefania noemde is waarschijnlijk het totaal van resterende betalingen (inclusief rente). Het werkelijk verschuldigd kapitaal is lager (±€200-225k). <strong>Een exact afrekenoverzicht bij de bank is essentieel.</strong></span></p>
+  </div>
+
+  <!-- SCENARIO A -->
+  <div class="section-title"><span class="icon">🏢</span> <span class="fr">Scénario A — Vendre + acheter appartement</span><span class="nl" style="display:none">Scenario A — Verkopen + appartement kopen</span></div>
+  <div class="fin-grid">
+    <div class="fin-card best">
+      <h3>🏷️ <span class="fr">Vente & partage</span><span class="nl" style="display:none">Verkoop & verdeling</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Prix de vente</span><span class="nl" style="display:none">Verkoopprijs</span></span><span class="value">450.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Capital restant</span><span class="nl" style="display:none">Resterend kapitaal</span></span><span class="value neg">-210.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Frais (±4%)</span><span class="nl" style="display:none">Kosten (±4%)</span></span><span class="value neg">-18.000 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Net à partager</span><span class="nl" style="display:none">Netto te verdelen</span></span><span class="value pos">222.000 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Stefania reçoit (50%)</span><span class="nl" style="display:none">Stefania ontvangt (50%)</span></span><span class="value pos">111.000 €</span></div>
+    </div>
+    <div class="fin-card best">
+      <h3>🏢 <span class="fr">Achat appartement</span><span class="nl" style="display:none">Aankoop appartement</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Prix Sint-Truiden</span><span class="nl" style="display:none">Prijs Sint-Truiden</span></span><span class="value">220.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Droits (3% Flandre)</span><span class="nl" style="display:none">Registratierechten (3% Vlaanderen)</span></span><span class="value neg">-6.600 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Frais de notaire</span><span class="nl" style="display:none">Notariskosten</span></span><span class="value neg">-4.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Apport propre</span><span class="nl" style="display:none">Eigen inbreng</span></span><span class="value pos">111.000 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">À emprunter</span><span class="nl" style="display:none">Te lenen</span></span><span class="value">119.600 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Mensualité (25 ans, 3,5%)</span><span class="nl" style="display:none">Maandbedrag (25j, 3,5%)</span></span><span class="value">598 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+    </div>
+    <div class="fin-card best">
+      <h3>📊 <span class="fr">Budget mensuel</span><span class="nl" style="display:none">Maandbudget</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Revenu net</span><span class="nl" style="display:none">Netto inkomen</span></span><span class="value pos">2.600 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Pension alimentaire</span><span class="nl" style="display:none">Alimentatie kinderen</span></span><span class="value pos">+350 €</span></div>
+      <div class="fin-row"><span class="label">Groeipakket</span><span class="value pos">+350 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Hypothèque</span><span class="nl" style="display:none">Hypotheek</span></span><span class="value neg">-598 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Disponible</span><span class="nl" style="display:none">Beschikbaar</span></span><span class="value pos">2.702 €</span></div>
+      <div class="verdict go"><span class="fr">✅ Confortable — marge pour imprévus</span><span class="nl" style="display:none">✅ Comfortabel — marge voor onvoorziene kosten</span></div>
+    </div>
+  </div>
+
+  <!-- SCENARIO B -->
+  <div class="section-title"><span class="icon">❌</span> <span class="fr">Scénario B — Racheter + payer Marius (€120k)</span><span class="nl" style="display:none">Scenario B — Overkopen + Marius uitbetalen (€120k)</span></div>
+  <div class="fin-grid">
+    <div class="fin-card bad">
+      <h3>🏦 <span class="fr">Refinancement</span><span class="nl" style="display:none">Herfinanciering</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Capital à reprendre</span><span class="nl" style="display:none">Over te nemen kapitaal</span></span><span class="value">210.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Rachat part Marius</span><span class="nl" style="display:none">Uitkoop Marius</span></span><span class="value neg">+120.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Frais notaire</span><span class="nl" style="display:none">Notariskosten</span></span><span class="value neg">+5.000 €</span></div>
+      <div class="fin-row total"><span class="label">Totaal</span><span class="value neg">335.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Mensualité (25 ans)</span><span class="nl" style="display:none">Maandbedrag (25j)</span></span><span class="value neg">1.675 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+    </div>
+    <div class="fin-card bad">
+      <h3>📊 <span class="fr">Budget mensuel</span><span class="nl" style="display:none">Maandbudget</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Revenu net + Groeipakket</span><span class="nl" style="display:none">Netto inkomen + Groeipakket</span></span><span class="value pos">3.300 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Hypothèque</span><span class="nl" style="display:none">Hypotheek</span></span><span class="value neg">-1.675 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Disponible</span><span class="nl" style="display:none">Beschikbaar</span></span><span class="value warn">1.625 €</span></div>
+      <div class="verdict stop"><span class="fr">❌ Trop serré — banque refusera (endettement >50%)</span><span class="nl" style="display:none">❌ Te krap — bank weigert (schuldgraad >50%)</span></div>
+    </div>
+  </div>
+
+  <!-- SCENARIO C -->
+  <div class="section-title"><span class="icon">⭐</span> <span class="fr">Scénario C — LE DEAL : Racheter sans paiement</span><span class="nl" style="display:none">Scenario C — DE DEAL: Overkopen zonder uitbetaling</span></div>
+  <div class="fin-grid">
+    <div class="fin-card ok">
+      <h3>🏦 <span class="fr">Refinancement (sans rachat)</span><span class="nl" style="display:none">Herfinanciering (zonder uitkoop)</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Capital à reprendre</span><span class="nl" style="display:none">Over te nemen kapitaal</span></span><span class="value">210.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Paiement à Marius</span><span class="nl" style="display:none">Betaling aan Marius</span></span><span class="value pos">0 € (deal)</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Frais notaire</span><span class="nl" style="display:none">Notariskosten</span></span><span class="value neg">+3.000 €</span></div>
+      <div class="fin-row total"><span class="label">Totaal</span><span class="value">213.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Mensualité (25 ans)</span><span class="nl" style="display:none">Maandbedrag (25j)</span></span><span class="value">1.065 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+    </div>
+    <div class="fin-card ok">
+      <h3>📊 <span class="fr">Budget mensuel</span><span class="nl" style="display:none">Maandbudget</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Revenu net</span><span class="nl" style="display:none">Netto inkomen</span></span><span class="value pos">2.600 €</span></div>
+      <div class="fin-row"><span class="label">Groeipakket</span><span class="value pos">+350 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Hypothèque</span><span class="nl" style="display:none">Hypotheek</span></span><span class="value neg">-1.065 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Disponible</span><span class="nl" style="display:none">Beschikbaar</span></span><span class="value pos">1.885 €</span></div>
+      <div class="verdict caution"><span class="fr">⭐ Viable — enfants restent chez eux</span><span class="nl" style="display:none">⭐ Haalbaar — kinderen blijven thuis</span></div>
+    </div>
+    <div class="fin-card ok">
+      <h3>🤝 <span class="fr">Pourquoi Marius accepterait</span><span class="nl" style="display:none">Waarom Marius zou aanvaarden</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Plus-value (renonce)</span><span class="nl" style="display:none">Overwaarde (doet afstand)</span></span><span class="value neg">-120.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Pension (économise)</span><span class="nl" style="display:none">Alimentatie (bespaart)</span></span><span class="value pos">+80-100k €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Frais extraordinaires (écon.)</span><span class="nl" style="display:none">Buitengewone kosten (besp.)</span></span><span class="value pos">+15-25k €</span></div>
+      <div class="fin-row total"><span class="label">Net Marius</span><span class="value warn">-0 à +5k €</span></div>
+      <div class="verdict caution"><span class="fr">♟️ Break-even pour Marius — mais immédiatement libre</span><span class="nl" style="display:none">♟️ Break-even voor Marius — maar meteen vrij</span></div>
+    </div>
+  </div>
+
+  <!-- SCENARIO B+ : BULLETKREDIET -->
+  <div class="section-title"><span class="icon">🎯</span> <span class="fr">Scénario B+ — Racheter avec crédit bullet (intérêts seuls)</span><span class="nl" style="display:none">Scenario B+ — Overkopen met bulletkrediet (alleen rente)</span></div>
+  <div class="note">
+    <p><strong>💡 <span class="fr">Qu'est-ce qu'un crédit bullet ?</span><span class="nl" style="display:none">Wat is een bulletkrediet?</span></strong> <span class="fr">Vous ne payez que les intérêts chaque mois. Le capital est remboursé en une fois à la fin. La mensualité est donc beaucoup plus basse.</span><span class="nl" style="display:none">Je betaalt enkel rente per maand. Het kapitaal wordt in één keer terugbetaald op het einde. Het maandbedrag is dus veel lager.</span></p>
+  </div>
+  <div class="fin-grid">
+    <div class="fin-card ok">
+      <h3>🎯 <span class="fr">Hybride : annuité €210k + bullet €120k</span><span class="nl" style="display:none">Hybride: annuïtair €210k + bullet €120k</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Hypothèque €210k (25 ans, 3,5%)</span><span class="nl" style="display:none">Hypotheek €210k (25j, 3,5%)</span></span><span class="value">1.050 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Bullet €120k (intérêts seuls, 4%)</span><span class="nl" style="display:none">Bullet €120k (alleen rente, 4%)</span></span><span class="value">400 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Total mensualité</span><span class="nl" style="display:none">Totaal maandbedrag</span></span><span class="value warn">1.450 €/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Taux d'endettement</span><span class="nl" style="display:none">Schuldgraad</span></span><span class="value neg">55,8% (&gt;35%)</span></div>
+    </div>
+    <div class="fin-card ok">
+      <h3>📊 <span class="fr">Budget mensuel avec bullet</span><span class="nl" style="display:none">Maandbudget met bullet</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Revenu net</span><span class="nl" style="display:none">Netto inkomen</span></span><span class="value pos">2.600 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Pension alimentaire</span><span class="nl" style="display:none">Alimentatie</span></span><span class="value pos">+350 €</span></div>
+      <div class="fin-row"><span class="label">Groeipakket</span><span class="value pos">+350 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Logement (annuité + bullet)</span><span class="nl" style="display:none">Woonkost (annuïtair + bullet)</span></span><span class="value neg">-1.450 €</span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Disponible</span><span class="nl" style="display:none">Beschikbaar</span></span><span class="value warn">1.850 €</span></div>
+    </div>
+    <div class="fin-card bad">
+      <h3>⚠️ <span class="fr">Problèmes du bullet</span><span class="nl" style="display:none">Problemen met bullet</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">À rembourser à l'échéance</span><span class="nl" style="display:none">Terug te betalen op einddatum</span></span><span class="value neg">120.000 €</span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Banque accepte pour particulier ?</span><span class="nl" style="display:none">Bank aanvaardt voor particulier?</span></span><span class="value neg"><span class="fr">Très rare</span><span class="nl" style="display:none">Zeer zeldzaam</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Durée max typique</span><span class="nl" style="display:none">Typische max duur</span></span><span class="value warn">2-5 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Intérêts totaux payés (10 ans)</span><span class="nl" style="display:none">Totaal betaalde rente (10 jaar)</span></span><span class="value neg">48.000 €</span></div>
+      <div class="verdict stop"><span class="fr">❌ Belgische banken geven zelden bulletkredieten aan particulieren voor woonkredieten. Enkel als overbrugging (max 2 jaar).</span><span class="nl" style="display:none">❌ Belgische banken geven zelden bulletkredieten aan particulieren voor woonkredieten. Enkel als overbrugging (max 2 jaar).</span></div>
+    </div>
+  </div>
+
+  <!-- HOEVEEL MOET ZE VERDIENEN -->
+  <div class="section-title"><span class="icon">💼</span> <span class="fr">Combien Stefania devrait-elle gagner pour rendre B possible ?</span><span class="nl" style="display:none">Hoeveel moet Stefania verdienen om B mogelijk te maken?</span></div>
+  <div class="note">
+    <p><strong>📐 <span class="fr">Règle bancaire belge :</span><span class="nl" style="display:none">Belgische bankregel:</span></strong> <span class="fr">La mensualité de remboursement ne peut pas dépasser 1/3 du revenu net (±35%). C'est une condition absolue pour l'octroi d'un crédit hypothécaire.</span><span class="nl" style="display:none">De maandelijkse afbetaling mag niet meer dan 1/3 van het netto inkomen bedragen (±35%). Dit is een absolute voorwaarde voor het toekennen van een hypothecair krediet.</span></p>
+  </div>
+  <table>
+    <tr>
+      <th><span class="fr">Variante</span><span class="nl" style="display:none">Variant</span></th>
+      <th><span class="fr">Mensualité</span><span class="nl" style="display:none">Maandbedrag</span></th>
+      <th><span class="fr">Revenu net minimum (×3)</span><span class="nl" style="display:none">Min. netto inkomen (×3)</span></th>
+      <th><span class="fr">Manque vs. actuel (€2.600)</span><span class="nl" style="display:none">Tekort vs. huidig (€2.600)</span></th>
+    </tr>
+    <tr>
+      <td><strong>B <span class="fr">standard</span><span class="nl" style="display:none">standaard</span></strong> (25j, 3,5%)</td>
+      <td style="color:#f87171">1.675 €</td>
+      <td style="color:#f87171"><strong>5.025 €</strong></td>
+      <td style="color:#f87171">-2.425 €</td>
+    </tr>
+    <tr>
+      <td><strong>B 30 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span></strong> (30j, 3,5%)</td>
+      <td style="color:#f87171">1.504 €</td>
+      <td style="color:#f87171"><strong>4.512 €</strong></td>
+      <td style="color:#f87171">-1.912 €</td>
+    </tr>
+    <tr>
+      <td><strong>B 30 <span class="fr">ans</span><span class="nl" style="display:none">jaar</span>, 3%</strong></td>
+      <td style="color:#fbbf24">1.413 €</td>
+      <td style="color:#fbbf24"><strong>4.239 €</strong></td>
+      <td style="color:#fbbf24">-1.639 €</td>
+    </tr>
+    <tr>
+      <td><strong>B <span class="fr">partiel</span><span class="nl" style="display:none">gedeeltelijk</span></strong> (€60k i.p.v. €120k)</td>
+      <td style="color:#fbbf24">1.375 €</td>
+      <td style="color:#fbbf24"><strong>4.125 €</strong></td>
+      <td style="color:#fbbf24">-1.525 €</td>
+    </tr>
+    <tr>
+      <td><strong>B+ bullet</strong> (<span class="fr">hybride</span><span class="nl" style="display:none">hybride</span>)</td>
+      <td style="color:#fbbf24">1.450 €</td>
+      <td style="color:#fbbf24"><strong>4.350 €</strong></td>
+      <td style="color:#fbbf24">-1.750 €</td>
+    </tr>
+    <tr style="background:rgba(34,197,94,0.1)">
+      <td><strong>C (Deal)</strong> — <span class="fr">sans rachat</span><span class="nl" style="display:none">zonder uitkoop</span></td>
+      <td style="color:#4ade80">1.065 €</td>
+      <td style="color:#4ade80"><strong>3.195 €</strong></td>
+      <td style="color:#fbbf24">-595 €</td>
+    </tr>
+    <tr style="background:rgba(34,197,94,0.15)">
+      <td><strong>A (<span class="fr">vente</span><span class="nl" style="display:none">verkoop</span>)</strong> — <span class="fr">appartement</span><span class="nl" style="display:none">appartement</span></td>
+      <td style="color:#4ade80">598 €</td>
+      <td style="color:#4ade80"><strong>1.794 €</strong></td>
+      <td style="color:#4ade80">+806 € ✅</td>
+    </tr>
+  </table>
+  <div class="fin-grid">
+    <div class="fin-card bad" style="grid-column: 1 / -1;">
+      <h3>📌 <span class="fr">Conclusion</span><span class="nl" style="display:none">Conclusie</span></h3>
+      <div class="fin-row"><span class="label"><span class="fr">Scénario B (toutes variantes) : revenu minimum</span><span class="nl" style="display:none">Scenario B (alle varianten): minimum inkomen</span></span><span class="value neg">€4.125 - €5.025 <span class="fr">net</span><span class="nl" style="display:none">netto</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Stefania gagne actuellement</span><span class="nl" style="display:none">Stefania verdient momenteel</span></span><span class="value warn">€2.600 <span class="fr">net</span><span class="nl" style="display:none">netto</span></span></div>
+      <div class="fin-row"><span class="label"><span class="fr">Il lui manque</span><span class="nl" style="display:none">Ze komt tekort</span></span><span class="value neg">€1.525 - €2.425/<span class="fr">mois</span><span class="nl" style="display:none">maand</span></span></div>
+      <div class="fin-row total"><span class="label"><span class="fr">Scénario B possible si</span><span class="nl" style="display:none">Scenario B mogelijk als</span></span><span class="value"><span class="fr">co-emprunteur, job à €4k+ net, ou deal partiel (€60k)</span><span class="nl" style="display:none">co-lener, job van €4k+ netto, of gedeeltelijke deal (€60k)</span></span></div>
+      <div class="verdict stop"><span class="fr">❌ Même le crédit bullet ne résout pas le problème fondamental : le revenu est trop bas pour B. Seuls A ou C sont réalistes.</span><span class="nl" style="display:none">❌ Zelfs een bulletkrediet lost het fundamentele probleem niet op: het inkomen is te laag voor B. Enkel A of C zijn realistisch.</span></div>
+    </div>
+  </div>
+
+  <!-- COMPARAISON -->
+  <div class="section-title"><span class="icon">📋</span> <span class="fr">Comparaison des scénarios</span><span class="nl" style="display:none">Vergelijking scenario's</span></div>
+  <table>
+    <tr><th></th><th>🏢 A</th><th>❌ B</th><th>🎯 B+ (bullet)</th><th>⭐ C (Deal)</th></tr>
+    <tr><td><strong><span class="fr">Mensualité</span><span class="nl" style="display:none">Maandbedrag</span></strong></td><td style="color:#4ade80">598 €</td><td style="color:#f87171">1.675 €</td><td style="color:#fbbf24">1.450 €</td><td style="color:#fbbf24">1.065 €</td></tr>
+    <tr><td><strong><span class="fr">Disponible/mois</span><span class="nl" style="display:none">Beschikbaar/maand</span></strong></td><td style="color:#4ade80">2.702 €</td><td style="color:#f87171">1.625 €</td><td style="color:#fbbf24">1.850 €</td><td style="color:#fbbf24">1.885 €</td></tr>
+    <tr><td><strong><span class="fr">Revenu min. (bank)</span><span class="nl" style="display:none">Min. inkomen (bank)</span></strong></td><td style="color:#4ade80">1.794 €</td><td style="color:#f87171">5.025 €</td><td style="color:#f87171">4.350 €</td><td style="color:#fbbf24">3.195 €</td></tr>
+    <tr><td><strong><span class="fr">Coopération Marius ?</span><span class="nl" style="display:none">Medewerking Marius?</span></strong></td><td><span class="fr">Non (juge force)</span><span class="nl" style="display:none">Nee (rechter dwingt)</span></td><td><span class="fr">Oui</span><span class="nl" style="display:none">Ja</span></td><td><span class="fr">Oui</span><span class="nl" style="display:none">Ja</span></td><td><span class="fr">Oui</span><span class="nl" style="display:none">Ja</span></td></tr>
+    <tr><td><strong><span class="fr">Enfants déménagent ?</span><span class="nl" style="display:none">Kinderen verhuizen?</span></strong></td><td style="color:#fbbf24"><span class="fr">Oui</span><span class="nl" style="display:none">Ja</span></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td></tr>
+    <tr><td><strong><span class="fr">Faisabilité banque</span><span class="nl" style="display:none">Haalbaarheid bank</span></strong></td><td style="color:#4ade80">✅</td><td style="color:#f87171">❌</td><td style="color:#f87171">❌ <span class="fr">(rare)</span><span class="nl" style="display:none">(zeldzaam)</span></td><td style="color:#4ade80">✅</td></tr>
+    <tr><td><strong><span class="fr">Bombe à retardement ?</span><span class="nl" style="display:none">Tijdbom?</span></strong></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td><td style="color:#f87171">€120k <span class="fr">à rembourser</span><span class="nl" style="display:none">terug te betalen</span></td><td style="color:#4ade80"><span class="fr">Non</span><span class="nl" style="display:none">Nee</span></td></tr>
+    <tr><td><strong><span class="fr">Conseil</span><span class="nl" style="display:none">Advies</span></strong></td><td style="color:#4ade80"><strong>★ Plan B (<span class="fr">sûr</span><span class="nl" style="display:none">veilig</span>)</strong></td><td style="color:#f87171"><span class="fr">Irréaliste</span><span class="nl" style="display:none">Onrealistisch</span></td><td style="color:#f87171"><span class="fr">Irréaliste</span><span class="nl" style="display:none">Onrealistisch</span></td><td style="color:#fbbf24"><strong>★ Plan A (<span class="fr">idéal</span><span class="nl" style="display:none">ideaal</span>)</strong></td></tr>
+  </table>
+</div>
+
+<!-- ==================== TAB 3: TIMELINE ==================== -->
+<div id="timeline" class="tab-content">
+
+  <div class="section-title"><span class="icon">📅</span> <span class="fr">Plan d'action chronologique</span><span class="nl" style="display:none">Chronologisch actieplan</span></div>
+
+  <div style="margin-left: 8px;">
+
+    <div class="tl-item urgent">
+      <div class="tl-icon">🚨</div>
+      <div class="tl-content">
+        <h4><span class="fr">Semaine 1 — 25-31 mars 2026</span><span class="nl" style="display:none">Week 1 — 25-31 maart 2026</span></h4>
+        <div class="tl-date"><span class="fr">⚡ URGENT — Actions immédiates</span><span class="nl" style="display:none">⚡ DRINGEND — Onmiddellijke acties</span></div>
+        <ul>
+          <li>✅ <span class="fr">Requête déposée (24/03) — FAIT</span><span class="nl" style="display:none">Verzoekschrift ingediend (24/03) — GEDAAN</span></li>
+          <li>🏠 <strong><span class="fr">Karel règle le schatter (estimation basse !)</span><span class="nl" style="display:none">Karel regelt schatter (lage schatting!)</span></strong></li>
+          <li>🗣️ <strong><span class="fr">Stefania : conversation de sondage avec Marius (écouter, ne rien promettre)</span><span class="nl" style="display:none">Stefania: peilgesprek met Marius (luisteren, niets beloven)</span></strong></li>
+          <li>📝 <span class="fr">Signaler erreurs requête à Me Strauven</span><span class="nl" style="display:none">Fouten verzoekschrift melden aan Mr. Strauven</span></li>
+          <li>📱 <span class="fr">Sauvegarder tous les messages WhatsApp/SMS</span><span class="nl" style="display:none">Alle WhatsApp/SMS-berichten back-uppen</span></li>
+          <li>🩺 <span class="fr">Certificat médical Dr. Anseeuw</span><span class="nl" style="display:none">Medisch attest Dr. Anseeuw</span></li>
+          <li>🧠 <span class="fr">Contact psychologue (Stefania + enfants)</span><span class="nl" style="display:none">Contact psycholoog (Stefania + kinderen)</span></li>
+          <li>📋 <span class="fr">Rassembler communication scolaire</span><span class="nl" style="display:none">Schoolcommunicatie verzamelen</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item important">
+      <div class="tl-icon">⚡</div>
+      <div class="tl-content">
+        <h4><span class="fr">Semaine 2-3 — début avril 2026</span><span class="nl" style="display:none">Week 2-3 — begin april 2026</span></h4>
+        <div class="tl-date"><span class="fr">🔶 Actions prioritaires</span><span class="nl" style="display:none">🔶 Prioritaire acties</span></div>
+        <ul>
+          <li>🚔 <span class="fr">Plainte violence intrafamiliale</span><span class="nl" style="display:none">Aangifte intrafamiliaal geweld</span></li>
+          <li>🚫 <span class="fr">Demande interdiction domicile via procureur</span><span class="nl" style="display:none">Huisverbod aanvragen via procureur</span></li>
+          <li>🏦 <span class="fr">Décompte exact prêts à la banque</span><span class="nl" style="display:none">Exact afrekenoverzicht leningen bij bank</span></li>
+          <li>🏠 <span class="fr">Estimation officielle maison</span><span class="nl" style="display:none">Officiële schatting woning</span></li>
+          <li>💶 <span class="fr">Vérifier montants Groeipakket</span><span class="nl" style="display:none">Bedragen Groeipakket nagaan</span></li>
+          <li>📄 <span class="fr">Preuves hobby's enfants</span><span class="nl" style="display:none">Bewijzen hobby's kinderen</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item normal">
+      <div class="tl-icon">⚖️</div>
+      <div class="tl-content">
+        <h4><span class="fr">Mois 2 — mai 2026</span><span class="nl" style="display:none">Maand 2 — mei 2026</span></h4>
+        <div class="tl-date"><span class="fr">🔵 Audience d'introduction</span><span class="nl" style="display:none">🔵 Inleidingszitting</span></div>
+        <ul>
+          <li>⚖️ <span class="fr">Audience tribunal de la famille Hasselt</span><span class="nl" style="display:none">Zitting familierechtbank Hasselt</span></li>
+          <li>📋 <span class="fr">Mesures provisoires demandées</span><span class="nl" style="display:none">Voorlopige maatregelen gevraagd</span></li>
+          <li>🏖️ <span class="fr">Si Marius part au Portugal : documenter</span><span class="nl" style="display:none">Als Marius naar Portugal gaat: documenteren</span></li>
+          <li>🔍 <span class="fr">Demande enquête sociale</span><span class="nl" style="display:none">Aanvraag maatschappelijk onderzoek</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item normal">
+      <div class="tl-icon">🤝</div>
+      <div class="tl-content">
+        <h4><span class="fr">Mois 3-4 — juin-juillet 2026</span><span class="nl" style="display:none">Maand 3-4 — juni-juli 2026</span></h4>
+        <div class="tl-date"><span class="fr">🔵 Négociation</span><span class="nl" style="display:none">🔵 Onderhandeling</span></div>
+        <ul>
+          <li>📊 <span class="fr">Résultat mesures provisoires</span><span class="nl" style="display:none">Resultaat voorlopige maatregelen</span></li>
+          <li>🤝 <span class="fr">Proposer le Deal à Marius</span><span class="nl" style="display:none">Deal voorstellen aan Marius</span></li>
+          <li>🏦 <span class="fr">Contact banque refinancement</span><span class="nl" style="display:none">Contact bank herfinanciering</span></li>
+          <li>🔍 <span class="fr">Enquête sociale en cours (±3 mois)</span><span class="nl" style="display:none">Maatschappelijk onderzoek lopend (±3 maanden)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item done">
+      <div class="tl-icon">🎉</div>
+      <div class="tl-content">
+        <h4><span class="fr">Mois 6-9 — si accord</span><span class="nl" style="display:none">Maand 6-9 — bij akkoord</span></h4>
+        <div class="tl-date"><span class="fr">✅ Finalisation</span><span class="nl" style="display:none">✅ Afronding</span></div>
+        <ul>
+          <li>📝 <span class="fr">Signer transaction chez notaire</span><span class="nl" style="display:none">Dading tekenen bij notaris</span></li>
+          <li>🏦 <span class="fr">Finaliser refinancement</span><span class="nl" style="display:none">Herfinanciering afronden</span></li>
+          <li>⚖️ <span class="fr">Divorce prononcé</span><span class="nl" style="display:none">Echtscheiding uitgesproken</span></li>
+          <li>🆕 <span class="fr">Nouveau départ 🌟</span><span class="nl" style="display:none">Nieuwe start 🌟</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item urgent">
+      <div class="tl-icon">⚔️</div>
+      <div class="tl-content">
+        <h4><span class="fr">Mois 6-18 — si Marius refuse</span><span class="nl" style="display:none">Maand 6-18 — als Marius weigert</span></h4>
+        <div class="tl-date"><span class="fr">🔴 Plan de combat</span><span class="nl" style="display:none">🔴 Gevechtsplan</span></div>
+        <ul>
+          <li>🚔 <span class="fr">Plainte pénale violence intrafamiliale</span><span class="nl" style="display:none">Strafrechtelijke klacht intrafamiliaal geweld</span></li>
+          <li>🧠 <span class="fr">Expertise psychiatrique judiciaire</span><span class="nl" style="display:none">Gerechtelijke psychiatrische expertise</span></li>
+          <li>🏠 <span class="fr">Vente judiciaire maison</span><span class="nl" style="display:none">Gerechtelijke verkoop woning</span></li>
+          <li>⚖️ <span class="fr">Divorce après 1 an séparation (art. 229 §3)</span><span class="nl" style="display:none">Echtscheiding na 1 jaar scheiding (art. 229 §3)</span></li>
+          <li>♟️ <span class="fr">Renégociation position de force</span><span class="nl" style="display:none">Heronderhandeling vanuit machtspositie</span></li>
+          <li>💰 <span class="fr">Coût estimé : 5.000-10.000 €</span><span class="nl" style="display:none">Geschatte kost: €5.000-10.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== TAB 4: DOSSIER ==================== -->
+<div id="dossier" class="tab-content">
+
+  <div class="section-title"><span class="icon">💪</span> <span class="fr">Force du dossier — Preuves disponibles</span><span class="nl" style="display:none">Dossierkracht — Beschikbaar bewijs</span></div>
+
+  <div class="fin-card best" style="margin-bottom:20px">
+    <h3><span class="fr">✅ Preuves solides</span><span class="nl" style="display:none">✅ Sterk bewijs</span></h3>
+    <div class="evidence-item"><div class="ev-icon">🩺</div><div class="ev-content"><h4><span class="fr">Dossier médical Stefania</span><span class="nl" style="display:none">Medisch dossier Stefania</span></h4><p><span class="fr">Dépression depuis nov. 2023, changements médication, idéation suicidaire (jan. 2026), attaques de panique</span><span class="nl" style="display:none">Depressie sinds nov. 2023, medicatiewissels, suïcidale ideatie (jan. 2026), paniekaanvallen</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+    <div class="evidence-item"><div class="ev-icon">📋</div><div class="ev-content"><h4><span class="fr">Documentation comportement Marius</span><span class="nl" style="display:none">Documentatie gedrag Marius</span></h4><p><span class="fr">Agressivité verbale, paranoïa, jalousie — documenté dans EMD</span><span class="nl" style="display:none">Verbale agressie, paranoia, jaloezie — gedocumenteerd in EMD</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+    <div class="evidence-item"><div class="ev-icon">👩‍👧‍👦</div><div class="ev-content"><h4><span class="fr">Parent principal</span><span class="nl" style="display:none">Hoofdverzorger</span></h4><p><span class="fr">École, hobby's, logopédie, devoirs, contacts parents — tout Stefania</span><span class="nl" style="display:none">School, hobby's, logopedie, huiswerk, oudercontacten — alles Stefania</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+    <div class="evidence-item"><div class="ev-icon">🗣️</div><div class="ev-content"><h4><span class="fr">Barrière linguistique</span><span class="nl" style="display:none">Taalbarrière</span></h4><p><span class="fr">Marius ne parle pas néerlandais — objectivement constatable</span><span class="nl" style="display:none">Marius spreekt geen Nederlands — objectief vaststelbaar</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+    <div class="evidence-item"><div class="ev-icon">😰</div><div class="ev-content"><h4><span class="fr">Crise janvier 2026</span><span class="nl" style="display:none">Crisis januari 2026</span></h4><p><span class="fr">Stress extrême, idéation suicidaire, attaques de panique — documenté dans le dossier</span><span class="nl" style="display:none">Extreme stress, suïcidale ideatie, paniekaanvallen — gedocumenteerd in dossier</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+    <div class="evidence-item"><div class="ev-icon">🧠</div><div class="ev-content"><h4><span class="fr">Suivi psychologique</span><span class="nl" style="display:none">Psychologische begeleiding</span></h4><p><span class="fr">Référée et suivie — montre qu'elle prend soin d'elle</span><span class="nl" style="display:none">Doorverwezen en in begeleiding — toont zelfzorg</span></p></div><div class="ev-strength strong">FORT / STERK</div></div>
+  </div>
+
+  <div class="fin-card ok" style="margin-bottom:20px">
+    <h3><span class="fr">📋 À collecter</span><span class="nl" style="display:none">📋 Te verzamelen</span></h3>
+    <div class="evidence-item"><div class="ev-icon">📱</div><div class="ev-content"><h4><span class="fr">Messages WhatsApp/SMS</span><span class="nl" style="display:none">WhatsApp/SMS-berichten</span></h4><p><span class="fr">Dénigrement, contrôle, paranoïa → screenshots</span><span class="nl" style="display:none">Kleinering, controle, paranoia → screenshots</span></p></div><div class="ev-strength medium">PRIORITÉ / PRIORITEIT</div></div>
+    <div class="evidence-item"><div class="ev-icon">🏫</div><div class="ev-content"><h4><span class="fr">Communication scolaire</span><span class="nl" style="display:none">Schoolcommunicatie</span></h4><p><span class="fr">Tout au nom de Stefania</span><span class="nl" style="display:none">Alles op naam van Stefania</span></p></div><div class="ev-strength medium">PRIORITÉ / PRIORITEIT</div></div>
+    <div class="evidence-item"><div class="ev-icon">🎨</div><div class="ev-content"><h4><span class="fr">Inscriptions hobby's</span><span class="nl" style="display:none">Inschrijvingen hobby's</span></h4><p><span class="fr">Piano, dessin, Chiro, logopédie</span><span class="nl" style="display:none">Piano, tekenen, Chiro, logopedie</span></p></div><div class="ev-strength medium">IMPORTANT / BELANGRIJK</div></div>
+    <div class="evidence-item"><div class="ev-icon">🧠</div><div class="ev-content"><h4><span class="fr">Attestation psychologue</span><span class="nl" style="display:none">Attest psycholoog</span></h4><p><span class="fr">Confirmation état Stefania + impact relation</span><span class="nl" style="display:none">Bevestiging toestand Stefania + impact relatie</span></p></div><div class="ev-strength medium">IMPORTANT / BELANGRIJK</div></div>
+    <div class="evidence-item"><div class="ev-icon">🏦</div><div class="ev-content"><h4><span class="fr">Décomptes prêts</span><span class="nl" style="display:none">Afrekeningen leningen</span></h4><p><span class="fr">Capital restant exact de chaque prêt</span><span class="nl" style="display:none">Exact resterend kapitaal per lening</span></p></div><div class="ev-strength medium">ESSENTIEL / ESSENTIEEL</div></div>
+    <div class="evidence-item"><div class="ev-icon">🏠</div><div class="ev-content"><h4><span class="fr">Estimation officielle maison</span><span class="nl" style="display:none">Officiële schatting woning</span></h4><p><span class="fr">Expert immobilier agréé</span><span class="nl" style="display:none">Erkende vastgoedexpert</span></p></div><div class="ev-strength medium">ESSENTIEL / ESSENTIEEL</div></div>
+  </div>
+
+  <div class="note">
+    <p>⚕️ <strong><span class="fr">Limite déontologique Dr. Anseeuw :</span><span class="nl" style="display:none">Deontologische grens Dr. Anseeuw:</span></strong> <span class="fr">Karel est médecin traitant des DEUX parties. Il peut attester l'état de Stefania, mais ne peut PAS partager d'info sur Marius. L'état psychique de Marius doit être mis en lumière via une expertise judiciaire.</span><span class="nl" style="display:none">Karel is huisarts van BEIDE partijen. Hij kan de toestand van Stefania attesteren, maar mag GEEN info over Marius delen. De psychische toestand van Marius moet via gerechtelijke expertise aan het licht komen.</span></p>
+  </div>
+
+  <div class="section-title"><span class="icon">💊</span> <span class="fr">Historique médicamenteux Stefania</span><span class="nl" style="display:none">Medicatiegeschiedenis Stefania</span></div>
+  <table>
+    <tr><th>Datum</th><th><span class="fr">Évaluation</span><span class="nl" style="display:none">Beoordeling</span></th><th><span class="fr">Médication</span><span class="nl" style="display:none">Medicatie</span></th></tr>
+    <tr><td>22/11/2023</td><td><span class="fr">État dépressif</span><span class="nl" style="display:none">Depressief toestandsbeeld</span></td><td>Trazodone, ref. CPAS/OCMW</td></tr>
+    <tr><td>29/12/2025</td><td><span class="fr">État dépressif</span><span class="nl" style="display:none">Depressief toestandsbeeld</span></td><td>Escitalopram 10mg, Prazepam druppels</td></tr>
+    <tr><td>06/01/2026</td><td><span class="fr">Dépression, attaques de panique</span><span class="nl" style="display:none">Depressie, paniekaanvallen</span></td><td>Bisoprolol 2,5mg + Duloxetine 30mg</td></tr>
+    <tr><td>15/01/2026</td><td><span class="fr">⚠️ Idéation suicidaire</span><span class="nl" style="display:none">⚠️ Suïcidale ideatie</span></td><td><span class="fr">Continuation</span><span class="nl" style="display:none">Voortzetting</span></td></tr>
+    <tr><td>21/01/2026</td><td><span class="fr">Stress intense, agitation</span><span class="nl" style="display:none">Intense stress, agitatie</span></td><td>Pregabaline 25mg (toevoeging)</td></tr>
+    <tr><td>24/02/2026</td><td><span class="fr">Anxiété — mari paranoïa</span><span class="nl" style="display:none">Angst — man paranoia</span></td><td>+ Prazepam druppels, ref. psycholoog</td></tr>
+    <tr><td>06/03/2026</td><td><span class="fr">État dépressif</span><span class="nl" style="display:none">Depressief toestandsbeeld</span></td><td><span class="fr">Continuation toute médication</span><span class="nl" style="display:none">Voortzetting alle medicatie</span></td></tr>
+  </table>
+</div>
+
+<!-- ==================== TAB 5: NEGOTIATION STRATEGY ==================== -->
+<div id="negotiation" class="tab-content">
+
+  <!-- URGENT ACTION BLOCK -->
+  <div style="background:linear-gradient(135deg,rgba(239,68,68,0.25),rgba(220,38,38,0.15)); border:2px solid rgba(239,68,68,0.5); border-radius:16px; padding:24px; margin-bottom:28px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <span style="font-size:36px">🚨</span>
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#fca5a5"><span class="fr">PLAN D'ACTION — Réunion avec Marius</span><span class="nl" style="display:none">ACTIEPLAN — Gesprek met Marius</span></div>
+        <div style="color:#f87171;font-size:13px">Update 26/03/2026</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:rgba(30,41,59,0.8);border-radius:10px;padding:14px;border-left:4px solid #22c55e">
+        <div style="font-size:12px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px"><span class="fr">🎯 Objectif</span><span class="nl" style="display:none">🎯 Doel</span></div>
+        <div style="font-size:14px;color:#e2e8f0"><span class="fr">Écouter, ne rien promettre. Savoir ce qu'il veut EXACTEMENT.</span><span class="nl" style="display:none">Luisteren, niets beloven. Weten wat hij EXACT wil.</span></div>
+      </div>
+      <div style="background:rgba(30,41,59,0.8);border-radius:10px;padding:14px;border-left:4px solid #f59e0b">
+        <div style="font-size:12px;color:#fbbf24;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px"><span class="fr">⚠️ Piège</span><span class="nl" style="display:none">⚠️ Valkuil</span></div>
+        <div style="font-size:14px;color:#e2e8f0"><span class="fr">Il va pousser pour un "oui" immédiat. Résister.</span><span class="nl" style="display:none">Hij gaat pushen voor een onmiddellijk "ja". Weerstaan.</span></div>
+      </div>
+      <div style="background:rgba(30,41,59,0.8);border-radius:10px;padding:14px;border-left:4px solid #6366f1">
+        <div style="font-size:12px;color:#818cf8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px"><span class="fr">🛡️ Phrase-clé</span><span class="nl" style="display:none">🛡️ Sleutelzin</span></div>
+        <div style="font-size:14px;color:#e2e8f0;font-style:italic"><span class="fr">"Je dois d'abord voir avec mon avocat."</span><span class="nl" style="display:none">"Ik moet dat eerst met mijn advocaat bespreken."</span></div>
+      </div>
+    </div>
+
+    <div style="background:rgba(30,41,59,0.8);border-radius:10px;padding:16px;margin-bottom:12px">
+      <div style="font-size:14px;font-weight:700;color:#fca5a5;margin-bottom:10px"><span class="fr">📋 Scénario du meeting — étape par étape :</span><span class="nl" style="display:none">📋 Script voor het gesprek — stap voor stap:</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:rgba(99,102,241,0.3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:#c7d2fe">1</span>
+          <div style="font-size:14px;color:#e2e8f0"><span class="fr"><strong>Il va demander €130k.</strong> Réponse : "Je comprends. C'est basé sur quelle estimation ?" → Forcer LUI à justifier.</span><span class="nl" style="display:none"><strong>Hij gaat €130k vragen.</strong> Antwoord: "Ik begrijp het. Op welke schatting is dat gebaseerd?" → Dwing HEM om te onderbouwen.</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:rgba(99,102,241,0.3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:#c7d2fe">2</span>
+          <div style="font-size:14px;color:#e2e8f0"><span class="fr"><strong>Il n'a PAS de chiffre officiel.</strong> Dire : "On ne peut pas discuter sans savoir combien la maison vaut. Faisons d'abord estimer."</span><span class="nl" style="display:none"><strong>Hij heeft GEEN officieel cijfer.</strong> Zeg: "We kunnen niet praten zonder te weten wat het huis waard is. Laten we eerst laten schatten."</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:rgba(99,102,241,0.3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:#c7d2fe">3</span>
+          <div style="font-size:14px;color:#e2e8f0"><span class="fr"><strong>S'il insiste :</strong> "J'ai besoin de temps. Mon avocat doit vérifier les chiffres." → NE PAS entrer dans les détails.</span><span class="nl" style="display:none"><strong>Als hij blijft pushen:</strong> "Ik heb tijd nodig. Mijn advocaat moet de cijfers nakijken." → NIET in details treden.</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:rgba(99,102,241,0.3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:#c7d2fe">4</span>
+          <div style="font-size:14px;color:#e2e8f0"><span class="fr"><strong>S'il parle des enfants 50/50 :</strong> "Ok, on peut en parler, mais séparément de la maison." → Séparer les sujets.</span><span class="nl" style="display:none"><strong>Als hij over 50/50 kinderen begint:</strong> "Ok, daar kunnen we over praten, maar apart van het huis." → Onderwerpen scheiden.</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:rgba(99,102,241,0.3);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;color:#c7d2fe">5</span>
+          <div style="font-size:14px;color:#e2e8f0"><span class="fr"><strong>S'il s'énerve/menace :</strong> "Je ne veux pas me disputer. On reprend quand c'est calme." → Partir si nécessaire.</span><span class="nl" style="display:none"><strong>Als hij kwaad wordt/dreigt:</strong> "Ik wil geen ruzie. We praten verder als het rustig is." → Weggaan als nodig.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:rgba(5,46,22,0.5);border:1px solid rgba(22,101,52,0.5);border-radius:10px;padding:14px">
+        <div style="font-size:13px;font-weight:700;color:#4ade80;margin-bottom:8px"><span class="fr">✅ ZINNEN DIE WERKEN</span><span class="nl" style="display:none">✅ ZINNEN DIE WERKEN</span></div>
+        <ul style="padding-left:16px;margin:0">
+          <li style="font-size:13px;color:#86efac;margin-bottom:4px"><span class="fr">"Qu'est-ce que TU veux exactement ?"</span><span class="nl" style="display:none">"Wat wil JIJ precies?"</span></li>
+          <li style="font-size:13px;color:#86efac;margin-bottom:4px"><span class="fr">"Je dois d'abord voir avec mon avocat"</span><span class="nl" style="display:none">"Ik moet dat eerst met mijn advocaat bespreken"</span></li>
+          <li style="font-size:13px;color:#86efac;margin-bottom:4px"><span class="fr">"Faisons d'abord estimer la maison"</span><span class="nl" style="display:none">"Laten we eerst het huis laten schatten"</span></li>
+          <li style="font-size:13px;color:#86efac;margin-bottom:4px"><span class="fr">"J'ai besoin de temps pour réfléchir"</span><span class="nl" style="display:none">"Ik heb tijd nodig om na te denken"</span></li>
+          <li style="font-size:13px;color:#86efac;margin-bottom:4px"><span class="fr">"Je veux que ça se passe bien pour les enfants"</span><span class="nl" style="display:none">"Ik wil dat het goed gaat voor de kinderen"</span></li>
+        </ul>
+      </div>
+      <div style="background:rgba(69,10,10,0.5);border:1px solid rgba(153,27,27,0.5);border-radius:10px;padding:14px">
+        <div style="font-size:13px;font-weight:700;color:#f87171;margin-bottom:8px"><span class="fr">🚫 ABSOLUUT NIET ZEGGEN</span><span class="nl" style="display:none">🚫 ABSOLUUT NIET ZEGGEN</span></div>
+        <ul style="padding-left:16px;margin:0">
+          <li style="font-size:13px;color:#fca5a5;margin-bottom:4px"><span class="fr">Pas de montants ("€80k", "€100k"…)</span><span class="nl" style="display:none">Geen bedragen noemen ("€80k", "€100k"…)</span></li>
+          <li style="font-size:13px;color:#fca5a5;margin-bottom:4px"><span class="fr">Pas de "oui ok je suis d'accord"</span><span class="nl" style="display:none">Geen "ja oké ik ga akkoord"</span></li>
+          <li style="font-size:13px;color:#fca5a5;margin-bottom:4px"><span class="fr">Pas de "je veux les enfants toute seule"</span><span class="nl" style="display:none">Geen "ik wil de kinderen alleen"</span></li>
+          <li style="font-size:13px;color:#fca5a5;margin-bottom:4px"><span class="fr">Pas de menaces (police, tribunal…)</span><span class="nl" style="display:none">Geen dreigingen (politie, rechtbank…)</span></li>
+          <li style="font-size:13px;color:#fca5a5;margin-bottom:4px"><span class="fr">RIEN signer, même pas un bout de papier</span><span class="nl" style="display:none">NIETS tekenen, zelfs geen papiertje</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:10px;padding:14px;margin-top:12px">
+      <div style="font-size:14px;color:#c7d2fe"><span class="fr">📱 <strong>DIRECT APRÈS LE MEETING :</strong> Tout noter par WhatsApp à Karel. Ce qu'il a dit, ce qu'il a proposé, comment il a réagi. C'est un document informel mais CRUCIAL pour la suite.</span><span class="nl" style="display:none">📱 <strong>DIRECT NA HET GESPREK:</strong> Alles noteren via WhatsApp naar Karel. Wat hij zei, wat hij voorstelde, hoe hij reageerde. Informeel maar CRUCIAAL document voor het vervolg.</span></div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="icon">♟️</span> <span class="fr">Stratégie de négociation — Mise à jour 25/03</span><span class="nl" style="display:none">Onderhandelingsstrategie — Update 25/03</span></div>
+
+  <div class="note">
+    <p><strong>📌 <span class="fr">Contexte :</span><span class="nl" style="display:none">Context:</span></strong> <span class="fr">Basé sur la conversation WhatsApp du 25/03. Stefania veut la paix, pas le conflit. Elle veut garder la maison et les enfants. Marius exigera 50/50 uniquement pour éviter la pension alimentaire.</span><span class="nl" style="display:none">Gebaseerd op WhatsApp-gesprek 25/03. Stefania wil rust, geen conflict. Ze wil het huis en de kinderen houden. Marius zal 50/50 eisen puur om alimentatie te ontwijken.</span></p>
+  </div>
+
+  <!-- WHAT STEFANIA WANTS -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">💜</div>
+      <div class="phase-title">
+        <span class="fr">🎯 Ce que Stefania veut réellement</span>
+        <span class="nl" style="display:none">🎯 Wat Stefania echt wil</span>
+      </div>
+    </div>
+    <div class="node current">
+      <div class="node-icon">💜</div>
+      <div class="node-label il">
+        <span class="fr">Ses propres mots (25/03)</span>
+        <span class="nl" style="display:none">Haar eigen woorden (25/03)</span>
+      </div>
+      <h3><span class="fr">"Je veux juste la paix"</span><span class="nl" style="display:none">"Ik wil gewoon rust"</span></h3>
+      <ul>
+        <li>🏠 <span class="fr">Garder la maison (stabilité pour les enfants)</span><span class="nl" style="display:none">Het huis houden (stabiliteit voor de kinderen)</span></li>
+        <li>👧👦 <span class="fr">Les enfants principalement chez elle</span><span class="nl" style="display:none">Kinderen hoofdzakelijk bij haar</span></li>
+        <li>🕊️ <span class="fr">Pas de guerre — elle veut négocier</span><span class="nl" style="display:none">Geen oorlog — ze wil onderhandelen</span></li>
+        <li>🚫 <span class="fr">Ne veut PAS la route police/conflit</span><span class="nl" style="display:none">Wil NIET de politie/conflict-route</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- SCHATTER STRATEGIE -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">1</div>
+      <div class="phase-title">
+        <span class="fr">🏠 Stratégie de l'estimation basse</span>
+        <span class="nl" style="display:none">🏠 Strategie lage schatting</span>
+      </div>
+      <div class="phase-date">⚡ STAP 1</div>
+    </div>
+    <div class="node action">
+      <div class="node-icon">📉</div>
+      <div class="node-label al">
+        <span class="fr">Karel règle un estimateur</span>
+        <span class="nl" style="display:none">Karel regelt een schatter</span>
+      </div>
+      <h3><span class="fr">Une estimation basse change tout</span><span class="nl" style="display:none">Een lage schatting verandert alles</span></h3>
+      <p style="margin-bottom:12px"><span class="fr">⚡ <strong>Avantage clé :</strong> La maison n'est PAS encore entièrement rénovée. L'expert donne 2 valeurs : valeur actuelle (basse = en notre faveur) et valeur après rénovation. Marius veut attendre la fin des travaux — mais juridiquement c'est la valeur ACTUELLE qui compte pour la liquidation.</span><span class="nl" style="display:none">⚡ <strong>Belangrijk voordeel:</strong> Het huis is NOG NIET volledig gerenoveerd. De schatter geeft 2 waarden: huidige waarde (lager = in ons voordeel) en waarde na volledige renovatie. Marius wil wachten tot de werken af zijn — maar juridisch telt de HUIDIGE waarde voor de vereffening.</span></p>
+      <table style="margin-top:12px">
+        <tr>
+          <th><span class="fr">Estimation</span><span class="nl" style="display:none">Schatting</span></th>
+          <th><span class="fr">Plus-value</span><span class="nl" style="display:none">Overwaarde</span></th>
+          <th><span class="fr">Part Marius (50%)</span><span class="nl" style="display:none">Deel Marius (50%)</span></th>
+          <th><span class="fr">Impact sur le deal</span><span class="nl" style="display:none">Impact op de deal</span></th>
+        </tr>
+        <tr><td>€450.000</td><td>€240.000</td><td style="color:#f87171"><strong>€120.000</strong></td><td style="color:#f87171"><span class="fr">Difficile</span><span class="nl" style="display:none">Moeilijk</span></td></tr>
+        <tr><td>€400.000</td><td>€190.000</td><td style="color:#fbbf24"><strong>€95.000</strong></td><td style="color:#fbbf24"><span class="fr">Mieux</span><span class="nl" style="display:none">Beter</span></td></tr>
+        <tr style="background:rgba(34,197,94,0.1)"><td>€380.000</td><td>€170.000</td><td style="color:#4ade80"><strong>€85.000</strong></td><td style="color:#4ade80"><span class="fr">Deal réaliste !</span><span class="nl" style="display:none">Deal realistisch!</span></td></tr>
+        <tr style="background:rgba(34,197,94,0.15)"><td>€350.000</td><td>€140.000</td><td style="color:#4ade80"><strong>€70.000</strong></td><td style="color:#4ade80"><span class="fr">Deal très faisable</span><span class="nl" style="display:none">Deal zeer haalbaar</span></td></tr>
+      </table>
+      <div class="verdict go"><span class="fr">📉 À €380k : alimentatie (€80-100k) ≈ part Marius (€85k) → deal presque parfait</span><span class="nl" style="display:none">📉 Bij €380k: alimentatie (€80-100k) ≈ deel Marius (€85k) → deal bijna perfect</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- MARIUS VRAAGT 130K — UPDATE 26/03 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#ef4444,#dc2626)">🔴</div>
+      <div class="phase-title">
+        <span class="fr">🔴 Marius demande €130k — Update 26/03</span>
+        <span class="nl" style="display:none">🔴 Marius vraagt €130k — Update 26/03</span>
+      </div>
+      <div class="phase-date">26/03/2026</div>
+    </div>
+    <div class="node worst">
+      <div class="node-icon">💰</div>
+      <div class="node-label wl">
+        <span class="fr">Son offre d'ouverture — pas un prix final</span>
+        <span class="nl" style="display:none">Zijn openingsbod — geen eindprijs</span>
+      </div>
+      <h3><span class="fr">€130k = point de départ, pas point d'arrivée</span><span class="nl" style="display:none">€130k = startpunt, geen eindpunt</span></h3>
+      <ul>
+        <li>💰 <strong><span class="fr">Il base ses calculs sur :</span><span class="nl" style="display:none">Hij baseert zich op:</span></strong> <span class="fr">€450k (estimation de Stefania) – €210k dettes = €240k → sa moitié = €120k + marge = €130k</span><span class="nl" style="display:none">€450k (schatting van Stefania) – €210k schulden = €240k → zijn helft = €120k + marge = €130k</span></li>
+        <li>📉 <strong><span class="fr">Sans estimation officielle.</span><span class="nl" style="display:none">Zonder officiële schatting.</span></strong> <span class="fr">Il ne sait pas ce que la maison vaut réellement dans son état actuel.</span><span class="nl" style="display:none">Hij weet niet wat het huis echt waard is in huidige staat.</span></li>
+        <li>🤝 <strong><span class="fr">Réponse correcte :</span><span class="nl" style="display:none">Juiste reactie:</span></strong> <span class="fr">"D'abord faire estimer, puis on parle de chiffres."</span><span class="nl" style="display:none">"Eerst laten schatten, dan praten we over bedragen."</span></li>
+      </ul>
+      <table style="margin-top:12px">
+        <tr>
+          <th><span class="fr">Si estimation</span><span class="nl" style="display:none">Als schatting</span></th>
+          <th><span class="fr">Part réelle Marius</span><span class="nl" style="display:none">Werkelijk deel Marius</span></th>
+          <th><span class="fr">Il demande trop</span><span class="nl" style="display:none">Hij vraagt te veel</span></th>
+        </tr>
+        <tr><td>€450k</td><td>€120k</td><td style="color:#fbbf24">+€10k</td></tr>
+        <tr><td>€400k</td><td>€95k</td><td style="color:#f87171"><strong>+€35k</strong></td></tr>
+        <tr style="background:rgba(239,68,68,0.1)"><td>€380k</td><td>€85k</td><td style="color:#f87171"><strong>+€45k</strong></td></tr>
+        <tr style="background:rgba(239,68,68,0.15)"><td>€350k</td><td>€70k</td><td style="color:#f87171"><strong>+€60k</strong></td></tr>
+      </table>
+      <div class="verdict caution"><span class="fr">♟️ Avec une estimation à €380k, il demande €45.000 de TROP. L'estimation est notre meilleure arme.</span><span class="nl" style="display:none">♟️ Bij een schatting van €380k vraagt hij €45.000 TEVEEL. De schatting is ons beste wapen.</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- GESPREK MET MARIUS -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#f59e0b,#d97706)">2</div>
+      <div class="phase-title">
+        <span class="fr">🗣️ Conversation avec Marius — Règles</span>
+        <span class="nl" style="display:none">🗣️ Gesprek met Marius — Spelregels</span>
+      </div>
+      <div class="phase-date">26/03</div>
+    </div>
+    <div class="node decision">
+      <div class="node-icon">🎧</div>
+      <div class="node-label dl">
+        <span class="fr">Do's et Don'ts</span>
+        <span class="nl" style="display:none">Do's en Don'ts</span>
+      </div>
+      <h3><span class="fr">Écouter, ne rien promettre</span><span class="nl" style="display:none">Luisteren, niets beloven</span></h3>
+    </div>
+    <div class="branch">
+      <div class="node success">
+        <div class="node-icon">✅</div>
+        <div class="node-label sl">DO's</div>
+        <h3><span class="fr">Ce qu'elle PEUT dire</span><span class="nl" style="display:none">Wat ze WEL kan zeggen</span></h3>
+        <ul>
+          <li>👂 <span class="fr">"Qu'est-ce que TU veux ?" — le laisser parler en premier</span><span class="nl" style="display:none">"Wat wil JIJ?" — hem eerst laten praten</span></li>
+          <li>🏠 <span class="fr">"Je voudrais garder la maison, mais d'abord faire estimer"</span><span class="nl" style="display:none">"Ik wil het huis houden, maar eerst laten schatten"</span></li>
+          <li>🤔 <span class="fr">"Je vais y réfléchir" — réponse standard à tout</span><span class="nl" style="display:none">"Ik denk erover na" — standaardantwoord op alles</span></li>
+          <li>⚖️ <span class="fr">"Je dois encore en parler avec mon avocat"</span><span class="nl" style="display:none">"Ik moet nog met mijn advocaat praten"</span></li>
+        </ul>
+      </div>
+      <div class="node danger">
+        <div class="node-icon">🚫</div>
+        <div class="node-label dgl">DON'Ts</div>
+        <h3><span class="fr">Ce qu'elle ne doit PAS dire</span><span class="nl" style="display:none">Wat ze NIET mag zeggen</span></h3>
+        <ul>
+          <li>🚫 <span class="fr">Ne PAS proposer 50/50 elle-même</span><span class="nl" style="display:none">NIET zelf 50/50 voorstellen</span></li>
+          <li>🚫 <span class="fr">Ne PAS donner de montants (pas de "€100k", "€120k")</span><span class="nl" style="display:none">GEEN bedragen noemen (geen "€100k", "€120k")</span></li>
+          <li>🚫 <span class="fr">Ne PAS dire "je veux les enfants seule" → provoque</span><span class="nl" style="display:none">NIET zeggen "ik wil de kinderen alleen" → provoceert</span></li>
+          <li>🚫 <span class="fr">Ne RIEN signer, ne RIEN promettre</span><span class="nl" style="display:none">NIETS tekenen, NIETS beloven</span></li>
+          <li>🚫 <span class="fr">Ne PAS discuter quand il est agité/agressif</span><span class="nl" style="display:none">NIET praten als hij geagiteerd/agressief is</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="node info" style="margin-left:60px">
+      <div class="node-icon">📱</div>
+      <div class="node-label il">
+        <span class="fr">Après la conversation</span>
+        <span class="nl" style="display:none">Na het gesprek</span>
+      </div>
+      <h3><span class="fr">Tout noter et envoyer à Karel par WhatsApp</span><span class="nl" style="display:none">Alles noteren en via WhatsApp naar Karel sturen</span></h3>
+      <p><span class="fr">Ce qu'il a dit, ce qu'il a proposé, comment il a réagi. C'est un document informel mais important.</span><span class="nl" style="display:none">Wat hij zei, wat hij voorstelde, hoe hij reageerde. Informeel maar belangrijk document.</span></p>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- 50/50 TACTIEK -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">3</div>
+      <div class="phase-title">
+        <span class="fr">🧠 La tactique du 50/50 sur papier</span>
+        <span class="nl" style="display:none">🧠 De 50/50-op-papier tactiek</span>
+      </div>
+    </div>
+    <div class="node info">
+      <div class="node-icon">🧠</div>
+      <div class="node-label il">
+        <span class="fr">Idée clé — laisser Marius "gagner" sur papier</span>
+        <span class="nl" style="display:none">Kernidee — laat Marius "winnen" op papier</span>
+      </div>
+      <h3><span class="fr">⭐ Accepter 50/50 formellement, gagner dans la pratique</span><span class="nl" style="display:none">⭐ 50/50 formeel aanvaarden, in de praktijk winnen</span></h3>
+      <ul>
+        <li>📝 <strong><span class="fr">Sur papier :</span><span class="nl" style="display:none">Op papier:</span></strong> <span class="fr">50/50 avec clause "à organiser en concertation mutuelle"</span><span class="nl" style="display:none">50/50 met clausule "in onderling overleg flexibel in te vullen"</span></li>
+        <li>🏠 <strong><span class="fr">En pratique :</span><span class="nl" style="display:none">In de praktijk:</span></strong> <span class="fr">Les enfants seront plus souvent chez Stefania. Marius ne tient pas.</span><span class="nl" style="display:none">Kinderen zullen vaker bij Stefania zijn. Marius houdt het niet vol.</span></li>
+        <li>📊 <strong><span class="fr">Après 6-12 mois :</span><span class="nl" style="display:none">Na 6-12 maanden:</span></strong> <span class="fr">Le schéma réel est documenté. Stefania peut demander la conversion en résidence principale chez elle.</span><span class="nl" style="display:none">Het werkelijke patroon is gedocumenteerd. Stefania kan omzetting vragen naar hoofdverblijf bij haar.</span></li>
+        <li>💶 <strong><span class="fr">Bonus :</span><span class="nl" style="display:none">Bonus:</span></strong> <span class="fr">Les frais extraordinaires (école, médical, sport, logopédie) sont TOUJOURS partagés proportionnellement au revenu, même en 50/50.</span><span class="nl" style="display:none">Buitengewone kosten (school, medisch, sport, logopedie) worden ALTIJD proportioneel verdeeld naar inkomen, ook bij 50/50.</span></li>
+      </ul>
+      <div class="verdict go"><span class="fr">♟️ Marius pense qu'il gagne (pas de pension), mais en réalité Stefania garde le contrôle</span><span class="nl" style="display:none">♟️ Marius denkt dat hij wint (geen alimentatie), maar in werkelijkheid houdt Stefania de controle</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- WAAROM DIT WERKT -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">4</div>
+      <div class="phase-title">
+        <span class="fr">🎯 Pourquoi cette stratégie fonctionne</span>
+        <span class="nl" style="display:none">🎯 Waarom deze strategie werkt</span>
+      </div>
+    </div>
+    <div class="node success">
+      <div class="node-icon">🎯</div>
+      <div class="node-label sl">
+        <span class="fr">Psychologie du narcissique</span>
+        <span class="nl" style="display:none">Psychologie van de narcist</span>
+      </div>
+      <h3><span class="fr">Marius ne veut pas les enfants — il veut ne pas payer</span><span class="nl" style="display:none">Marius wil de kinderen niet — hij wil niet betalen</span></h3>
+      <ul>
+        <li>💰 <strong><span class="fr">Sa motivation :</span><span class="nl" style="display:none">Zijn motivatie:</span></strong> <span class="fr">"Pour lui c'est l'argent qui compte le plus" (Stefania, 25/03)</span><span class="nl" style="display:none">"Pour lui c'est l'argent qui compte le plus" (Stefania, 25/03)</span></li>
+        <li>👧👦 <strong><span class="fr">Réalité :</span><span class="nl" style="display:none">Realiteit:</span></strong> <span class="fr">Il ne s'occupe pas des enfants. Sa mère prend la relève. Il planifie le Portugal.</span><span class="nl" style="display:none">Hij bekommert zich niet om de kinderen. Zijn moeder neemt over. Hij plant Portugal.</span></li>
+        <li>📉 <strong><span class="fr">Prédiction :</span><span class="nl" style="display:none">Voorspelling:</span></strong> <span class="fr">Après 2-3 mois de 50/50, il renverra les enfants chez Stefania. C'est toujours ce qui arrive.</span><span class="nl" style="display:none">Na 2-3 maanden 50/50 stuurt hij de kinderen terug naar Stefania. Dit gebeurt altijd zo.</span></li>
+        <li>🏆 <strong><span class="fr">Résultat :</span><span class="nl" style="display:none">Resultaat:</span></strong> <span class="fr">Stefania a alors un dossier en béton pour demander la résidence principale + pension alimentaire.</span><span class="nl" style="display:none">Stefania heeft dan een ijzersterk dossier om hoofdverblijf + alimentatie te vragen.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- OPTIMAAL SCENARIO -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#22c55e,#16a34a)">⭐</div>
+      <div class="phase-title">
+        <span class="fr">⭐ Le deal optimal (version douce)</span>
+        <span class="nl" style="display:none">⭐ De optimale deal (zachte versie)</span>
+      </div>
+    </div>
+    <div class="node success">
+      <div class="node-icon">⭐</div>
+      <div class="node-label sl">
+        <span class="fr">Proposition à Marius — ce qu'il entend</span>
+        <span class="nl" style="display:none">Voorstel aan Marius — wat hij hoort</span>
+      </div>
+      <h3><span class="fr">Formuler le deal dans son langage</span><span class="nl" style="display:none">De deal formuleren in zijn taal</span></h3>
+      <ul>
+        <li>✅ <strong><span class="fr">"Tu gardes tes 50/50"</span><span class="nl" style="display:none">"Jij houdt je 50/50"</span></strong> <span class="fr">→ il ne paie pas de pension</span><span class="nl" style="display:none">→ hij betaalt geen alimentatie</span></li>
+        <li>✅ <strong><span class="fr">"Tu ne dois rien payer chaque mois"</span><span class="nl" style="display:none">"Je moet elke maand niets betalen"</span></strong> <span class="fr">→ pas de pension, pas de dettes</span><span class="nl" style="display:none">→ geen alimentatie, geen schulden</span></li>
+        <li>✅ <strong><span class="fr">"Tu pars libre, sans obligations"</span><span class="nl" style="display:none">"Je vertrekt vrij, zonder verplichtingen"</span></strong> <span class="fr">→ séduisant pour un narcissique</span><span class="nl" style="display:none">→ aantrekkelijk voor een narcist</span></li>
+        <li>✅ <strong><span class="fr">"Je prends la maison ET les dettes"</span><span class="nl" style="display:none">"Ik neem het huis EN de schulden"</span></strong> <span class="fr">→ il ne voit que l'avantage</span><span class="nl" style="display:none">→ hij ziet alleen het voordeel</span></li>
+        <li>💰 <strong><span class="fr">"Tu économises €10-25k d'avocat"</span><span class="nl" style="display:none">"Je bespaart €10-25k advocaatkosten"</span></strong> <span class="fr">→ argument clé pour un profil "argent"</span><span class="nl" style="display:none">→ kernargument voor een "geld"-profiel</span></li>
+      </ul>
+      <div class="verdict go"><span class="fr">🏆 Lui présenter comme SA victoire. Il part libre. Stefania garde tout ce qui compte.</span><span class="nl" style="display:none">🏆 Presenteer het als ZIJN overwinning. Hij vertrekt vrij. Stefania houdt alles wat ertoe doet.</span></div>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- VOLGORDE -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num" style="background:linear-gradient(135deg,#f59e0b,#d97706)">📋</div>
+      <div class="phase-title">
+        <span class="fr">📋 Ordre des opérations</span>
+        <span class="nl" style="display:none">📋 Volgorde van aanpak</span>
+      </div>
+    </div>
+    <div class="node action">
+      <div class="node-icon">📋</div>
+      <div class="node-label al">
+        <span class="fr">Pas à pas — ne pas tout mélanger</span>
+        <span class="nl" style="display:none">Stap voor stap — niet alles door elkaar</span>
+      </div>
+      <h3><span class="fr">6 étapes dans l'ordre</span><span class="nl" style="display:none">6 stappen in volgorde</span></h3>
+      <ul>
+        <li>1️⃣ <strong><span class="fr">Schatter</span><span class="nl" style="display:none">Schatter</span></strong> — <span class="fr">Karel règle (estimation basse). Attendre le rapport.</span><span class="nl" style="display:none">Karel regelt (lage schatting). Wachten op verslag.</span></li>
+        <li>2️⃣ <strong><span class="fr">Décompte banque</span><span class="nl" style="display:none">Afrekening bank</span></strong> — <span class="fr">Stefania demande le capital restant exact de chaque prêt.</span><span class="nl" style="display:none">Stefania vraagt exact resterend kapitaal per lening.</span></li>
+        <li>3️⃣ <strong><span class="fr">Conversation peiling</span><span class="nl" style="display:none">Peilgesprek</span></strong> — <span class="fr">Stefania écoute ce que Marius veut. Ne rien promettre.</span><span class="nl" style="display:none">Stefania luistert wat Marius wil. Niets beloven.</span></li>
+        <li>4️⃣ <strong><span class="fr">Voorstel via advocaat</span><span class="nl" style="display:none">Voorstel via advocaat</span></strong> — <span class="fr">Me Strauven fait un voorstel formel basé sur les chiffres réels.</span><span class="nl" style="display:none">Mr. Strauven doet formeel voorstel op basis van echte cijfers.</span></li>
+        <li>5️⃣ <strong><span class="fr">Verblijfsregeling</span><span class="nl" style="display:none">Verblijfsregeling</span></strong> — <span class="fr">Séparément ! D'abord la maison, puis les enfants.</span><span class="nl" style="display:none">Apart! Eerst het huis, dan de kinderen.</span></li>
+        <li>6️⃣ <strong><span class="fr">Alimentatie</span><span class="nl" style="display:none">Alimentatie</span></strong> — <span class="fr">En dernier. C'est le sujet le plus sensible pour Marius.</span><span class="nl" style="display:none">Als laatste. Dit is het gevoeligste onderwerp voor Marius.</span></li>
+      </ul>
+      <div class="verdict caution"><span class="fr">⚠️ Ne PAS tout discuter en même temps. Séparer maison, enfants et argent.</span><span class="nl" style="display:none">⚠️ NIET alles tegelijk bespreken. Huis, kinderen en geld apart houden.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Tab switching
+document.getElementById('tabBar').addEventListener('click', function(e) {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  const id = tab.dataset.tab;
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+});
+
+// Language switching
+var currentLang = 'fr';
+document.querySelector('.lang-switch').addEventListener('click', function(e) {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  var lang = btn.dataset.lang;
+  if (lang === currentLang) return;
+  currentLang = lang;
+
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  var show = lang;
+  var hide = lang === 'fr' ? 'nl' : 'fr';
+
+  document.querySelectorAll('.' + show).forEach(el => el.style.display = '');
+  document.querySelectorAll('.' + hide).forEach(el => el.style.display = 'none');
+
+  document.documentElement.lang = lang;
+});
+</script>
+
+</body>
+</html>
