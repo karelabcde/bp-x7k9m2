@@ -144,6 +144,39 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   th,td{padding:6px 8px}
 }
 
+/* PROPERTY CARDS V2 */
+.prop-v2{display:grid;grid-template-columns:180px 1fr;gap:0;overflow:hidden}
+.prop-v2 .prop-img{background:#1e293b;display:flex;align-items:center;justify-content:center;min-height:180px;position:relative;overflow:hidden}
+.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+.prop-v2 .prop-img .placeholder{color:var(--muted);font-size:13px;text-align:center;padding:12px}
+.prop-v2 .prop-img .placeholder span{display:block;font-size:32px;margin-bottom:4px}
+.prop-v2 .prop-body{padding:16px}
+.prop-v2 .prop-body h4{margin:0 0 4px}
+.prop-v2 .prop-contact{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:13px}
+.prop-v2 .prop-contact a{color:var(--accent);text-decoration:none}
+.prop-v2 .prop-contact a:hover{text-decoration:underline}
+.prop-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:flex-start}
+.prop-actions select{padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:12px;cursor:pointer}
+.prop-actions select option{background:var(--bg2)}
+.prop-actions textarea{flex:1;min-width:180px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:12px;resize:vertical;min-height:36px;max-height:80px;font-family:inherit}
+.prop-actions textarea::placeholder{color:var(--muted)}
+.prop-actions textarea:focus,.prop-actions select:focus{outline:none;border-color:var(--accent2)}
+.status-gemaild{border-color:var(--yellow)!important}
+.status-gebeld{border-color:var(--orange)!important}
+.status-bezichtigd{border-color:var(--accent)!important}
+.status-optie{border-color:var(--green)!important}
+.status-afgevallen{opacity:0.5}
+.prop-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);text-decoration:none}
+.prop-link:hover{text-decoration:underline}
+.tbl-status{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:90px}
+.tbl-notes{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:120px}
+@media(max-width:768px){
+  .prop-v2{grid-template-columns:1fr}
+  .prop-v2 .prop-img{min-height:120px}
+  .prop-actions{flex-direction:column}
+  .tbl-status,.tbl-notes{width:70px}
+}
+
 /* PRINT */
 @media print{
   .nav-tabs{display:none}
@@ -242,7 +275,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <li>Verzoekschrift ingediend door Mr. Strauven (24/03/2026)</li>
         <li>Samenwonend — Tongersesteenweg 287</li>
         <li>5 lopende leningen: €2.035/maand totaal</li>
-        <li>Woning geschat op €320.000-360.000 (realistisch, max €375.000)</li>
+        <li>Woning geschat op ±€450.000</li>
       </ul>
     </div>
 
@@ -333,38 +366,74 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
     </div>
 
     <h3>TOP 3 — Stefania's Favorieten</h3>
-    <div class="grid grid-3">
-      <div class="card success prop-card">
-        <span class="tag tag-green prop-type">SUPER</span>
-        <h4>1. Stapelstraat 50</h4>
-        <div class="prop-price">€1.350 + €200</div>
-        <div class="prop-meta">
-          <span>🛏️ 2 slpk</span><span>📐 ~236m²</span><span>⚡ EPC E</span>
-        </div>
-        <p><strong>Handelspand + woonst</strong> — Ideaal voor LuluPrint! Voormalige bakkerij. Centrum, 100m Grote Markt.</p>
-        <p style="color:var(--yellow);margin-top:6px">Let op: Renovatie nodig (badkamer + keuken)</p>
-        <p style="margin-top:6px"><strong>Contact:</strong> Meyers Vastgoed — 011 48 58 86</p>
+
+    <div class="card success prop-v2" data-prop="huur-1">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe<br><small>(of sleep afbeelding hierheen)</small></div>
       </div>
-      <div class="card success prop-card">
-        <span class="tag tag-green prop-type">TOP</span>
-        <h4>2. Diestersteenweg 66</h4>
-        <div class="prop-price">€985</div>
-        <div class="prop-meta">
-          <span>🛏️ 3 slpk</span><span>⚡ EPC B</span><span>🚗 Carport</span>
+      <div class="prop-body">
+        <span class="tag tag-green">SUPER</span>
+        <h4>1. Stapelstraat 50, Sint-Truiden</h4>
+        <div class="prop-price">€1.350/mnd + €200 kosten</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 ~236m² | ⚡ EPC E | Handelspand + woonst</div>
+        <p style="margin:6px 0"><strong>Ideaal voor LuluPrint!</strong> Voormalige bakkerij. Centrum, 100m Grote Markt. Renovatie nodig (badkamer + keuken).</p>
+        <div class="prop-contact">
+          <a href="tel:011485886">📞 011 48 58 86</a>
+          <span>🏢 Meyers Vastgoed</span>
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Rent&postalCodes=BE-3800" target="_blank" class="prop-link">🔗 Immoweb</a>
         </div>
-        <p>Tegenover stadspark. 3 slaapkamers, ingerichte keuken, bouwjaar 2010. Heilig Hart school 500m.</p>
-        <p style="color:var(--green);margin-top:6px">AL BESCHIKBAAR! Goede prijs-kwaliteit.</p>
-        <p style="margin-top:6px"><strong>Contact:</strong> Eigenaar — 0491/49 22 44</p>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities (bv. ken eigenaar, geld nodig...)" onchange="saveProp(this)"></textarea>
+        </div>
       </div>
-      <div class="card success prop-card">
-        <span class="tag tag-green prop-type">TOP</span>
+    </div>
+
+    <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">TOP</span>
+        <h4>2. Diestersteenweg 66, Sint-Truiden</h4>
+        <div class="prop-price">€985/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | ⚡ EPC B | 🚗 Carport | Bouwjaar 2010</div>
+        <p style="margin:6px 0">Tegenover stadspark. Ingerichte keuken. Heilig Hart school 500m. <strong style="color:var(--green)">AL BESCHIKBAAR!</strong></p>
+        <div class="prop-contact">
+          <a href="tel:0491492244">📞 0491/49 22 44</a>
+          <span>👤 Eigenaar (rechtstreeks)</span>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card success prop-v2" data-prop="huur-3" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">TOP</span>
         <h4>3. Terwouwenstraat 28, Zepperen</h4>
-        <div class="prop-price">€1.300</div>
-        <div class="prop-meta">
-          <span>🛏️ 4 slpk</span><span>⚡ EPC D</span><span>🏡 Tuin + garages</span>
+        <div class="prop-price">€1.300/mnd</div>
+        <div class="prop-meta">🛏️ 4 slpk | ⚡ EPC D | 🏡 Tuin + 2 garages + terras</div>
+        <p style="margin:6px 0">Ruime halfopen woning. Vloerverwarming op gas. Landelijk. <strong>Beschikbaar: 01/05/2026</strong></p>
+        <div class="prop-contact">
+          <span>🏢 Immo Vesta</span>
+          <a href="https://www.immovesta.be" target="_blank" class="prop-link">🔗 Website</a>
         </div>
-        <p>Ruime halfopen woning, 4 slpk, 2 garages, tuin, terras. Vloerverwarming op gas. Landelijk.</p>
-        <p style="margin-top:6px"><strong>Beschikbaar:</strong> 01/05/2026 | <strong>Contact:</strong> Immo Vesta</p>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
       </div>
     </div>
 
@@ -372,33 +441,33 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
     <div style="overflow-x:auto">
     <table>
       <thead>
-        <tr><th>#</th><th>Adres</th><th>Type</th><th>Prijs</th><th>Slpk</th><th>m²</th><th>EPC</th><th>Score</th></tr>
+        <tr><th>#</th><th>Adres</th><th>Type</th><th>Prijs</th><th>Slpk</th><th>m²</th><th>EPC</th><th>Score</th><th>Status</th><th>Notities</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>Stapelstraat 50</td><td>H+W</td><td class="price">€1.350+200</td><td>2</td><td>~236</td><td>E</td><td><span class="tag tag-green">SUPER</span></td></tr>
-        <tr><td>2</td><td>Diestersteenweg 66</td><td>H</td><td class="price">€985</td><td>3</td><td>-</td><td>B</td><td><span class="tag tag-green">TOP</span></td></tr>
-        <tr><td>3</td><td>Terwouwenstraat 28, Zepperen</td><td>H</td><td class="price">€1.300</td><td>4</td><td>-</td><td>D</td><td><span class="tag tag-green">TOP</span></td></tr>
-        <tr><td>4</td><td>Sint-Trudostraat 22</td><td>H</td><td class="price">€1.050</td><td>3</td><td>181</td><td>B</td><td><span class="tag tag-green">TOP</span></td></tr>
-        <tr><td>5</td><td>Tiensesteenweg 184/603</td><td>A</td><td class="price">€880+120</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>6</td><td>Kennedylaan 19</td><td>A</td><td class="price">€850</td><td>2</td><td>77</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>7</td><td>Gorsemweg 11/101</td><td>A</td><td class="price">€900+70</td><td>2</td><td>85</td><td>A</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>8</td><td>Slagmolenstraat 30</td><td>H</td><td class="price">€895</td><td>2</td><td>120</td><td>264</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>9</td><td>Houtmarkt 28/301</td><td>A</td><td class="price">€925</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>10</td><td>Attenhovestraat 71</td><td>H</td><td class="price">€1.150</td><td>3</td><td>108</td><td>A+++</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>11</td><td>Leopold II straat 28</td><td>H</td><td class="price">€1.150</td><td>4</td><td>169</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>12</td><td>Stationsstraat 59/203</td><td>A</td><td class="price">€1.045</td><td>2</td><td>67</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>13</td><td>Stationsstraat 59/102</td><td>A</td><td class="price">€1.280</td><td>3</td><td>95</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>14</td><td>Sint-Trudostraat 34</td><td>A</td><td class="price">€950+50</td><td>2</td><td>100</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>15</td><td>Houtmarkt 28/201</td><td>A</td><td class="price">€975</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>16</td><td>Stationsstraat 39/101</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>17</td><td>Stationsstraat 39/001</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>18</td><td>Kennedylaan 11</td><td>A</td><td class="price">€1.250</td><td>3</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>19</td><td>Brustem-Dorp 90/201</td><td>A</td><td class="price">€1.050+100</td><td>3</td><td>117</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td></tr>
-        <tr><td>20</td><td>Spoorwegstraat 9</td><td>H</td><td class="price">€1.300</td><td>3</td><td>172</td><td>C</td><td><span class="tag tag-blue">NIEUW</span></td></tr>
-        <tr><td>21</td><td>Boudewijnlaan 56</td><td>H</td><td class="price">€1.295</td><td>3</td><td>132</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td></tr>
-        <tr><td>22</td><td>Zoutleeuwsesteenweg 128</td><td>H</td><td class="price">€1.100</td><td>4</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td></tr>
-        <tr><td>23</td><td>Naamsesteenweg 184A</td><td>H</td><td class="price">€790</td><td>2</td><td>77</td><td>C</td><td><span class="tag tag-blue">BUDGET</span></td></tr>
-        <tr><td>24</td><td>Luikerstraat 47/101</td><td>A</td><td class="price">€1.050</td><td>2</td><td>121</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td></tr>
+        <tr data-prop="tbl-1"><td>1</td><td>Stapelstraat 50</td><td>H+W</td><td class="price">€1.350+200</td><td>2</td><td>~236</td><td>E</td><td><span class="tag tag-green">SUPER</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-2"><td>2</td><td>Diestersteenweg 66</td><td>H</td><td class="price">€985</td><td>3</td><td>-</td><td>B</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-3"><td>3</td><td>Terwouwenstraat 28, Zepperen</td><td>H</td><td class="price">€1.300</td><td>4</td><td>-</td><td>D</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-4"><td>4</td><td>Sint-Trudostraat 22</td><td>H</td><td class="price">€1.050</td><td>3</td><td>181</td><td>B</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-5"><td>5</td><td>Tiensesteenweg 184/603</td><td>A</td><td class="price">€880+120</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-6"><td>6</td><td>Kennedylaan 19</td><td>A</td><td class="price">€850</td><td>2</td><td>77</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-7"><td>7</td><td>Gorsemweg 11/101</td><td>A</td><td class="price">€900+70</td><td>2</td><td>85</td><td>A</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-8"><td>8</td><td>Slagmolenstraat 30</td><td>H</td><td class="price">€895</td><td>2</td><td>120</td><td>264</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-9"><td>9</td><td>Houtmarkt 28/301</td><td>A</td><td class="price">€925</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-10"><td>10</td><td>Attenhovestraat 71</td><td>H</td><td class="price">€1.150</td><td>3</td><td>108</td><td>A+++</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-11"><td>11</td><td>Leopold II straat 28</td><td>H</td><td class="price">€1.150</td><td>4</td><td>169</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-12"><td>12</td><td>Stationsstraat 59/203</td><td>A</td><td class="price">€1.045</td><td>2</td><td>67</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-13"><td>13</td><td>Stationsstraat 59/102</td><td>A</td><td class="price">€1.280</td><td>3</td><td>95</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-14"><td>14</td><td>Sint-Trudostraat 34</td><td>A</td><td class="price">€950+50</td><td>2</td><td>100</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-15"><td>15</td><td>Houtmarkt 28/201</td><td>A</td><td class="price">€975</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-16"><td>16</td><td>Stationsstraat 39/101</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-17"><td>17</td><td>Stationsstraat 39/001</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-18"><td>18</td><td>Kennedylaan 11</td><td>A</td><td class="price">€1.250</td><td>3</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-19"><td>19</td><td>Brustem-Dorp 90/201</td><td>A</td><td class="price">€1.050+100</td><td>3</td><td>117</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-20"><td>20</td><td>Spoorwegstraat 9</td><td>H</td><td class="price">€1.300</td><td>3</td><td>172</td><td>C</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-21"><td>21</td><td>Boudewijnlaan 56</td><td>H</td><td class="price">€1.295</td><td>3</td><td>132</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-22"><td>22</td><td>Zoutleeuwsesteenweg 128</td><td>H</td><td class="price">€1.100</td><td>4</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-23"><td>23</td><td>Naamsesteenweg 184A</td><td>H</td><td class="price">€790</td><td>2</td><td>77</td><td>C</td><td><span class="tag tag-blue">BUDGET</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-24"><td>24</td><td>Luikerstraat 47/101</td><td>A</td><td class="price">€1.050</td><td>2</td><td>121</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
       </tbody>
     </table>
     </div>
@@ -429,19 +498,115 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
     </div>
 
     <h3>Beschikbare Koopwoningen</h3>
-    <div style="overflow-x:auto">
-    <table>
-      <thead>
-        <tr><th>Adres</th><th>Type</th><th>Prijs</th><th>Slpk</th><th>m²</th><th>EPC</th><th>Opmerking</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Tichelrijstraat (Res. Nieuwpoort)</td><td>App</td><td class="price">€210.000</td><td>2</td><td>-</td><td>-</td><td>1e verd, lift, kelder, parking</td></tr>
-        <tr><td>Sint-Anneke 26/101</td><td>App</td><td class="price">€235.000</td><td>2</td><td>-</td><td>-</td><td>Gelijkvloers, centraal</td></tr>
-        <tr><td>Sint-Truiden centrum</td><td>App</td><td class="price">€229.000</td><td>2</td><td>-</td><td>-</td><td>3e verd, 2 parkings, rustig/centraal</td></tr>
-        <tr><td>Sint-Truiden (nieuwbouw)</td><td>App</td><td class="price">€225.000</td><td>2</td><td>~55</td><td>-</td><td>Res. Clockhempoort, instapklaar</td></tr>
-        <tr><td>Diverse nieuwbouwprojecten</td><td>App</td><td class="price">€200-250k</td><td>1-2</td><td>var.</td><td>A-B</td><td>9 nieuwbouwprojecten beschikbaar</td></tr>
-      </tbody>
-    </table>
+
+    <div class="card info prop-v2" data-prop="koop-1">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">INTERESSANT</span>
+        <h4>1. Tichelrijstraat — Res. Nieuwpoort</h4>
+        <div class="prop-price" style="color:var(--green)">€210.000</div>
+        <div class="prop-meta">🛏️ 2 slpk | 🏢 App 1e verd | 🛗 Lift | 🅿️ Parking + kelder</div>
+        <p style="margin:6px 0">Residentie Nieuwpoort. Instapklaar appartement op eerste verdieping met lift, kelderberging en ondergrondse parking.</p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb zoeken</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="koop-2" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">INTERESSANT</span>
+        <h4>2. Sint-Anneke 26/101</h4>
+        <div class="prop-price" style="color:var(--green)">€235.000</div>
+        <div class="prop-meta">🛏️ 2 slpk | 🏢 App gelijkvloers | 📍 Centraal</div>
+        <p style="margin:6px 0">Gelijkvloers appartement, centraal gelegen. Vlotte bereikbaarheid scholen en winkels.</p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb zoeken</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="koop-3" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">BEKIJKEN</span>
+        <h4>3. Sint-Truiden centrum</h4>
+        <div class="prop-price" style="color:var(--green)">€229.000</div>
+        <div class="prop-meta">🛏️ 2 slpk | 🏢 App 3e verd | 🅿️ 2 parkings | 📍 Rustig &amp; centraal</div>
+        <p style="margin:6px 0">Derde verdieping, twee parkeerplaatsen. Rustige ligging in het centrum. Nadeel: geen lift vermeld.</p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb zoeken</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="koop-4" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">INTERESSANT</span>
+        <h4>4. Res. Clockhempoort — Nieuwbouw</h4>
+        <div class="prop-price" style="color:var(--green)">€225.000</div>
+        <div class="prop-meta">🛏️ 2 slpk | 🏢 Nieuwbouw app | 📐 ~55m² | ⚡ Laag EPC</div>
+        <p style="margin:6px 0">Instapklare nieuwbouw in Residentie Clockhempoort. Lage energiekosten dankzij nieuwbouwnormen. <strong>2% registratierechten!</strong></p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000&propertySubtypes=FLAT_STUDIO,APARTMENT" target="_blank" class="prop-link">🔗 Immoweb nieuwbouw</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="koop-5" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>📸</span>Voeg foto toe</div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">DIVERSE</span>
+        <h4>5. Diverse Nieuwbouwprojecten Sint-Truiden</h4>
+        <div class="prop-price" style="color:var(--green)">€200.000 — €250.000</div>
+        <div class="prop-meta">🛏️ 1-2 slpk | 🏢 Nieuwbouw app | ⚡ EPC A-B | 📐 Variabel</div>
+        <p style="margin:6px 0">9 nieuwbouwprojecten beschikbaar in Sint-Truiden. Voordeel: 2% registratierechten, lage energiekosten, moderne afwerking. Ideaal voor Vlaamse Woonlening.</p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000&flags=isNewlyBuilt" target="_blank" class="prop-link">🔗 Immoweb nieuwbouw filter</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+      </div>
     </div>
 
     <div class="note">
@@ -1210,6 +1375,56 @@ function calculateLoan() {
 
 // Run calculator on load
 calculateLoan();
+
+// ============ PROPERTY STATUS & NOTES (localStorage) ============
+const PROP_KEY = 'stefania_props_v1';
+
+function saveProp(el) {
+  const row = el.closest('[data-prop]');
+  if (!row) return;
+  const id = row.dataset.prop;
+  const data = loadAllProps();
+  if (!data[id]) data[id] = {};
+  // Determine what changed
+  if (el.classList.contains('prop-status') || el.classList.contains('tbl-status')) {
+    data[id].status = el.value;
+  }
+  if (el.classList.contains('prop-notes') || el.classList.contains('tbl-notes')) {
+    data[id].notes = el.value;
+  }
+  localStorage.setItem(PROP_KEY, JSON.stringify(data));
+  // Visual feedback: update card border color based on status
+  applyStatusStyle(row, el.closest('[data-prop]').querySelector('.prop-status, .tbl-status')?.value || data[id].status);
+}
+
+function loadAllProps() {
+  try { return JSON.parse(localStorage.getItem(PROP_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+
+function applyStatusStyle(el, status) {
+  // Remove all status classes
+  el.classList.remove('status-gemaild','status-gebeld','status-bezichtigd','status-optie','status-afgevallen');
+  if (status) el.classList.add('status-' + status);
+}
+
+function restoreAllProps() {
+  const data = loadAllProps();
+  Object.keys(data).forEach(id => {
+    const row = document.querySelector('[data-prop="' + id + '"]');
+    if (!row) return;
+    const d = data[id];
+    // Restore status
+    const sel = row.querySelector('.prop-status, .tbl-status');
+    if (sel && d.status) { sel.value = d.status; applyStatusStyle(row, d.status); }
+    // Restore notes
+    const notes = row.querySelector('.prop-notes, .tbl-notes');
+    if (notes && d.notes) notes.value = d.notes;
+  });
+}
+
+// Restore on page load
+restoreAllProps();
 </script>
 
 </body>
