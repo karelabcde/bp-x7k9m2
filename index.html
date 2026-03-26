@@ -205,13 +205,48 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   body{background:#fff;color:#000}
   .card{border:1px solid #ccc;background:#f9f9f9}
 }
+
+/* CAROUSEL */
+.prop-carousel{position:relative;width:100%;height:100%;min-height:180px}
+.prop-carousel img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0;transition:opacity 0.3s}
+.prop-carousel img.active{opacity:1}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;padding:8px 12px;cursor:pointer;font-size:18px;border-radius:4px;z-index:5}
+.carousel-btn:hover{background:rgba(0,0,0,0.85)}
+.carousel-btn.prev{left:4px}
+.carousel-btn.next{right:4px}
+.carousel-dots{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:5}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;padding:0}
+.carousel-dot.active{background:#fff}
+
+/* REACTIE TRACKING */
+.prop-reactie{margin-top:8px}
+.reactie-toggle{cursor:pointer;font-size:13px;color:var(--accent);padding:6px 0;list-style:none}
+.reactie-toggle::-webkit-details-marker{display:none}
+.reactie-toggle::before{content:'▶ ';font-size:10px}
+details[open] .reactie-toggle::before{content:'▼ '}
+.reactie-badge{background:var(--green);color:#000;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700;margin-left:6px}
+.reactie-content{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.reactie-summary{padding:6px 10px;border:1px solid rgba(74,222,128,0.3);border-radius:6px;background:rgba(5,46,22,0.4);color:var(--green);font-size:12px;resize:vertical;min-height:32px;max-height:60px;font-family:inherit}
+.reactie-full{padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:12px;resize:vertical;min-height:32px;max-height:120px;font-family:inherit}
+.reactie-summary::placeholder{color:rgba(74,222,128,0.5)}
+.reactie-full::placeholder{color:var(--muted)}
+.reactie-summary:focus,.reactie-full:focus{outline:none;border-color:var(--accent2)}
+
+/* FILTER CARDS */
+.card-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.card-filter input{padding:10px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px;flex:1;min-width:200px}
+.card-filter input:focus{outline:none;border-color:var(--accent2)}
+.card-filter input::placeholder{color:var(--muted)}
+.card-filter select{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:13px;cursor:pointer}
+.card-filter select option{background:var(--bg2)}
+.card-filter .count{font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 6.0 — VOLLEDIG ONDERZOEK 26/03/2026</div>
+    <div class="badge">VERSIE 7.0 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div class="confidential">VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven</div>
@@ -238,7 +273,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
     <div class="grid grid-4">
       <div class="card stat"><div class="icon">👧👦</div><div class="num">2</div><div class="lbl">Kinderen</div></div>
       <div class="card stat"><div class="icon">💳</div><div class="num" style="color:var(--red)">€2.035</div><div class="lbl">Schuld/maand (5 leningen)</div></div>
-      <div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl">Geschatte waarde woning</div></div>
+      <div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl">Geschatte waarde woning*</div></div>
       <div class="card stat"><div class="icon">⚖️</div><div class="num" style="color:var(--yellow)">24/03</div><div class="lbl">Verzoekschrift ingediend</div></div>
     </div>
 
@@ -296,7 +331,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <li>Verzoekschrift ingediend door Mr. Strauven (24/03/2026)</li>
         <li>Samenwonend — Tongersesteenweg 287</li>
         <li>5 lopende leningen: €2.035/maand totaal</li>
-        <li>Woning geschat op ±€450.000</li>
+        <li>Woning geschat op <strong>±€320.000-€360.000</strong> (zie tab Financiering voor onderbouwing)</li>
       </ul>
     </div>
 
@@ -341,7 +376,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
       <h3>Fase 3 — De Deal: Overwaarde tegen Alimentatie</h3>
       <ul>
         <li>Stefania houdt het huis + neemt leningen over (€210-225k)</li>
-        <li>Marius doet afstand van zijn deel ±€120k overwaarde</li>
+        <li>Marius doet afstand van zijn deel ±€55-75k overwaarde (bij schatting €320-360k)</li>
         <li>In ruil: geen alimentatie (waarde ±€80-100k over 15-18 jaar)</li>
         <li>Hoofdverblijf bij Stefania, 1 weekend op 2 bij Marius</li>
         <li>Marius vertrekt vrij, zonder maandelijkse verplichtingen</li>
@@ -374,8 +409,8 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
   <!-- ============ TAB: HUURWONINGEN ============ -->
   <div id="huur" class="section">
-    <h2>🏠 Huurwoningen — Sint-Truiden &amp; Omgeving</h2>
-    <p style="color:var(--muted);margin-bottom:16px">47 panden onderzocht. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, Rentola, 2dehands.</p>
+    <h2>🏠 Huurwoningen — Sint-Truiden &amp; Omgeving <span class="badge-count" id="huurCount">31</span></h2>
+    <p style="color:var(--muted);margin-bottom:16px">47 panden onderzocht, 31 geselecteerd. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, Rentola, 2dehands.</p>
 
     <div class="card highlight">
       <h3>Stefania's Voorkeuren</h3>
@@ -386,71 +421,106 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
       </div>
     </div>
 
-    <h3>TOP 3 — Stefania's Favorieten</h3>
+    <div class="card-filter">
+      <input type="text" id="huurFilter" placeholder="Zoek op adres, prijs, type..." oninput="filterHuurCards()">
+      <select id="huurStatusFilter" onchange="filterHuurCards()">
+        <option value="">Alle statussen</option>
+        <option value="nieuw">Nieuw</option>
+        <option value="gemaild">Gemaild</option>
+        <option value="gebeld">Gebeld</option>
+        <option value="bezichtigd">Bezichtigd</option>
+        <option value="optie">Optie</option>
+        <option value="afgevallen">Afgevallen</option>
+      </select>
+      <span class="count" id="huurVisible">31 van 31</span>
+    </div>
 
-    <div class="card success prop-v2" data-prop="huur-1">
+    <h3>Alle 31 Panden</h3>
+
+    <div class="card success prop-v2" data-prop="huur-1" style="margin-top:12px">
       <div class="prop-img">
-        <div class="placeholder"><span>🏪</span>Stapelstraat 50<br><small>Foto niet beschikbaar — advertentie offline</small></div>
+        <div class="placeholder"><span>🏪</span>Stapelstraat 50, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">SUPER</span>
         <h4>1. Stapelstraat 50, Sint-Truiden</h4>
-        <div class="prop-price">€1.350/mnd + €200 kosten</div>
-        <div class="prop-meta">🛏️ 2 slpk | 📐 ~236m² | ⚡ EPC E | Handelspand + woonst</div>
-        <p style="margin:6px 0"><strong>Ideaal voor LuluPrint!</strong> Voormalige bakkerij. Centrum, 100m Grote Markt. Renovatie nodig (badkamer + keuken).</p>
+        <div class="prop-price">€1.350/mnd + €200</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 ~236m² | ⚡ EPC E | Handelspand+Woonst</div>
+        <p style="margin:6px 0"><strong>Ideaal voor LuluPrint!</strong> Voormalige bakkerij. Centrum, 100m Grote Markt. Renovatie nodig (badkamer + keuken). Handelspand + woonst combinatie.</p>
         <div class="prop-contact">
-          <a href="tel:011485886">📞 011 48 58 86</a>
-          <span>🏢 Meyers Vastgoed</span>
-          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Rent&postalCodes=BE-3800" target="_blank" class="prop-link">🔗 Immoweb</a>
-          <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+          <a href="tel:011485886">011 48 58 86</a>
+            <a href="mailto:claudio@meyersco.be">claudio@meyersco.be</a>
+            <span>Meyers Vastgoed (Claudio)</span>
+            <a href="https://vastgoed.meyersco.be" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
-          <textarea class="prop-notes" placeholder="Notities (bv. ken eigenaar, geld nodig...)" onchange="saveProp(this)"></textarea>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-1">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
         </div>
       </div>
     </div>
 
     <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
       <div class="prop-img">
-        <div class="placeholder"><span>🏠</span>Diestersteenweg 66<br><small>Foto niet beschikbaar — advertentie offline</small></div>
+        <div class="placeholder"><span>🏠</span>Diestersteenweg 66, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span>
         <h4>2. Diestersteenweg 66, Sint-Truiden</h4>
         <div class="prop-price">€985/mnd</div>
-        <div class="prop-meta">🛏️ 3 slpk | ⚡ EPC B | 🚗 Carport | Bouwjaar 2010</div>
-        <p style="margin:6px 0">Tegenover stadspark. Ingerichte keuken. Heilig Hart school 500m. <strong style="color:var(--green)">AL BESCHIKBAAR!</strong></p>
+        <div class="prop-meta">🛏️ 3 slpk | ⚡ EPC B | Huis</div>
+        <p style="margin:6px 0">Tegenover stadspark. Ingerichte keuken. Heilig Hart school 500m. Bouwjaar 2010. Carport. <strong style='color:var(--green)'>AL BESCHIKBAAR!</strong></p>
         <div class="prop-contact">
-          <a href="tel:0491492244">📞 0491/49 22 44</a>
-          <span>👤 Eigenaar (rechtstreeks)</span>
-          <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+          <a href="tel:0491492244">0491/49 22 44</a>
+            <span>Eigenaar (rechtstreeks)</span>
+            <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-2">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
         </div>
       </div>
     </div>
 
     <div class="card success prop-v2" data-prop="huur-3" style="margin-top:12px">
       <div class="prop-img">
-        <div class="placeholder"><span>🏡</span>Terwouwenstraat 28<br><small>Foto niet beschikbaar — advertentie offline</small></div>
+        <div class="placeholder"><span>🏠</span>Terwouwenstraat 28, Zepperen<br><small><a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span>
         <h4>3. Terwouwenstraat 28, Zepperen</h4>
         <div class="prop-price">€1.300/mnd</div>
-        <div class="prop-meta">🛏️ 4 slpk | ⚡ EPC D | 🏡 Tuin + 2 garages + terras</div>
-        <p style="margin:6px 0">Ruime halfopen woning. Vloerverwarming op gas. Landelijk. <strong>Beschikbaar: 01/05/2026</strong></p>
+        <div class="prop-meta">🛏️ 4 slpk | ⚡ EPC D | Huis</div>
+        <p style="margin:6px 0">Ruime halfopen woning. Vloerverwarming op gas. 2 garages + terras. Landelijk. <strong>Beschikbaar: 01/05/2026</strong></p>
         <div class="prop-contact">
-          <span>🏢 Immo Vesta</span>
-          <a href="https://www.immovesta.be" target="_blank" class="prop-link">🔗 Website</a>
-          <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="gmaps-link">📍 Maps</a>
+          <a href="tel:011747080">011 74 70 80</a>
+            <a href="mailto:info@immovesta.be">info@immovesta.be</a>
+            <span>Immo Vesta</span>
+            <a href="https://immovesta.be" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
@@ -458,55 +528,904 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
         </div>
+        <div class="prop-reactie" data-reactie="huur-3">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
 
-    <h3>Volledig Overzicht — Alle 31 Panden <span class="badge-count" id="tblCount">31</span></h3>
-    <input type="text" class="tbl-filter" id="tblFilter" placeholder="Zoek op adres, type, prijs..." oninput="filterTable()">
-    <div style="overflow-x:auto">
-    <table id="huurTable">
-      <thead>
-        <tr><th>#</th><th>Adres</th><th>Type</th><th>Prijs</th><th>Slpk</th><th>m²</th><th>EPC</th><th>Score</th><th>Status</th><th>Notities</th></tr>
-      </thead>
-      <tbody>
-        <tr data-prop="tbl-1"><td>1</td><td>Stapelstraat 50</td><td>H+W</td><td class="price">€1.350+200</td><td>2</td><td>~236</td><td>E</td><td><span class="tag tag-green">SUPER</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-2"><td>2</td><td>Diestersteenweg 66</td><td>H</td><td class="price">€985</td><td>3</td><td>-</td><td>B</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-3"><td>3</td><td>Terwouwenstraat 28, Zepperen</td><td>H</td><td class="price">€1.300</td><td>4</td><td>-</td><td>D</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-4"><td>4</td><td>Sint-Trudostraat 22</td><td>H</td><td class="price">€1.050</td><td>3</td><td>181</td><td>B</td><td><span class="tag tag-green">TOP</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-5"><td>5</td><td>Tiensesteenweg 184/603</td><td>A</td><td class="price">€880+120</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-6"><td>6</td><td>Kennedylaan 19</td><td>A</td><td class="price">€850</td><td>2</td><td>77</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-7"><td>7</td><td>Gorsemweg 11/101</td><td>A</td><td class="price">€900+70</td><td>2</td><td>85</td><td>A</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-8"><td>8</td><td>Slagmolenstraat 30</td><td>H</td><td class="price">€895</td><td>2</td><td>120</td><td>264</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-9"><td>9</td><td>Houtmarkt 28/301</td><td>A</td><td class="price">€925</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-10"><td>10</td><td>Attenhovestraat 71</td><td>H</td><td class="price">€1.150</td><td>3</td><td>108</td><td>A+++</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-11"><td>11</td><td>Leopold II straat 28</td><td>H</td><td class="price">€1.150</td><td>4</td><td>169</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-12"><td>12</td><td>Stationsstraat 59/203</td><td>A</td><td class="price">€1.045</td><td>2</td><td>67</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-13"><td>13</td><td>Stationsstraat 59/102</td><td>A</td><td class="price">€1.280</td><td>3</td><td>95</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-14"><td>14</td><td>Sint-Trudostraat 34</td><td>A</td><td class="price">€950+50</td><td>2</td><td>100</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-15"><td>15</td><td>Houtmarkt 28/201</td><td>A</td><td class="price">€975</td><td>2</td><td>94</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-16"><td>16</td><td>Stationsstraat 39/101</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-17"><td>17</td><td>Stationsstraat 39/001</td><td>A</td><td class="price">€1.200+40</td><td>2</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-18"><td>18</td><td>Kennedylaan 11</td><td>A</td><td class="price">€1.250</td><td>3</td><td>-</td><td>D</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-19"><td>19</td><td>Brustem-Dorp 90/201</td><td>A</td><td class="price">€1.050+100</td><td>3</td><td>117</td><td>C</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-20"><td>20</td><td>Spoorwegstraat 9</td><td>H</td><td class="price">€1.300</td><td>3</td><td>172</td><td>C</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-21"><td>21</td><td>Boudewijnlaan 56</td><td>H</td><td class="price">€1.295</td><td>3</td><td>132</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-22"><td>22</td><td>Zoutleeuwsesteenweg 128</td><td>H</td><td class="price">€1.100</td><td>4</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-23"><td>23</td><td>Naamsesteenweg 184A</td><td>H</td><td class="price">€790</td><td>2</td><td>77</td><td>C</td><td><span class="tag tag-blue">BUDGET</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-24"><td>24</td><td>Luikerstraat 47/101</td><td>A</td><td class="price">€1.050</td><td>2</td><td>121</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-25"><td>25</td><td>Capucienessenstraat 7/102</td><td>A</td><td class="price">€750</td><td>2</td><td>96</td><td>-</td><td><span class="tag tag-green">BUDGET</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-26"><td>26</td><td>Tiensesteenweg 58/201</td><td>A</td><td class="price">€830</td><td>2</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-27"><td>27</td><td>Naamsesteenweg 55</td><td>A</td><td class="price">€875</td><td>2</td><td>~100</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-28"><td>28</td><td>Sint-Trudostraat 1</td><td>A</td><td class="price">€850</td><td>2</td><td>110</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-29"><td>29</td><td>Vissegatstraat 40</td><td>H</td><td class="price">€995</td><td>2</td><td>113</td><td>-</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-30"><td>30</td><td>Zoutstraat 18</td><td>A</td><td class="price">€1.100</td><td>2</td><td>101</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-        <tr data-prop="tbl-31"><td>31</td><td>Tiensesteenweg 35 (duplex)</td><td>A</td><td class="price">€1.000</td><td>2</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
-      </tbody>
-    </table>
+    <div class="card success prop-v2" data-prop="huur-4" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Sint-Trudostraat 22, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Sint-Trudostraat+22+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">TOP</span>
+        <h4>4. Sint-Trudostraat 22, Sint-Truiden</h4>
+        <div class="prop-price">€1.050/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 181m² | ⚡ EPC B | Huis</div>
+        <p style="margin:6px 0">Ruim huis met 3 slaapkamers. Goede EPC B score. Centrum Sint-Truiden.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Sint-Trudostraat+22+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-4">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
     </div>
-    <p style="font-size:12px;color:var(--muted)">H = Huis, A = Appartement, H+W = Handelspand + Woonst. #25-31 = nieuw gevonden via Rentola/RT Vastgoed. Volledige lijst: 47 panden (16 afgevallen wegens score 1-2).</p>
+
+    <div class="card warning prop-v2" data-prop="huur-5" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Tiensesteenweg 184/603, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Tiensesteenweg+184/603+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>5. Tiensesteenweg 184/603, Sint-Truiden</h4>
+        <div class="prop-price">€880/mnd + €120</div>
+        <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement 6e verdieping. Gemeenschappelijke kosten €120/mnd.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Tiensesteenweg+184/603+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-5">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-6" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Kennedylaan 19, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Kennedylaan+19+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>6. Kennedylaan 19, Sint-Truiden</h4>
+        <div class="prop-price">€850/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 77m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Compact appartement. 2 slaapkamers op 77m².</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Kennedylaan+19+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-6">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-7" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Gorsemweg 11/101, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Gorsemweg+11/101+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>7. Gorsemweg 11/101, Sint-Truiden</h4>
+        <div class="prop-price">€900/mnd + €70</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 85m² | ⚡ EPC A | Appartement</div>
+        <p style="margin:6px 0">Appartement met uitstekende EPC A. 85m², 2 slaapkamers. Gemeenschappelijke kosten €70.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Gorsemweg+11/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-7">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-8" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Slagmolenstraat 30, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Slagmolenstraat+30+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>8. Slagmolenstraat 30, Sint-Truiden</h4>
+        <div class="prop-price">€895/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 120m² | ⚡ EPC 264 | Huis</div>
+        <p style="margin:6px 0">Huis 120m² met 2 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Slagmolenstraat+30+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-8">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-9" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Houtmarkt 28/301, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Houtmarkt+28/301+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>9. Houtmarkt 28/301, Sint-Truiden</h4>
+        <div class="prop-price">€925/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 94m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement 3e verdieping. 94m², 2 slaapkamers. Centrum aan de Houtmarkt.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Houtmarkt+28/301+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-9">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-10" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Attenhovestraat 71, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Attenhovestraat+71+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>10. Attenhovestraat 71, Sint-Truiden</h4>
+        <div class="prop-price">€1.150/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 108m² | ⚡ EPC A+++ | Huis</div>
+        <p style="margin:6px 0">Passiefhuis met EPC A+++. 3 slaapkamers, 108m². Topkwaliteit energieprestatie.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Attenhovestraat+71+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-10">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-11" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Leopold II straat 28, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Leopold+II+straat+28+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>11. Leopold II straat 28, Sint-Truiden</h4>
+        <div class="prop-price">€1.150/mnd</div>
+        <div class="prop-meta">🛏️ 4 slpk | 📐 169m² | ⚡ EPC C | Huis</div>
+        <p style="margin:6px 0">Ruim huis met 4 slaapkamers. 169m². EPC C.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Leopold+II+straat+28+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-11">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-12" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Stationsstraat 59/203, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Stationsstraat+59/203+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>12. Stationsstraat 59/203, Sint-Truiden</h4>
+        <div class="prop-price">€1.045/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 67m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement 2e verdieping. 67m², 2 slaapkamers. Nabij station.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Stationsstraat+59/203+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-12">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-13" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Stationsstraat 59/102, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Stationsstraat+59/102+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>13. Stationsstraat 59/102, Sint-Truiden</h4>
+        <div class="prop-price">€1.280/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 95m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Ruimer appartement 1e verdieping. 95m², 3 slaapkamers. Nabij station.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Stationsstraat+59/102+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-13">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-14" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Sint-Trudostraat 34, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>14. Sint-Trudostraat 34, Sint-Truiden</h4>
+        <div class="prop-price">€950/mnd + €50</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 100m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement 100m², 2 slaapkamers. Gemeenschappelijke kosten €50.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-14">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-15" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Houtmarkt 28/201, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Houtmarkt+28/201+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>15. Houtmarkt 28/201, Sint-Truiden</h4>
+        <div class="prop-price">€975/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 94m² | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement 2e verdieping Houtmarkt. 94m², 2 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Houtmarkt+28/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-15">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-16" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Stationsstraat 39/101, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Stationsstraat+39/101+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>16. Stationsstraat 39/101, Sint-Truiden</h4>
+        <div class="prop-price">€1.200/mnd + €40</div>
+        <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Stationsstraat+39/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-16">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-17" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Stationsstraat 39/001, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Stationsstraat+39/001+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>17. Stationsstraat 39/001, Sint-Truiden</h4>
+        <div class="prop-price">€1.200/mnd + €40</div>
+        <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Gelijkvloers appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Stationsstraat+39/001+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-17">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-18" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Kennedylaan 11, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Kennedylaan+11+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>18. Kennedylaan 11, Sint-Truiden</h4>
+        <div class="prop-price">€1.250/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | ⚡ EPC D | Appartement</div>
+        <p style="margin:6px 0">Ruim appartement met 3 slaapkamers aan de Kennedylaan.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Kennedylaan+11+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-18">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-19" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Brustem-Dorp 90/201, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Brustem-Dorp+90/201+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>19. Brustem-Dorp 90/201, Sint-Truiden</h4>
+        <div class="prop-price">€1.050/mnd + €100</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 117m² | ⚡ EPC C | Appartement</div>
+        <p style="margin:6px 0">Appartement in Brustem. 117m², 3 slaapkamers. Nabij school De Boomhut! Gemeenschappelijke kosten €100.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Brustem-Dorp+90/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-19">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-20" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Spoorwegstraat 9, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Spoorwegstraat+9+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>20. Spoorwegstraat 9, Sint-Truiden</h4>
+        <div class="prop-price">€1.300/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 172m² | ⚡ EPC C | Huis</div>
+        <p style="margin:6px 0">Ruim huis 172m², 3 slaapkamers. EPC C.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Spoorwegstraat+9+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-20">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-21" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Boudewijnlaan 56, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Boudewijnlaan+56+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>21. Boudewijnlaan 56, Sint-Truiden</h4>
+        <div class="prop-price">€1.295/mnd</div>
+        <div class="prop-meta">🛏️ 3 slpk | 📐 132m² | Huis</div>
+        <p style="margin:6px 0">Huis 132m², 3 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Boudewijnlaan+56+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-21">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-22" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Zoutleeuwsesteenweg 128, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>22. Zoutleeuwsesteenweg 128, Sint-Truiden</h4>
+        <div class="prop-price">€1.100/mnd</div>
+        <div class="prop-meta">🛏️ 4 slpk | Huis</div>
+        <p style="margin:6px 0">Huis met 4 slaapkamers aan de Zoutleeuwsesteenweg.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-22">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card success prop-v2" data-prop="huur-23" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Naamsesteenweg 184A, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Naamsesteenweg+184A+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">BUDGET</span>
+        <h4>23. Naamsesteenweg 184A, Sint-Truiden</h4>
+        <div class="prop-price">€790/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 77m² | ⚡ EPC C | Huis</div>
+        <p style="margin:6px 0">Budgetvriendelijk huis. 77m², 2 slaapkamers. EPC C. Laagste prijs huizen.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Naamsesteenweg+184A+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-23">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-24" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Luikerstraat 47/101, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Luikerstraat+47/101+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>24. Luikerstraat 47/101, Sint-Truiden</h4>
+        <div class="prop-price">€1.050/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 121m² | Appartement</div>
+        <p style="margin:6px 0">Ruim appartement 121m², 2 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Luikerstraat+47/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-24">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card success prop-v2" data-prop="huur-25" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Capucienessenstraat 7/102, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Capucienessenstraat+7/102+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-green">BUDGET</span>
+        <h4>25. Capucienessenstraat 7/102, Sint-Truiden</h4>
+        <div class="prop-price">€750/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 96m² | Appartement</div>
+        <p style="margin:6px 0">Goedkoopste appartement! 96m², 2 slaapkamers. Via RT Vastgoed.</p>
+        <div class="prop-contact">
+          <a href="tel:011697640">011 69 76 40</a>
+            <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
+            <span>RT Vastgoed</span>
+            <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Capucienessenstraat+7/102+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-25">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-26" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Tiensesteenweg 58/201, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Tiensesteenweg+58/201+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>26. Tiensesteenweg 58/201, Sint-Truiden</h4>
+        <div class="prop-price">€830/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | Appartement</div>
+        <p style="margin:6px 0">Modern appartement. Via RT Vastgoed.</p>
+        <div class="prop-contact">
+          <a href="tel:011697640">011 69 76 40</a>
+            <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
+            <span>RT Vastgoed</span>
+            <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+58/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-26">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-27" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Naamsesteenweg 55, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Naamsesteenweg+55+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>27. Naamsesteenweg 55, Sint-Truiden</h4>
+        <div class="prop-price">€875/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 ~100m² | Appartement</div>
+        <p style="margin:6px 0">Appartement ~100m², 2 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Naamsesteenweg+55+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-27">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-28" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Sint-Trudostraat 1, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Sint-Trudostraat+1+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>28. Sint-Trudostraat 1, Sint-Truiden</h4>
+        <div class="prop-price">€850/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 110m² | Appartement</div>
+        <p style="margin:6px 0">Appartement 110m², 2 slaapkamers. Centrum.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Sint-Trudostraat+1+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-28">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card warning prop-v2" data-prop="huur-29" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏠</span>Vissegatstraat 40, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Vissegatstraat+40+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-yellow">GOED</span>
+        <h4>29. Vissegatstraat 40, Sint-Truiden</h4>
+        <div class="prop-price">€995/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 113m² | Huis</div>
+        <p style="margin:6px 0">Huis 113m², 2 slaapkamers. Entreehal, woon-/eetkamer, keuken, binnenplaats, bergruimte.</p>
+        <div class="prop-contact">
+          <a href="https://www.immoweb.be/nl/zoekertje/huis/te-huur/sint-truiden/3800/20402929" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Vissegatstraat+40+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-29">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-30" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Zoutstraat 18, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Zoutstraat+18+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>30. Zoutstraat 18, Sint-Truiden</h4>
+        <div class="prop-price">€1.100/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | 📐 101m² | Appartement</div>
+        <p style="margin:6px 0">Appartement 101m², 2 slaapkamers.</p>
+        <div class="prop-contact">
+          <a href="https://www.google.com/maps/search/Zoutstraat+18+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-30">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card info prop-v2" data-prop="huur-31" style="margin-top:12px">
+      <div class="prop-img">
+        <div class="placeholder"><span>🏢</span>Tiensesteenweg 35, Sint-Truiden<br><small><a href="https://www.google.com/maps/search/Tiensesteenweg+35+Sint-Truiden" target="_blank" style="color:var(--muted)">Bekijk op Google Maps</a></small></div>
+      </div>
+      <div class="prop-body">
+        <span class="tag tag-blue">NIEUW</span>
+        <h4>31. Tiensesteenweg 35, Sint-Truiden</h4>
+        <div class="prop-price">€1.000/mnd</div>
+        <div class="prop-meta">🛏️ 2 slpk | Appartement</div>
+        <p style="margin:6px 0">Duplex-appartement 3e verdieping. Lift, open keuken, terras, ensuite badkamer. Zonnepanelen. Gemeenschappelijke kosten €60/mnd.</p>
+        <div class="prop-contact">
+          <a href="tel:011697640">011 69 76 40</a>
+            <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
+            <span>RT Vastgoed</span>
+            <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+35+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
+        </div>
+        <div class="prop-actions">
+          <select class="prop-status" onchange="saveProp(this)">
+            <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
+          </select>
+          <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="huur-31">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">H = Huis, A = Appartement, H+W = Handelspand + Woonst. Volledige lijst: 47 panden onderzocht (16 afgevallen wegens score 1-2).</p>
   </div>
 
-  <!-- ============ TAB: KOOPWONINGEN ============ -->
+    <!-- ============ TAB: KOOPWONINGEN ============ -->
   <div id="koop" class="section">
     <h2>🏡 Koopwoningen — Sint-Truiden (Budget ≤€250.000)</h2>
     <p style="color:var(--muted);margin-bottom:16px">Kopen heeft Stefania's voorkeur. Probleem: scheiding nog niet rond + lening nodig. Onderstaande opties op basis van Immoweb/Zimmo/Realo per 26/03/2026.</p>
@@ -542,13 +1461,26 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <div class="prop-meta">🛏️ 2 slpk | 🏢 App 1e verd | 🛗 Lift | 🅿️ Parking + kelder</div>
         <p style="margin:6px 0">Residentie Nieuwpoort. Instapklaar appartement op eerste verdieping met lift, kelderberging en ondergrondse parking.</p>
         <div class="prop-contact">
-          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb zoeken</a>
+          <a href="tel:011673900">011 67 39 00</a>
+          <a href="mailto:info@aktimmo.be">info@aktimmo.be</a>
+          <span>Aktimmo</span>
+          <a href="https://www.aktimmo.be" target="_blank" class="prop-link">🔗 Website</a>
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="koop-1">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -564,13 +1496,26 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <div class="prop-meta">🛏️ 2 slpk | 🏢 App gelijkvloers | 📍 Centraal</div>
         <p style="margin:6px 0">Gelijkvloers appartement, centraal gelegen. Vlotte bereikbaarheid scholen en winkels.</p>
         <div class="prop-contact">
-          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb zoeken</a>
+          <a href="tel:011361919">011 36 19 19</a>
+          <a href="mailto:geert@pierco.be">geert@pierco.be</a>
+          <span>Geert Pierco Vastgoed</span>
+          <a href="https://www.pierco.be" target="_blank" class="prop-link">🔗 Website</a>
+          <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&postalCodes=BE-3800&maxPrice=250000" target="_blank" class="prop-link">🔗 Immoweb</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
+        </div>
+        <div class="prop-reactie" data-reactie="koop-2">
+          <details>
+            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
+            <div class="reactie-content">
+              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
+              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -797,6 +1742,46 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <p style="color:var(--yellow);margin-top:8px;font-size:13px">Overwaarde na aftrek leningen (€210-225k): <strong>€95.000 - €150.000</strong> te verdelen</p>
       </div>
       <p style="color:var(--muted);font-size:12px;margin-top:8px">Bronnen: Realo.be, Immoweb prijsbarometer, Statbel. Officiële schatting door erkend schatter: €275-650.</p>
+    </div>
+
+    <div class="card danger" style="margin-top:12px">
+      <h3>Waarom een Lage Schatting Cruciaal Is</h3>
+      <p style="margin-bottom:8px">De <strong>geschatte waarde van de woning bepaalt de overwaarde</strong> die verdeeld moet worden bij de scheiding. Hoe lager de schatting, hoe minder Stefania aan Marius moet betalen.</p>
+      <table>
+        <thead><tr><th>Scenario</th><th>Schatting</th><th>Leningen</th><th>Overwaarde</th><th>Stefania betaalt (50%)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-green">Laag</span></td><td>€300.000</td><td>€210.000</td><td>€90.000</td><td><strong style="color:var(--green)">€45.000</strong></td></tr>
+          <tr><td><span class="tag tag-yellow">Midden</span></td><td>€340.000</td><td>€210.000</td><td>€130.000</td><td><strong style="color:var(--yellow)">€65.000</strong></td></tr>
+          <tr><td><span class="tag tag-red">Hoog</span></td><td>€380.000</td><td>€210.000</td><td>€170.000</td><td><strong style="color:var(--red)">€85.000</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:8px;font-size:13px;color:var(--muted)"><strong>Verschil laag vs. hoog: €40.000!</strong> Daarom is de keuze van schatter strategisch belangrijk.</p>
+    </div>
+
+    <div class="card success" style="margin-top:12px">
+      <h3>Hoe Komen We aan de Schatting €320.000-€360.000?</h3>
+      <p style="margin-bottom:8px">De schatting is gebaseerd op <strong>drie onafhankelijke bronnen</strong>:</p>
+      <table>
+        <thead><tr><th>Bron</th><th>Methode</th><th>Resultaat</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Vergelijkbare panden</strong></td><td>Tongersesteenweg 99 (€160k/81m²=€1.975/m²) en nr 338 (€310k/205m²=€1.512/m²). Gemiddeld ±€1.750/m²</td><td>157m² × €1.750 = <strong>€275.000</strong> basis</td></tr>
+          <tr><td><strong>2. Immoweb barometer</strong></td><td>Mediaan huis Sint-Truiden 2025-2026: €286.000 (€1.866/m²)</td><td>157m² × €1.866 = <strong>€293.000</strong></td></tr>
+          <tr><td><strong>3. Realo.be kenmerken</strong></td><td>Open bebouwing, 530m² grond, zuidgerichte tuin, overstroming A, gevelbreedte 12,9m</td><td>Premium +10-15% → <strong>€320.000-€340.000</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:8px;font-size:13px"><strong>Conclusie:</strong> De woning is realistisch <strong>€320.000-€360.000</strong> waard. De €450.000 die eerder circuleerde is <strong>te hoog</strong> — dat zou enkel kloppen in perfecte staat met recente renovatie.</p>
+    </div>
+
+    <div class="card highlight" style="margin-top:12px">
+      <h3>Aanbevolen Schatter: Jocelin Vannut</h3>
+      <p><strong>Aanbevolen door Chantal Degucht</strong> (makelaar/kennis): Jocelin Vannut is een erkend schatter die <strong>realistisch (conservatief) schat</strong>. Dit is strategisch voordelig voor Stefania.</p>
+      <ul>
+        <li><strong>Naam:</strong> Jocelin Vannut — erkend schatter</li>
+        <li><strong>Voordeel:</strong> Schat conservatief → lagere overwaarde → Stefania betaalt minder aan Marius</li>
+        <li><strong>Kost:</strong> Erkende schatting ±€275-650 (afhankelijk van complexiteit)</li>
+        <li><strong>Timing:</strong> Laat schatten VOORDAT onderhandeling met Marius begint</li>
+      </ul>
+      <div class="verdict go">ACTIE: Contact opnemen met Jocelin Vannut voor schatting Tongersesteenweg 287</div>
     </div>
 
     <h3>Totale Kosten — Huur vs. Koop Vergelijking</h3>
@@ -1058,10 +2043,13 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <h3>3. Vlaamse Woonlening = Game Changer</h3>
         <p>Het Vlaams Woningfonds leent tot <strong>100% van de aankoopprijs + kosten</strong> aan een veel lagere rente dan banken.</p>
         <ul>
-          <li>Geen eigen inbreng nodig</li>
-          <li>Rente vaak onder 2% (inkomen-afhankelijk)</li>
-          <li>Extra korting per kind ten laste</li>
-          <li>Kredietakte pas na definitieve scheiding — plan overbrugging!</li>
+          <li><strong>Minimale rente: 1,60%</strong> (maart 2026, inkomensafhankelijk)</li>
+          <li><strong>Inkomensgrens 2026:</strong> max €81.811 netto belastbaar (alleenstaande + 2 kinderen)</li>
+          <li><strong>100% financiering</strong> — geen eigen inbreng nodig, zelfs notariskosten worden meegefinancierd</li>
+          <li><strong>10% korting</strong> per kind ten laste op de rentevoet</li>
+          <li>Herziening om de 5 jaar op basis van actueel inkomen</li>
+          <li>Simulatie: <a href="https://vlaamswoningfonds.be/onze-diensten/vlaamse-woonlening/simulatie-vlaamse-woonlening" style="color:var(--accent)">vlaamswoningfonds.be/simulatie</a></li>
+          <li><strong>Let op:</strong> Kredietakte pas mogelijk na definitieve scheiding — plan overbrugging!</li>
         </ul>
       </div>
 
@@ -1194,32 +2182,51 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
     <h3 style="color:var(--green);border-bottom:2px solid var(--green);padding-bottom:6px">💵 Sociale Steun &amp; Premies</h3>
     <div class="grid grid-2">
       <div class="card success">
-        <h3>18. Eenoudertoeslag Groeipakket</h3>
-        <p>Extra maandelijkse toeslag als alleenstaande ouder:</p>
+        <h3>18. Groeipakket + Sociale Toeslag = €690/mnd</h3>
+        <p>Concrete bedragen voor Stefania met 2 kinderen (2026):</p>
         <ul>
-          <li>Bruto belastbaar gezinsinkomen ≤ <strong>€3.391,80/maand</strong></li>
-          <li>Sociale toeslag via Groeipakket bij laag inkomen</li>
-          <li>Aanvragen zodra feitelijke scheiding geregistreerd is</li>
+          <li><strong>Basisbedrag:</strong> €184,62/kind/mnd = <strong>€369,24/mnd</strong> totaal</li>
+          <li><strong>Sociale toeslag</strong> (bij laag inkomen ≤€34.555/j): <strong>+€102,73/kind/mnd</strong> = €205,46 extra</li>
+          <li><strong>Schoolpremie:</strong> €27-145/kind/jaar (leeftijdsafhankelijk)</li>
+          <li>Inkomensgrens sociale toeslag: bruto gezinsinkomen ≤ <strong>€3.391,80/maand</strong></li>
+          <li><strong>Totaal per maand: ±€575-690</strong> (basis + sociale toeslag)</li>
+          <li>Aanvragen zodra feitelijke scheiding geregistreerd is bij uitbetaler (Fons, MyFamily, ...)</li>
         </ul>
       </div>
 
       <div class="card info">
-        <h3>19. Sociaal Tarief Energie</h3>
-        <p>Alleenstaande moeder met beperkt inkomen → sociaal tarief gas en elektriciteit. Besparing: <strong>±€500-1.000/jaar</strong>.</p>
+        <h3>19. Sociaal Tarief Energie + Mijn VerbouwPremie</h3>
+        <p>Twee voordelen bij laag inkomen:</p>
+        <ul>
+          <li><strong>Sociaal tarief energie:</strong> ±€500-1.000/jaar besparing. Automatisch recht bij leefloon, VT, of OCMW-steun.</li>
+          <li><strong>Mijn VerbouwPremie:</strong> tot <strong>50% terugbetaling</strong> bij laag inkomen voor isolatie, verwarmingsketel, beglazing</li>
+          <li>Aanvraag via <a href="https://www.mijnverbouwpremie.be" style="color:var(--accent)">mijnverbouwpremie.be</a> na aankoop woning</li>
+        </ul>
       </div>
 
       <div class="card info">
-        <h3>20. Huursubsidie</h3>
-        <p>Vlaamse huursubsidie: tot <strong>€170/maand</strong> tegemoetkoming bij verhuis van ongeschikte naar conforme woning. Inkomensgrenzen: ±€25.000.</p>
+        <h3>20. Vlaamse Huursubsidie + Huurpremie</h3>
+        <p>Twee verschillende tegemoetkomingen mogelijk:</p>
+        <ul>
+          <li><strong>Huursubsidie:</strong> tot <strong>€170/mnd</strong> + €28,07/persoon ten laste (Stefania + 2 kids = <strong>€226,14/mnd</strong>)</li>
+          <li><strong>Vlaamse Huurpremie:</strong> <strong>€166,07/mnd</strong> + €28,07/persoon ten laste = <strong>€250,28/mnd</strong> (na 4j wachtlijst sociaal)</li>
+          <li>Inkomensgrens: netto belastbaar ≤ <strong>€25.850</strong> (2026, alleenstaande + 2 kinderen)</li>
+          <li>Voorwaarde: verhuis van ongeschikte/onaangepaste naar conforme woning</li>
+          <li>Aanvragen via <a href="https://www.wonenvlaanderen.be" style="color:var(--accent)">wonenvlaanderen.be</a></li>
+        </ul>
       </div>
 
       <div class="card info">
         <h3>21. OCMW-steun (Tijdelijk)</h3>
-        <p>Bij onvoldoende inkomen:</p>
+        <p>Bij onvoldoende inkomen — concrete bedragen 2026:</p>
         <ul>
-          <li>Equivalent leefloon: ±€1.526/maand (gezin ten laste, 2026)</li>
-          <li>Installatiepremie bij verhuis: eenmalig ±€1.300</li>
-          <li>Tussenkomst huurwaarborg (max 3 maanden huur)</li>
+          <li><strong>Leefloon gezin ten laste:</strong> <strong>€1.811,57/mnd</strong> (tarief maart 2026)</li>
+          <li><strong>Installatiepremie:</strong> eenmalig <strong>€1.380</strong> bij verhuis</li>
+          <li><strong>Huurwaarborg:</strong> tussenkomst max 3 maanden huur (bv. €2.955 voor Diestersteenweg)</li>
+          <li><strong>Verhoogde tegemoetkoming (VT):</strong> goedkopere gezondheidszorg, max remgeld, goedkopere medicijnen</li>
+          <li><strong>Pro deo advocaat:</strong> gratis rechtsbijstand bij inkomen ≤ €1.526/mnd (alleenstaande) of ≤ €1.920/mnd (+ kinderen)</li>
+          <li><strong>Sociaal tarief energie:</strong> ±€500-1.000/jaar besparing op gas + elektriciteit</li>
+          <li>OCMW Sint-Truiden: <a href="tel:011701400" style="color:var(--accent)">011 70 14 00</a></li>
         </ul>
       </div>
     </div>
@@ -1256,6 +2263,10 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
       <div class="check-item" data-check="c5">
         <input type="checkbox" onchange="saveCheck(this)">
         <label class="check-label">Woningbezichtigingen plannen<small>Top 3 huur + eventueel koopwoningen bezoeken.</small></label>
+      </div>
+      <div class="check-item" data-check="c5b">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Schatter Jocelin Vannut contacteren<small>Erkende schatting Tongersesteenweg 287. Schat conservatief. Aanbevolen door Chantal Degucht.</small></label>
       </div>
     </div>
 
@@ -1315,7 +2326,10 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
           <tr><td><strong>Dr. Karel Anseeuw</strong></td><td>Huisarts / medisch attest</td><td>011 98 87 87</td></tr>
           <tr><td><strong>Diestersteenweg 66</strong></td><td>Eigenaar (huurwoning)</td><td>0491/49 22 44</td></tr>
           <tr><td><strong>Meyers Vastgoed</strong></td><td>Stapelstraat 50</td><td>011 48 58 86</td></tr>
-          <tr><td><strong>Immo Vesta</strong></td><td>Terwouwenstraat 28</td><td>Via Immoweb</td></tr>
+          <tr><td><strong>Immo Vesta</strong></td><td>Terwouwenstraat 28</td><td>011 74 70 80</td></tr>
+          <tr><td><strong>Aktimmo</strong></td><td>Koopwoningen</td><td>011 67 39 00 / info@aktimmo.be</td></tr>
+          <tr><td><strong>Geert Pierco Vastgoed</strong></td><td>Sint-Anneke</td><td>011 36 19 19 / geert@pierco.be</td></tr>
+          <tr><td><strong>Jocelin Vannut</strong></td><td>Schatter (conservatief)</td><td>Via Chantal Degucht</td></tr>
           <tr><td><strong>Vlaams Woningfonds Limburg</strong></td><td>Vlaamse woonlening</td><td>011 23 69 00</td></tr>
           <tr><td><strong>OCMW Sint-Truiden</strong></td><td>Sociale steun</td><td>011 70 14 00</td></tr>
         </tbody>
@@ -1327,7 +2341,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
 <footer>
   <div class="container">
-    <p>Project Stefania v6.0 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
+    <p>Project Stefania v7.0 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
     <p style="margin-top:4px">Bronnen: Immoweb, Zimmo, Vlaams Woningfonds, notaris.be, NEO Bemiddeling, Wikifin, Test-Aankoop, hypotheekwinkel.be, kredietadvies.be, Gemini Pro, DeepSeek/Kagi (80 bronnen)</p>
   </div>
 </footer>
@@ -1498,6 +2512,67 @@ function updateCheckProgress() {
 }
 
 restoreAllChecks();
+
+// ============ REACTIE TRACKING (localStorage) ============
+const REACTIE_KEY = 'stefania_reacties_v1';
+
+function saveReactie(el) {
+  const box = el.closest('[data-reactie]');
+  if (!box) return;
+  const id = box.dataset.reactie;
+  const data = loadAllReacties();
+  if (!data[id]) data[id] = {};
+  if (el.classList.contains('reactie-summary')) data[id].summary = el.value;
+  if (el.classList.contains('reactie-full')) data[id].full = el.value;
+  localStorage.setItem(REACTIE_KEY, JSON.stringify(data));
+  // Show badge if has content
+  const badge = box.querySelector('.reactie-badge');
+  if (badge) badge.style.display = (data[id].summary || data[id].full) ? 'inline' : 'none';
+}
+
+function loadAllReacties() {
+  try { return JSON.parse(localStorage.getItem(REACTIE_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+
+function restoreAllReacties() {
+  const data = loadAllReacties();
+  Object.keys(data).forEach(id => {
+    const box = document.querySelector('[data-reactie="' + id + '"]');
+    if (!box) return;
+    const d = data[id];
+    const summary = box.querySelector('.reactie-summary');
+    const full = box.querySelector('.reactie-full');
+    if (summary && d.summary) summary.value = d.summary;
+    if (full && d.full) full.value = d.full;
+    const badge = box.querySelector('.reactie-badge');
+    if (badge && (d.summary || d.full)) badge.style.display = 'inline';
+  });
+}
+restoreAllReacties();
+
+// ============ HUUR CARD FILTER ============
+function filterHuurCards() {
+  const q = (document.getElementById('huurFilter')?.value || '').toLowerCase();
+  const statusFilter = document.getElementById('huurStatusFilter')?.value || '';
+  const cards = document.querySelectorAll('#huur .prop-v2[data-prop^="huur-"]');
+  let visible = 0;
+  const allData = loadAllProps();
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const id = card.dataset.prop;
+    const cardStatus = allData[id]?.status || '';
+    const matchText = !q || text.includes(q);
+    const matchStatus = !statusFilter || cardStatus === statusFilter;
+    const show = matchText && matchStatus;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const countEl = document.getElementById('huurVisible');
+  if (countEl) countEl.textContent = visible + ' van ' + cards.length;
+  const badgeEl = document.getElementById('huurCount');
+  if (badgeEl) badgeEl.textContent = cards.length;
+}
 </script>
 
 </body>
