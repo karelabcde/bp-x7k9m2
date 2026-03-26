@@ -130,6 +130,8 @@
   .ev-strength.weak { background: rgba(69,10,10,0.7); color: #f87171; }
 
   @media (max-width: 768px) {
+    .apt-card > div { grid-template-columns: 1fr !important; }
+    .apt-card img { max-height: 180px; }
     .branch { grid-template-columns: 1fr; }
     .fin-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -143,7 +145,7 @@
 <body>
 
 <div class="header">
-  <div class="version">⚡ VERSION 5.2 — APPARTEMENTEN MET LISTINGS 26/03</div>
+  <div class="version">⚡ VERSION 5.3 — APPARTEMENTEN MET FOTO'S + INTERACTIEF 26/03</div>
   <h1>
     <span class="fr">🗡️ Plan de Bataille — Divorce Gheonea</span>
     <span class="nl" style="display:none">🗡️ Battleplan — Echtscheiding Gheonea</span>
@@ -1189,20 +1191,117 @@
     </div>
   </div>
 
-  <!-- CRITERIA -->
-  <div class="fin-card best" style="margin-bottom:16px">
-    <h3><span class="fr">🎯 Critères essentiels</span><span class="nl" style="display:none">🎯 Essentiële criteria</span></h3>
-    <div class="evidence-item"><div class="ev-icon">📍</div><div class="ev-content"><h4><span class="fr">Localisation</span><span class="nl" style="display:none">Locatie</span></h4><p><span class="fr">Sint-Truiden centre ou Brustem — max 10 min de l'école De Boomhut. Les enfants gardent leurs amis et activités.</span><span class="nl" style="display:none">Sint-Truiden centrum of Brustem — max 10 min van school De Boomhut. Kinderen houden hun vrienden en activiteiten.</span></p></div><div class="ev-strength strong">MUST</div></div>
-    <div class="evidence-item"><div class="ev-icon">🛏️</div><div class="ev-content"><h4><span class="fr">Chambres</span><span class="nl" style="display:none">Slaapkamers</span></h4><p><span class="fr">Minimum 3 chambres : Stefania + Ysabelle + Dominic. Idéal : 2 SDB ou 1 SDB + WC séparé.</span><span class="nl" style="display:none">Minimum 3 slaapkamers: Stefania + Ysabelle + Dominic. Ideaal: 2 badkamers of 1 badkamer + apart toilet.</span></p></div><div class="ev-strength strong">MUST</div></div>
-    <div class="evidence-item"><div class="ev-icon">📐</div><div class="ev-content"><h4><span class="fr">Surface</span><span class="nl" style="display:none">Oppervlakte</span></h4><p><span class="fr">Min. 90m² — idéal 100-120m². Espace de vie suffisant pour 3 personnes.</span><span class="nl" style="display:none">Min. 90m² — ideaal 100-120m². Voldoende leefruimte voor 3 personen.</span></p></div><div class="ev-strength medium">BELANGRIJK</div></div>
-    <div class="evidence-item"><div class="ev-icon">🚗</div><div class="ev-content"><h4><span class="fr">Parking</span><span class="nl" style="display:none">Parking</span></h4><p><span class="fr">Au moins 1 place de parking (garage ou extérieur).</span><span class="nl" style="display:none">Minstens 1 parkeerplaats (garage of buiten).</span></p></div><div class="ev-strength medium">BELANGRIJK</div></div>
+  <!-- APPARTEMENT KAARTEN -->
+  <div class="section-title"><span class="icon">📋</span> <span class="fr">Appartements trouvés</span><span class="nl" style="display:none">Gevonden appartementen</span></div>
+
+  <!-- APT 1: Sint-Martenplein -->
+  <div class="apt-card" style="background:rgba(30,41,59,0.7);border:2px solid rgba(34,197,94,0.4);border-radius:16px;overflow:hidden;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:0">
+      <div style="position:relative;min-height:200px;background:#1e293b">
+        <img src="https://cdn.omnicasapictures.com/data.public/1394-20200910091540/0/113/E3638992480266131595_2075AL.jpg?639010508544990000" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'" alt="Sint-Martenplein 8">
+        <div style="position:absolute;top:10px;left:10px;background:rgba(34,197,94,0.9);color:white;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700">⭐ TOP KEUZE</div>
+        <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.7);color:#4ade80;padding:4px 12px;border-radius:8px;font-size:18px;font-weight:800">€218.000</div>
+      </div>
+      <div style="padding:16px">
+        <h3 style="font-size:17px;color:#f8fafc;margin-bottom:8px">📍 Sint-Martenplein 8, bus 104 — 3800 Sint-Truiden</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">🛏️ 3 slpk</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📐 90m²</span>
+          <span style="background:rgba(34,197,94,0.2);color:#86efac;padding:3px 10px;border-radius:8px;font-size:12px">✅ Instapklaar</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📍 ~3km De Boomhut</span>
+        </div>
+        <p style="font-size:13px;color:#94a3b8;margin-bottom:10px"><span class="fr">Ruim instapklaar appartement, loopafstand Grote Markt, winkels, scholen en station. Rustige rand Sint-Truiden. Beste prijs/kwaliteit.</span><span class="nl" style="display:none">Ruim instapklaar appartement, loopafstand Grote Markt, winkels, scholen en station. Rustige rand Sint-Truiden. Beste prijs/kwaliteit.</span></p>
+        <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+          <a href="tel:011672201" style="color:#818cf8;font-size:13px;text-decoration:none">📞 011/672 201</a>
+          <a href="mailto:info@imanex.be" style="color:#818cf8;font-size:13px;text-decoration:none">✉️ info@imanex.be</a>
+          <span style="color:#64748b;font-size:12px">IMANEX</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:12px;color:#94a3b8"><span class="fr">Statut :</span><span class="nl" style="display:none">Status:</span></span>
+          <select onchange="saveAptStatus(1,this.value)" id="apt-status-1" style="background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer">
+            <option value="new">🔍 Nieuw</option><option value="called">📞 Gebeld</option><option value="visited">👀 Bezocht</option><option value="interested">⭐ Interesse</option><option value="offer">📝 Bod</option><option value="rejected">❌ Afgewezen</option>
+          </select>
+          <input type="text" id="apt-note-1" placeholder="Notitie..." onchange="saveAptNote(1,this.value)" style="flex:1;min-width:120px;background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px">
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="fin-card ok" style="margin-bottom:16px">
-    <h3><span class="fr">💡 Nice-to-have</span><span class="nl" style="display:none">💡 Nice-to-have</span></h3>
-    <div class="evidence-item"><div class="ev-icon">🌳</div><div class="ev-content"><h4><span class="fr">Terrasse / jardin</span><span class="nl" style="display:none">Terras / tuin</span></h4><p><span class="fr">Espace extérieur pour les enfants. Balcon minimum.</span><span class="nl" style="display:none">Buitenruimte voor de kinderen. Minstens een balkon.</span></p></div><div class="ev-strength medium">NICE</div></div>
-    <div class="evidence-item"><div class="ev-icon">🏗️</div><div class="ev-content"><h4><span class="fr">État</span><span class="nl" style="display:none">Staat</span></h4><p><span class="fr">Instapklaar de préférence. Pas de gros travaux — Stefania n'a ni le temps ni le budget.</span><span class="nl" style="display:none">Liefst instapklaar. Geen grote werken — Stefania heeft niet de tijd noch het budget.</span></p></div><div class="ev-strength medium">NICE</div></div>
-    <div class="evidence-item"><div class="ev-icon">🔋</div><div class="ev-content"><h4><span class="fr">EPC / énergie</span><span class="nl" style="display:none">EPC / energie</span></h4><p><span class="fr">EPC B ou mieux → charges basses. Attention aux vieux appartements avec mauvais EPC.</span><span class="nl" style="display:none">EPC B of beter → lage lasten. Opgelet met oude appartementen met slecht EPC.</span></p></div><div class="ev-strength medium">NICE</div></div>
+  <!-- APT 2: Sint-Anneke -->
+  <div class="apt-card" style="background:rgba(30,41,59,0.7);border:1px solid rgba(99,102,241,0.3);border-radius:16px;overflow:hidden;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:0">
+      <div style="position:relative;min-height:200px;background:#1e293b">
+        <img src="https://images.immoscoop.be/cp-3d80a068e9eba4d2003aa05e30f000a9.jpg" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'" alt="Sint-Anneke 26">
+        <div style="position:absolute;top:10px;left:10px;background:rgba(99,102,241,0.9);color:white;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700">EPC A ⚡</div>
+        <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.7);color:#fbbf24;padding:4px 12px;border-radius:8px;font-size:18px;font-weight:800">€235.000</div>
+      </div>
+      <div style="padding:16px">
+        <h3 style="font-size:17px;color:#f8fafc;margin-bottom:8px">📍 Sint-Anneke 26, bus 101 — 3800 Sint-Truiden</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">🛏️ 3 slpk</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📐 125m²</span>
+          <span style="background:rgba(34,197,94,0.2);color:#86efac;padding:3px 10px;border-radius:8px;font-size:12px">🏷️ EPC A</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">🚿 2 badkamers</span>
+          <span style="background:rgba(245,158,11,0.2);color:#fbbf24;padding:3px 10px;border-radius:8px;font-size:12px">🔧 Op te frissen</span>
+          <span style="background:rgba(239,68,68,0.2);color:#f87171;padding:3px 10px;border-radius:8px;font-size:12px">🚗 Geen parking</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📍 ~2km De Boomhut</span>
+        </div>
+        <p style="font-size:13px;color:#94a3b8;margin-bottom:10px"><span class="fr">Res. Sint-Anneke, 1er étage, très spacieux (125m²), 2 SDB, ±200m Grote Markt. Nombreuses fenêtres = lumière naturelle. MAIS : "op te frissen" + pas de parking. Cave commune.</span><span class="nl" style="display:none">Res. Sint-Anneke, 1e verd., heel ruim (125m²), 2 badkamers, ±200m Grote Markt. Veel raampartijen = veel licht. MAAR: "op te frissen" + geen parking. Gemeensch. kelder.</span></p>
+        <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+          <a href="tel:011361919" style="color:#818cf8;font-size:13px;text-decoration:none">📞 011 36 19 19</a>
+          <a href="mailto:info@pierco.be" style="color:#818cf8;font-size:13px;text-decoration:none">✉️ info@pierco.be</a>
+          <span style="color:#64748b;font-size:12px">Pierco Vastgoed</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:12px;color:#94a3b8"><span class="fr">Statut :</span><span class="nl" style="display:none">Status:</span></span>
+          <select onchange="saveAptStatus(2,this.value)" id="apt-status-2" style="background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer">
+            <option value="new">🔍 Nieuw</option><option value="called">📞 Gebeld</option><option value="visited">👀 Bezocht</option><option value="interested">⭐ Interesse</option><option value="offer">📝 Bod</option><option value="rejected">❌ Afgewezen</option>
+          </select>
+          <input type="text" id="apt-note-2" placeholder="Notitie..." onchange="saveAptNote(2,this.value)" style="flex:1;min-width:120px;background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APT 3: Prins Albertlaan -->
+  <div class="apt-card" style="background:rgba(30,41,59,0.7);border:1px solid rgba(99,102,241,0.3);border-radius:16px;overflow:hidden;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:0">
+      <div style="position:relative;min-height:200px;background:#1e293b">
+        <img src="https://thumbs.zabun.be/XU3JYikPxfrSpJe4ihBytSNxsnc=/600x400/filters:image-format(pjpg)/3688/292cf543e5f4690ce3a431861f80fe8629bf71495f476b7ee62578f39e775691.jpg" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'" alt="Prins Albertlaan">
+        <div style="position:absolute;top:10px;left:10px;background:rgba(245,158,11,0.9);color:white;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700">MAX BUDGET</div>
+        <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.7);color:#fbbf24;padding:4px 12px;border-radius:8px;font-size:18px;font-weight:800">€249.000</div>
+      </div>
+      <div style="padding:16px">
+        <h3 style="font-size:17px;color:#f8fafc;margin-bottom:8px">📍 Prins Albertlaan — Res. Albert — 3800 Sint-Truiden</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">🛏️ 3 slpk</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📐 96m²</span>
+          <span style="background:rgba(245,158,11,0.2);color:#fbbf24;padding:3px 10px;border-radius:8px;font-size:12px">🏷️ EPC C</span>
+          <span style="background:rgba(99,102,241,0.2);color:#c7d2fe;padding:3px 10px;border-radius:8px;font-size:12px">📍 ~3km De Boomhut</span>
+        </div>
+        <p style="font-size:13px;color:#94a3b8;margin-bottom:10px"><span class="fr">2ème étage, résidence bien entretenue, distance de marche station + stadspark + Grote Markt. EPC C = charges énergétiques moyennes. Budget maximum.</span><span class="nl" style="display:none">2e verd., goed onderhouden residentie, loopafstand station + stadspark + Grote Markt. EPC C = gemiddelde energiekosten. Max budget.</span></p>
+        <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+          <a href="tel:011707019" style="color:#818cf8;font-size:13px;text-decoration:none">📞 011 70 70 19</a>
+          <a href="mailto:hallo@duovastgoed.be" style="color:#818cf8;font-size:13px;text-decoration:none">✉️ hallo@duovastgoed.be</a>
+          <span style="color:#64748b;font-size:12px">DUO Vastgoed</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:12px;color:#94a3b8"><span class="fr">Statut :</span><span class="nl" style="display:none">Status:</span></span>
+          <select onchange="saveAptStatus(3,this.value)" id="apt-status-3" style="background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer">
+            <option value="new">🔍 Nieuw</option><option value="called">📞 Gebeld</option><option value="visited">👀 Bezocht</option><option value="interested">⭐ Interesse</option><option value="offer">📝 Bod</option><option value="rejected">❌ Afgewezen</option>
+          </select>
+          <input type="text" id="apt-note-3" placeholder="Notitie..." onchange="saveAptNote(3,this.value)" style="flex:1;min-width:120px;background:rgba(15,23,42,0.8);color:#e2e8f0;border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:5px 10px;font-size:12px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERKOCHT / BUITEN BUDGET -->
+  <div class="fin-card" style="margin-bottom:12px;border-color:rgba(239,68,68,0.3)">
+    <h3>❌ <span class="fr">Vendus / hors budget</span><span class="nl" style="display:none">Verkocht / buiten budget</span></h3>
+    <p style="font-size:13px;color:#94a3b8">Vliegveldlaan 135/101 (Aktimmo) — 3 slpk, 132m², EPC 197 — <span style="color:#f87171">VERKOCHT</span></p>
+    <p style="font-size:13px;color:#94a3b8">Diesterstraat 42/201 (Aktimmo) — 2 slpk, 111m² — <span style="color:#f87171">VERKOCHT</span></p>
+    <p style="font-size:13px;color:#94a3b8">Immoweb #21150447 — 3 slpk, 106m² — €415.000 — <span style="color:#f87171">BUITEN BUDGET</span></p>
   </div>
 
   <!-- MAANDELIJKS BUDGET NA AANKOOP -->
@@ -1221,76 +1320,16 @@
   </div>
   <div class="verdict go" style="margin-bottom:20px"><span class="fr">✅ €2.200/m pour alimentation, vêtements, école, hobby's, voiture — faisable et confortable vs €915 maintenant</span><span class="nl" style="display:none">✅ €2.200/m voor eten, kleding, school, hobby's, auto — haalbaar en comfortabel vs €915 nu</span></div>
 
-  <!-- SELECTIE STEFANIA -->
-  <div class="section-title"><span class="icon">📋</span> <span class="fr">Sélection — Appartements repérés</span><span class="nl" style="display:none">Selectie — Gevonden appartementen</span></div>
-
-  <div class="note" style="margin-bottom:16px">
-    <p>📝 <strong><span class="fr">Cette section sera complétée au fur et à mesure que Stefania trouve des appartements intéressants.</span><span class="nl" style="display:none">Deze sectie wordt aangevuld naarmate Stefania interessante appartementen vindt.</span></strong></p>
-    <p style="margin-top:8px"><span class="fr">Pour chaque appartement : adresse, prix, surface, chambres, EPC, distance école, lien Immoweb/Zimmo.</span><span class="nl" style="display:none">Per appartement: adres, prijs, oppervlakte, slaapkamers, EPC, afstand school, link Immoweb/Zimmo.</span></p>
-  </div>
-
-  <table>
-    <tr>
-      <th>#</th>
-      <th><span class="fr">Adresse</span><span class="nl" style="display:none">Adres</span></th>
-      <th><span class="fr">Prix</span><span class="nl" style="display:none">Prijs</span></th>
-      <th>m²</th>
-      <th><span class="fr">Ch.</span><span class="nl" style="display:none">Slpk.</span></th>
-      <th>EPC</th>
-      <th><span class="fr">Distance école</span><span class="nl" style="display:none">Afstand school</span></th>
-      <th>Status</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td><strong>Sint-Martenplein 8/104</strong><br><span style="font-size:11px;color:#64748b">IMANEX — 011/672 201 — info@imanex.be</span></td>
-      <td style="color:#4ade80;font-weight:700">€218.000</td>
-      <td>90m²</td>
-      <td>3</td>
-      <td>?</td>
-      <td>~3km</td>
-      <td><span style="background:rgba(34,197,94,0.3);color:#4ade80;padding:2px 8px;border-radius:8px;font-size:11px">✅ <span class="fr">Dispo</span><span class="nl" style="display:none">Beschikb.</span></span></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><strong>Sint-Anneke 26/101</strong><br><span style="font-size:11px;color:#64748b">Pierco — 011 36 19 19 — info@pierco.be</span></td>
-      <td style="color:#fbbf24;font-weight:700">€235.000</td>
-      <td>125m²</td>
-      <td>3</td>
-      <td style="color:#4ade80">A</td>
-      <td>~2km</td>
-      <td><span style="background:rgba(34,197,94,0.3);color:#4ade80;padding:2px 8px;border-radius:8px;font-size:11px">✅ <span class="fr">Dispo</span><span class="nl" style="display:none">Beschikb.</span></span></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><strong>Prins Albertlaan (Res. Albert)</strong><br><span style="font-size:11px;color:#64748b">DUO Vastgoed — 011 70 70 19 — hallo@duovastgoed.be</span></td>
-      <td style="color:#fbbf24;font-weight:700">€249.000</td>
-      <td>96m²</td>
-      <td>3</td>
-      <td style="color:#fbbf24">C</td>
-      <td>~3km</td>
-      <td><span style="background:rgba(34,197,94,0.3);color:#4ade80;padding:2px 8px;border-radius:8px;font-size:11px">✅ <span class="fr">Dispo</span><span class="nl" style="display:none">Beschikb.</span></span></td>
-    </tr>
-  </table>
-
-  <!-- DETAIL NOTES PER APARTMENT -->
-  <div class="fin-card best" style="margin-bottom:12px">
-    <h3>📝 <span class="fr">Notes par appartement</span><span class="nl" style="display:none">Notities per appartement</span></h3>
-    <div style="font-size:13px;color:#e2e8f0;padding:8px 0;border-bottom:1px solid rgba(99,102,241,0.1)">
-      <strong>1. Sint-Martenplein 8/104</strong> — <span class="fr">Instapklaar, 3 slpk, loopafstand Grote Markt + winkels + scholen + station. Rustige rand Sint-Truiden. Beste prijs/kwaliteit.</span><span class="nl" style="display:none">Instapklaar, 3 slpk, loopafstand Grote Markt + winkels + scholen + station. Rustige rand Sint-Truiden. Beste prijs/kwaliteit.</span> <span style="color:#4ade80">⭐ TOP KEUZE</span>
+  <!-- CRITERIA COMPACT -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div class="fin-card best">
+      <h3><span class="fr">🎯 Critères essentiels</span><span class="nl" style="display:none">🎯 Essentiële criteria</span></h3>
+      <p style="font-size:13px;color:#e2e8f0">📍 Sint-Truiden/Brustem, max 10 min De Boomhut<br>🛏️ Min 3 slpk<br>📐 Min 90m²<br>🚗 Parking</p>
     </div>
-    <div style="font-size:13px;color:#e2e8f0;padding:8px 0;border-bottom:1px solid rgba(99,102,241,0.1)">
-      <strong>2. Sint-Anneke 26/101</strong> — <span class="fr">Res. Sint-Anneke, 1er étage, 125m² très spacieux, EPC A (!), 2 SDB, ±200m Grote Markt. MAIS : "op te frissen" (travaux à prévoir) + pas de parking. Cave commune.</span><span class="nl" style="display:none">Res. Sint-Anneke, 1e verd., 125m² heel ruim, EPC A (!), 2 badkamers, ±200m Grote Markt. MAAR: "op te frissen" (renovatie nodig) + geen parking. Gemeensch. kelder.</span>
+    <div class="fin-card ok">
+      <h3><span class="fr">💡 Nice-to-have</span><span class="nl" style="display:none">💡 Nice-to-have</span></h3>
+      <p style="font-size:13px;color:#e2e8f0">🌳 Terras/tuin<br>🏗️ Instapklaar<br>🔋 EPC B of beter<br>🛗 Lift</p>
     </div>
-    <div style="font-size:13px;color:#e2e8f0;padding:8px 0">
-      <strong>3. Prins Albertlaan (Res. Albert)</strong> — <span class="fr">2ème étage, 96m², résidence bien entretenue, distance de marche station + parc + Grote Markt. EPC C = charges énergétiques moyennes. Budget max.</span><span class="nl" style="display:none">2e verd., 96m², goed onderhouden residentie, loopafstand station + stadspark + Grote Markt. EPC C = gemiddelde energiekosten. Max budget.</span>
-    </div>
-  </div>
-
-  <div class="fin-card" style="margin-bottom:12px;border-color:rgba(239,68,68,0.3)">
-    <h3>❌ <span class="fr">Vendus / hors budget</span><span class="nl" style="display:none">Verkocht / buiten budget</span></h3>
-    <p style="font-size:13px;color:#94a3b8">Vliegveldlaan 135/101 (Aktimmo) — 3 slpk, 132m², EPC 197 — <span style="color:#f87171">VERKOCHT</span></p>
-    <p style="font-size:13px;color:#94a3b8">Diesterstraat 42/201 (Aktimmo) — 2 slpk, 111m² — <span style="color:#f87171">VERKOCHT</span></p>
-    <p style="font-size:13px;color:#94a3b8">Immoweb #21150447 — 3 slpk, 106m² — €415.000 — <span style="color:#f87171">BUITEN BUDGET</span></p>
   </div>
 
   <div class="note" style="margin-top:16px">
@@ -1305,6 +1344,19 @@
 </div>
 
 <script>
+// Apartment status & notes (localStorage)
+function saveAptStatus(id, val) { localStorage.setItem('apt-status-'+id, val); }
+function saveAptNote(id, val) { localStorage.setItem('apt-note-'+id, val); }
+function loadAptData() {
+  for (var i = 1; i <= 10; i++) {
+    var s = localStorage.getItem('apt-status-'+i);
+    var n = localStorage.getItem('apt-note-'+i);
+    if (s && document.getElementById('apt-status-'+i)) document.getElementById('apt-status-'+i).value = s;
+    if (n && document.getElementById('apt-note-'+i)) document.getElementById('apt-note-'+i).value = n;
+  }
+}
+loadAptData();
+
 // Tab switching
 document.getElementById('tabBar').addEventListener('click', function(e) {
   const tab = e.target.closest('.tab');
