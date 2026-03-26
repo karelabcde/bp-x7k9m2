@@ -177,9 +177,30 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   .tbl-status,.tbl-notes{width:70px}
 }
 
+/* SEARCH FILTER */
+.tbl-filter{padding:10px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px;width:100%;max-width:400px;margin-bottom:12px}
+.tbl-filter:focus{outline:none;border-color:var(--accent2)}
+.tbl-filter::placeholder{color:var(--muted)}
+
+/* CHECKLIST */
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-item input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--accent2);cursor:pointer;flex-shrink:0}
+.check-item.checked .check-label{text-decoration:line-through;opacity:0.5}
+.check-label{font-size:14px;color:var(--text);cursor:pointer}
+.check-label small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.check-cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:8px 0 4px;margin-top:12px}
+
+/* GOOGLE MAPS LINK */
+.gmaps-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);text-decoration:none;margin-left:8px}
+.gmaps-link:hover{text-decoration:underline}
+
+/* BADGE COUNT */
+.badge-count{display:inline-block;background:var(--accent2);color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:700;margin-left:6px}
+
 /* PRINT */
 @media print{
-  .nav-tabs{display:none}
+  .nav-tabs,.tbl-filter{display:none}
   .section{display:block!important;page-break-inside:avoid}
   body{background:#fff;color:#000}
   .card{border:1px solid #ccc;background:#f9f9f9}
@@ -190,7 +211,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 4.0 — VOLLEDIG ONDERZOEK 26/03/2026</div>
+    <div class="badge">VERSIE 6.0 — VOLLEDIG ONDERZOEK 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div class="confidential">VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven</div>
@@ -354,7 +375,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   <!-- ============ TAB: HUURWONINGEN ============ -->
   <div id="huur" class="section">
     <h2>🏠 Huurwoningen — Sint-Truiden &amp; Omgeving</h2>
-    <p style="color:var(--muted);margin-bottom:16px">40 panden onderzocht. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, 2dehands.</p>
+    <p style="color:var(--muted);margin-bottom:16px">47 panden onderzocht. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, Rentola, 2dehands.</p>
 
     <div class="card highlight">
       <h3>Stefania's Voorkeuren</h3>
@@ -381,6 +402,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
           <a href="tel:011485886">📞 011 48 58 86</a>
           <span>🏢 Meyers Vastgoed</span>
           <a href="https://www.immoweb.be/nl/zoekresultaten?searchType=Rent&postalCodes=BE-3800" target="_blank" class="prop-link">🔗 Immoweb</a>
+          <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
@@ -404,6 +426,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <div class="prop-contact">
           <a href="tel:0491492244">📞 0491/49 22 44</a>
           <span>👤 Eigenaar (rechtstreeks)</span>
+          <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
@@ -427,6 +450,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <div class="prop-contact">
           <span>🏢 Immo Vesta</span>
           <a href="https://www.immovesta.be" target="_blank" class="prop-link">🔗 Website</a>
+          <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         <div class="prop-actions">
           <select class="prop-status" onchange="saveProp(this)">
@@ -437,9 +461,10 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
       </div>
     </div>
 
-    <h3>Volledig Overzicht — Alle 40 Panden</h3>
+    <h3>Volledig Overzicht — Alle 31 Panden <span class="badge-count" id="tblCount">31</span></h3>
+    <input type="text" class="tbl-filter" id="tblFilter" placeholder="Zoek op adres, type, prijs..." oninput="filterTable()">
     <div style="overflow-x:auto">
-    <table>
+    <table id="huurTable">
       <thead>
         <tr><th>#</th><th>Adres</th><th>Type</th><th>Prijs</th><th>Slpk</th><th>m²</th><th>EPC</th><th>Score</th><th>Status</th><th>Notities</th></tr>
       </thead>
@@ -468,10 +493,17 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
         <tr data-prop="tbl-22"><td>22</td><td>Zoutleeuwsesteenweg 128</td><td>H</td><td class="price">€1.100</td><td>4</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
         <tr data-prop="tbl-23"><td>23</td><td>Naamsesteenweg 184A</td><td>H</td><td class="price">€790</td><td>2</td><td>77</td><td>C</td><td><span class="tag tag-blue">BUDGET</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
         <tr data-prop="tbl-24"><td>24</td><td>Luikerstraat 47/101</td><td>A</td><td class="price">€1.050</td><td>2</td><td>121</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-25"><td>25</td><td>Capucienessenstraat 7/102</td><td>A</td><td class="price">€750</td><td>2</td><td>96</td><td>-</td><td><span class="tag tag-green">BUDGET</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-26"><td>26</td><td>Tiensesteenweg 58/201</td><td>A</td><td class="price">€830</td><td>2</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-27"><td>27</td><td>Naamsesteenweg 55</td><td>A</td><td class="price">€875</td><td>2</td><td>~100</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-28"><td>28</td><td>Sint-Trudostraat 1</td><td>A</td><td class="price">€850</td><td>2</td><td>110</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-29"><td>29</td><td>Vissegatstraat 40</td><td>H</td><td class="price">€995</td><td>2</td><td>113</td><td>-</td><td><span class="tag tag-yellow">GOED</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-30"><td>30</td><td>Zoutstraat 18</td><td>A</td><td class="price">€1.100</td><td>2</td><td>101</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
+        <tr data-prop="tbl-31"><td>31</td><td>Tiensesteenweg 35 (duplex)</td><td>A</td><td class="price">€1.000</td><td>2</td><td>-</td><td>-</td><td><span class="tag tag-blue">NIEUW</span></td><td><select class="tbl-status" onchange="saveProp(this)"><option value="">—</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie</option><option value="afgevallen">Afgevallen</option></select></td><td><input class="tbl-notes" placeholder="..." onchange="saveProp(this)"></td></tr>
       </tbody>
     </table>
     </div>
-    <p style="font-size:12px;color:var(--muted)">H = Huis, A = Appartement, H+W = Handelspand + Woonst. NIEUW = toegevoegd 26/03. Volledige lijst: 40 panden (16 afgevallen wegens score 1-2).</p>
+    <p style="font-size:12px;color:var(--muted)">H = Huis, A = Appartement, H+W = Handelspand + Woonst. #25-31 = nieuw gevonden via Rentola/RT Vastgoed. Volledige lijst: 47 panden (16 afgevallen wegens score 1-2).</p>
   </div>
 
   <!-- ============ TAB: KOOPWONINGEN ============ -->
@@ -1200,90 +1232,78 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
   <!-- ============ TAB: ACTIEPLAN ============ -->
   <div id="acties" class="section">
-    <h2>✅ Actieplan — Stap voor Stap</h2>
+    <h2>✅ Actieplan — Stap voor Stap <span class="badge-count" id="checkProgress">0/14</span></h2>
+    <p style="color:var(--muted);margin-bottom:16px;font-size:13px">Vink af wat gedaan is — wordt opgeslagen in je browser.</p>
 
-    <h3>Fase 1 — DEZE WEEK (26/03 - 02/04)</h3>
-    <div class="tl-item urgent">
-      <div class="tl-content">
-        <div class="date">URGENT — Vandaag/morgen</div>
-        <h4>Inventaris inboedel + bewijsmateriaal</h4>
-        <p>Foto's/video's van alle waardevolle bezittingen. Bankafschriften checken. WhatsApp/SMS veiligstellen. Medisch attest Dr. Anseeuw.</p>
+    <div class="card danger">
+      <div class="check-cat" style="color:var(--red)">FASE 1 — DEZE WEEK (26/03 - 02/04)</div>
+      <div class="check-item" data-check="c1">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Inventaris inboedel + bewijsmateriaal<small>Foto's/video's van bezittingen. Bankafschriften. WhatsApp/SMS veiligstellen. Medisch attest Dr. Anseeuw.</small></label>
       </div>
-    </div>
-    <div class="tl-item urgent">
-      <div class="tl-content">
-        <div class="date">URGENT — Deze week</div>
-        <h4>Huurwoning regelen + Mr. Strauven: voorlopige maatregelen</h4>
-        <p>Diestersteenweg 66 bellen (direct beschikbaar). Mr. Strauven: apart verblijf, verblijfsregeling kinderen, verdeling schulden.</p>
+      <div class="check-item" data-check="c2">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Mr. Strauven: voorlopige maatregelen aanvragen<small>Apart verblijf, verblijfsregeling kinderen, verdeling schulden bij familierechtbank.</small></label>
       </div>
-    </div>
-    <div class="tl-item urgent">
-      <div class="tl-content">
-        <div class="date">URGENT — Deze week</div>
-        <h4>Woningbezichtigingen plannen</h4>
-        <p>Bel Diestersteenweg 66 (0491/49 22 44), Meyers Vastgoed (011 48 58 86) voor Stapelstraat 50.</p>
+      <div class="check-item" data-check="c3">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Diestersteenweg 66 bellen — 0491/49 22 44<small>Direct beschikbaar, €985/mnd. Eigenaar rechtstreeks.</small></label>
       </div>
-    </div>
-
-    <h3>Fase 2 — KOMENDE 2 WEKEN (02/04 - 16/04)</h3>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">Week 2-3</div>
-        <h4>Arbeidscontract BV Anseeuw opstarten</h4>
-        <p>Vast contract deeltijds opstellen. Hoe eerder, hoe meer anciënniteit bij hypotheekaanvraag.</p>
+      <div class="check-item" data-check="c4">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Meyers Vastgoed bellen — 011 48 58 86<small>Voor Stapelstraat 50 (handelspand + woonst, €1.350).</small></label>
       </div>
-    </div>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">Week 2-3</div>
-        <h4>Afspraak Vlaams Woningfonds</h4>
-        <p>Contacteer Vlaams Woningfonds Limburg voor simulatie Vlaamse woonlening. Tel: 011 23 69 00.</p>
-      </div>
-    </div>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">Week 2-3</div>
-        <h4>Psycholoog voor Stefania + kinderen</h4>
-        <p>Start therapie. Dient ook als bewijs voor dossierkracht.</p>
+      <div class="check-item" data-check="c5">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Woningbezichtigingen plannen<small>Top 3 huur + eventueel koopwoningen bezoeken.</small></label>
       </div>
     </div>
 
-    <h3>Fase 3 — MAAND 2-3 (april-mei)</h3>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">April-Mei</div>
-        <h4>Onderhandeling met Marius starten</h4>
-        <p>Via advocaten: de deal voorstellen (overwaarde vs. alimentatie). Inschatten of Marius meewerkt.</p>
+    <div class="card warning">
+      <div class="check-cat" style="color:var(--yellow)">FASE 2 — KOMENDE 2 WEKEN (02/04 - 16/04)</div>
+      <div class="check-item" data-check="c6">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Arbeidscontract BV Anseeuw opstarten<small>Vast contract deeltijds. Hoe eerder, hoe meer anciënniteit bij hypotheekaanvraag.</small></label>
       </div>
-    </div>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">April-Mei</div>
-        <h4>Huurwoning als tussenoplossing</h4>
-        <p>Als Stefania dringend moet vertrekken: Diestersteenweg 66 (€985, beschikbaar nu!) als tussenoplossing.</p>
+      <div class="check-item" data-check="c7">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Afspraak Vlaams Woningfonds — 011 23 69 00<small>Simulatie Vlaamse woonlening aanvragen bij kantoor Limburg.</small></label>
       </div>
-    </div>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">Mei</div>
-        <h4>Hypotheekaanvraag voorbereiden</h4>
-        <p>Met 2+ maanden loonbrieven van BV Anseeuw: Vlaamse woonlening aanvragen OF klassieke hypotheek met borgstelling.</p>
+      <div class="check-item" data-check="c8">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Psycholoog voor Stefania + kinderen<small>Start therapie. Dient ook als bewijs voor dossierkracht.</small></label>
       </div>
     </div>
 
-    <h3>Fase 4 — MAAND 4-9 (juni-november)</h3>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">Juni-September</div>
-        <h4>Echtscheiding afronden</h4>
-        <p>EOT (6 maanden) of procedure (12-18 maanden). Bij akkoord: notariele akte woning. Bij blokkade: escalatie (gerechtelijke verkoop, psychiatrische expertise).</p>
+    <div class="card info">
+      <div class="check-cat" style="color:var(--accent)">FASE 3 — MAAND 2-3 (april - mei)</div>
+      <div class="check-item" data-check="c9">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Onderhandeling met Marius starten<small>Via advocaten: deal voorstellen (overwaarde vs. alimentatie).</small></label>
+      </div>
+      <div class="check-item" data-check="c10">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Huurwoning als tussenoplossing regelen<small>Diestersteenweg 66 (€985, beschikbaar nu!) of alternatief.</small></label>
+      </div>
+      <div class="check-item" data-check="c11">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Hypotheekaanvraag voorbereiden<small>Met 2+ maanden loonbrieven BV Anseeuw: Vlaamse woonlening of hypotheek met borgstelling.</small></label>
       </div>
     </div>
-    <div class="tl-item pending">
-      <div class="tl-content">
-        <div class="date">September-November</div>
-        <h4>Definitieve woning kopen</h4>
-        <p>Na echtscheiding: notariele akte. Verzekering gewaarborgd wonen aanvragen. Verhuizen met kinderen.</p>
+
+    <div class="card success">
+      <div class="check-cat" style="color:var(--green)">FASE 4 — MAAND 4-9 (juni - november)</div>
+      <div class="check-item" data-check="c12">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Echtscheiding afronden<small>EOT (6 mnd) of procedure (12-18 mnd). Bij blokkade: escalatie.</small></label>
+      </div>
+      <div class="check-item" data-check="c13">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Verzekering gewaarborgd wonen aanvragen<small>Gratis via Vlaamse overheid. Binnen 1 jaar na eerste kapitaalopname.</small></label>
+      </div>
+      <div class="check-item" data-check="c14">
+        <input type="checkbox" onchange="saveCheck(this)">
+        <label class="check-label">Definitieve woning kopen + verhuizen<small>Na echtscheiding: notariele akte. Verhuizen met kinderen.</small></label>
       </div>
     </div>
 
@@ -1307,7 +1327,7 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
 <footer>
   <div class="container">
-    <p>Project Stefania v5.4 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
+    <p>Project Stefania v6.0 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
     <p style="margin-top:4px">Bronnen: Immoweb, Zimmo, Vlaams Woningfonds, notaris.be, NEO Bemiddeling, Wikifin, Test-Aankoop, hypotheekwinkel.be, kredietadvies.be, Gemini Pro, DeepSeek/Kagi (80 bronnen)</p>
   </div>
 </footer>
@@ -1425,6 +1445,59 @@ function restoreAllProps() {
 
 // Restore on page load
 restoreAllProps();
+
+// ============ TABLE FILTER ============
+function filterTable() {
+  const q = document.getElementById('tblFilter').value.toLowerCase();
+  const rows = document.querySelectorAll('#huurTable tbody tr');
+  let visible = 0;
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const show = text.includes(q);
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('tblCount').textContent = visible;
+}
+
+// ============ CHECKLIST (localStorage) ============
+const CHECK_KEY = 'stefania_checks_v1';
+
+function saveCheck(el) {
+  const item = el.closest('[data-check]');
+  if (!item) return;
+  const id = item.dataset.check;
+  const checks = loadAllChecks();
+  checks[id] = el.checked;
+  localStorage.setItem(CHECK_KEY, JSON.stringify(checks));
+  item.classList.toggle('checked', el.checked);
+  updateCheckProgress();
+}
+
+function loadAllChecks() {
+  try { return JSON.parse(localStorage.getItem(CHECK_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+
+function restoreAllChecks() {
+  const checks = loadAllChecks();
+  Object.keys(checks).forEach(id => {
+    const item = document.querySelector('[data-check="' + id + '"]');
+    if (!item) return;
+    const cb = item.querySelector('input[type="checkbox"]');
+    if (cb) { cb.checked = checks[id]; item.classList.toggle('checked', checks[id]); }
+  });
+  updateCheckProgress();
+}
+
+function updateCheckProgress() {
+  const total = document.querySelectorAll('[data-check]').length;
+  const done = document.querySelectorAll('[data-check] input:checked').length;
+  const el = document.getElementById('checkProgress');
+  if (el) el.textContent = done + '/' + total;
+}
+
+restoreAllChecks();
 </script>
 
 </body>
