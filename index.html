@@ -277,7 +277,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 8.0 — LIVE TRACKER 26/03/2026</div>
+    <div class="badge">VERSIE 8.1 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -4317,7 +4317,6 @@ document.addEventListener('keydown', function(e) {
 
     function translatePage(lang) {
       if (lang === 'nl') {
-        // Restore originals
         originalTexts.forEach(function(origText, el) {
           if (el.tagName === 'INPUT') el.placeholder = origText;
           else el.textContent = origText;
@@ -4325,10 +4324,39 @@ document.addEventListener('keydown', function(e) {
         document.documentElement.lang = 'nl';
         return;
       }
-      // Translate to FR
-      var allEls = document.querySelectorAll('h1,h2,h3,h4,p,span,a,button,option,th,td,li,label,div.prop-meta,div.prop-price');
+      // Translate to FR - first handle leaf text nodes
+      var allEls = document.querySelectorAll('h1,h2,h3,h4,p,span,a,button,option,th,td,li,label,div.prop-meta,div.prop-price,div.nav-tab');
       allEls.forEach(function(el) {
-        if (el.children.length > 0 && el.tagName !== 'A' && el.tagName !== 'BUTTON' && el.tagName !== 'OPTION') return;
+        // For nav-tabs: translate the inner span
+        if (el.classList.contains('nav-tab')) {
+          var sp = el.querySelector('span');
+          if (sp) {
+            var t = sp.textContent.trim();
+            for (var nl in translations) {
+              if (t === nl || t.includes(nl)) {
+                if (!originalTexts.has(sp)) originalTexts.set(sp, sp.textContent);
+                sp.textContent = sp.textContent.replace(nl, translations[nl]);
+                break;
+              }
+            }
+          }
+          return;
+        }
+        // For elements with children: translate direct text nodes only
+        if (el.children.length > 0 && el.tagName !== 'A' && el.tagName !== 'BUTTON' && el.tagName !== 'OPTION') {
+          // Still try to translate child spans/text
+          el.querySelectorAll('span').forEach(function(sp) {
+            var t = sp.textContent.trim();
+            if (!t) return;
+            for (var nl in translations) {
+              if (t.includes(nl)) {
+                if (!originalTexts.has(sp)) originalTexts.set(sp, sp.textContent);
+                sp.textContent = sp.textContent.replace(nl, translations[nl]);
+              }
+            }
+          });
+          return;
+        }
         var text = el.textContent.trim();
         if (!text) return;
         for (var nl in translations) {
@@ -4338,12 +4366,20 @@ document.addEventListener('keydown', function(e) {
           }
         }
       });
-      // Also translate placeholders
+      // Translate placeholders
       document.querySelectorAll('input[placeholder]').forEach(function(inp) {
         var ph = inp.placeholder;
         if (translations[ph]) {
           if (!originalTexts.has(inp)) originalTexts.set(inp, ph);
           inp.placeholder = translations[ph];
+        }
+      });
+      // Translate select options
+      document.querySelectorAll('select option').forEach(function(opt) {
+        var t = opt.textContent.trim();
+        if (translations[t]) {
+          if (!originalTexts.has(opt)) originalTexts.set(opt, opt.textContent);
+          opt.textContent = translations[t];
         }
       });
       document.documentElement.lang = 'fr';
