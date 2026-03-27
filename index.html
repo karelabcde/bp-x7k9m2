@@ -145,34 +145,23 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   th,td{padding:6px 8px}
 }
 
-/* PROPERTY CARDS V3 — redesign */
-.prop-v2{display:grid;grid-template-columns:1fr;gap:0;overflow:hidden;border-radius:14px}
-.prop-v2 .prop-top{display:grid;grid-template-columns:3fr 2fr;gap:0;min-height:240px}
-.prop-v2 .prop-img{background:#1e293b;min-height:240px;overflow:hidden;cursor:pointer;position:relative}
-.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
-.prop-v2 .prop-img:hover img{transform:scale(1.05)}
-.prop-v2 .prop-carousel{min-height:220px;border-radius:0}
-.prop-v2 .prop-carousel img{image-rendering:auto}
+/* PROPERTY CARDS V3 — redesign met Maps */
+.prop-v2{display:block;overflow:hidden;border-radius:14px}
+.prop-v2 .prop-top-row{display:grid;grid-template-columns:3fr 2fr;gap:0;min-height:200px}
+.prop-v2 .prop-img{background:#1e293b;min-height:200px;position:relative;overflow:hidden}
+.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
 .prop-v2 .prop-img .placeholder{color:var(--muted);font-size:13px;text-align:center;padding:12px}
 .prop-v2 .prop-img .placeholder span{display:block;font-size:32px;margin-bottom:4px}
-.prop-v2 .prop-map{overflow:hidden;background:#0f172a;display:flex;flex-direction:column}
-.prop-v2 .prop-map iframe{width:100%;flex:1;border:0;min-height:160px;filter:brightness(0.85) contrast(1.1) saturate(0.8)}
-.prop-v2 .prop-map .map-links{display:flex;gap:8px;padding:6px 10px;background:rgba(15,23,42,0.95);font-size:12px}
-.prop-v2 .prop-map .map-links a{color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:4px}
-.prop-v2 .prop-map .map-links a:hover{text-decoration:underline;color:#a5b4fc}
+.prop-v2 .prop-map-panel{display:flex;flex-direction:column;background:#0f172a;overflow:hidden}
+.prop-v2 .prop-map-panel iframe{flex:1;width:100%;border:0;min-height:160px;filter:brightness(0.85) contrast(1.1) saturate(0.8)}
+.prop-v2 .prop-map-panel .map-links{display:flex;gap:10px;padding:8px 12px;background:rgba(15,23,42,0.95);font-size:12px}
+.prop-v2 .prop-map-panel .map-links a{color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:4px}
+.prop-v2 .prop-map-panel .map-links a:hover{color:#a5b4fc;text-decoration:underline}
 .prop-v2 .prop-body{padding:18px 20px}
 .prop-v2 .prop-body h4{margin:0 0 6px;font-size:1.05rem}
 .prop-v2 .prop-contact{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;font-size:13px;align-items:center}
 .prop-v2 .prop-contact a{color:var(--accent);text-decoration:none}
 .prop-v2 .prop-contact a:hover{text-decoration:underline}
-.prop-v2 .prop-price{font-size:1.4rem;font-weight:800;color:var(--green);margin:4px 0 6px}
-.prop-v2 .prop-meta{font-size:13px;color:var(--muted);margin:6px 0}
-@media(max-width:768px){
-  .prop-v2 .prop-top{grid-template-columns:1fr}
-  .prop-v2 .prop-img{min-height:180px}
-  .prop-v2 .prop-map{min-height:160px}
-  .prop-v2 .prop-map iframe{min-height:140px}
-}
 
 .status-gemaild{border-color:var(--yellow)!important}
 .status-gebeld{border-color:var(--orange)!important}
@@ -184,6 +173,9 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 .tbl-status{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:90px}
 .tbl-notes{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:120px}
 @media(max-width:768px){
+  .prop-v2 .prop-top-row{grid-template-columns:1fr}
+  .prop-v2 .prop-img{min-height:160px}
+  .prop-v2 .prop-map-panel{min-height:150px}
   .tbl-status,.tbl-notes{width:70px}
 }
 
@@ -258,9 +250,9 @@ details[open] .reactie-toggle::before{content:'▼ '}
 .carousel-maps-btn:hover{background:rgba(99,102,241,0.8)}
 
 /* NICE PLACEHOLDERS v7.2 */
-.prop-placeholder-nice{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;min-height:220px;background:linear-gradient(135deg,#1e293b 0%,#0f172a 50%,#1a1a2e 100%);border-radius:0;padding:20px;text-align:center}
-.placeholder-icon{font-size:52px;margin-bottom:10px;filter:grayscale(0.3)}
-.placeholder-addr{color:var(--muted);font-size:13px;font-weight:600;margin-bottom:10px;line-height:1.4}
+.prop-placeholder-nice{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;min-height:200px;background:linear-gradient(135deg,#1e293b 0%,#0f172a 50%,#1a1a2e 100%);border-radius:10px;padding:16px;text-align:center}
+.placeholder-icon{font-size:40px;margin-bottom:8px;filter:grayscale(0.3)}
+.placeholder-addr{color:var(--muted);font-size:12px;font-weight:600;margin-bottom:8px;line-height:1.3}
 .placeholder-maps{display:none}
 .placeholder-maps:hover{background:rgba(99,102,241,0.15);border-color:var(--accent)}
 
@@ -322,7 +314,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+    <div class="badge">VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -495,8 +487,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
 
     <div class="card success prop-v2" style="margin-top:10px" data-prop="huur-new-49">
-      <div class="prop-top">
-        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/300x300/8ba812c6ea17b6f0a7be87cde60cef2b.jpg" alt="huur-new-49" loading="lazy">
+      <div class="prop-top-row">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/300x300/8ba812c6ea17b6f0a7be87cde60cef2b.jpg" alt="huur-new-49" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">De woonmakers</span>
         <h4>49. Grote Markt 31 ⭐</h4>
@@ -599,8 +591,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-      </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Grote+Markt+31+%E2%AD%90&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Grote+Markt+31+%E2%AD%90" target="_blank">📍 Google Maps</a>
@@ -635,7 +626,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -643,7 +634,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Diestersteenweg+66%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Diestersteenweg+66%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -676,7 +667,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-3" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -684,7 +675,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Terwouwenstraat+28%2C+Zepperen&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Terwouwenstraat+28%2C+Zepperen" target="_blank">📍 Google Maps</a>
@@ -720,7 +711,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-4" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -728,7 +719,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+22+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+22%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+22%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -759,7 +750,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-5" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -767,7 +758,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Tiensesteenweg+184/603+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+184%2F603%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Tiensesteenweg+184%2F603%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -798,7 +789,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-6" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_00_ec2536e5.jpg" alt="Kennedylaan 19, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_01_fb5780a5.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_02_827796e0.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_03_afd1f899.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'">
@@ -806,7 +797,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Kennedylaan+19+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Kennedylaan+19%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Kennedylaan+19%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -837,7 +828,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-7" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_04_15bf82d6.jpg" alt="Gorsemweg 11/101, Sint-Truiden" class="active" onerror="this.style.display='none'">
@@ -845,7 +836,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Gorsemweg+11/101+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Gorsemweg+11%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Gorsemweg+11%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -876,7 +867,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-8" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_05_e960379d.jpg" alt="Slagmolenstraat 30, Sint-Truiden" class="active" onerror="this.style.display='none'">
@@ -884,7 +875,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Slagmolenstraat+30+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Houtmarkt+28%2F301%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Houtmarkt+28%2F301%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -915,7 +906,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-9" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -923,7 +914,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Houtmarkt+28/301+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Houtmarkt+28%2F301%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Houtmarkt+28%2F301%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -954,7 +945,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-10" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -962,7 +953,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Attenhovestraat+71+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Attenhovestraat+71%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Attenhovestraat+71%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -993,7 +984,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-11" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1001,7 +992,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Leopold+II+straat+28+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Leopold+II+straat+28%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Leopold+II+straat+28%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1032,7 +1023,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-12" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_06_4214f47b.jpg" alt="Stationsstraat 59/203, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_07_e08f397f.jpg" alt="Stationsstraat 59/203, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_08_6bdbc6f0.jpg" alt="Stationsstraat 59/203, Sint-Truiden" onerror="this.style.display='none'"><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Stationsstraat 59/203, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div>
@@ -1040,7 +1031,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stationsstraat+59/203+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Stationsstraat+59%2F203%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Stationsstraat+59%2F203%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1071,7 +1062,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-13" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_06_4214f47b.jpg" alt="Stationsstraat 59/102, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_07_e08f397f.jpg" alt="Stationsstraat 59/102, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_08_6bdbc6f0.jpg" alt="Stationsstraat 59/102, Sint-Truiden" onerror="this.style.display='none'">
@@ -1079,7 +1070,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stationsstraat+59/102+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1110,7 +1101,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-14" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1118,7 +1109,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1149,7 +1140,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-15" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1157,7 +1148,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Houtmarkt+28/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Houtmarkt+28%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Houtmarkt+28%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1188,7 +1179,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-16" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1196,7 +1187,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stationsstraat+39/101+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Stationsstraat+39%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Stationsstraat+39%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1227,7 +1218,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-17" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1235,7 +1226,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stationsstraat+39/001+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Stationsstraat+39%2F001%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Stationsstraat+39%2F001%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1266,7 +1257,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-18" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1274,7 +1265,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Kennedylaan+11+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Kennedylaan+11%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Kennedylaan+11%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1305,7 +1296,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-19" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1313,7 +1304,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Brustem-Dorp+90/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Brustem-Dorp+90%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Brustem-Dorp+90%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1344,7 +1335,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-20" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div>
@@ -1352,7 +1343,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Spoorwegstraat+9+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Spoorwegstraat+9%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Spoorwegstraat+9%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1383,7 +1374,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-21" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1391,7 +1382,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Boudewijnlaan+56+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Boudewijnlaan+56%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Boudewijnlaan+56%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1422,7 +1413,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-22" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1430,7 +1421,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Zoutleeuwsesteenweg+128%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1461,7 +1452,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-23" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1469,7 +1460,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Naamsesteenweg+184A+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Naamsesteenweg+184A%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Naamsesteenweg+184A%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1500,7 +1491,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-24" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_14_a3275f92.jpg" alt="Luikerstraat 47/101, Sint-Truiden" class="active" onerror="this.style.display='none'">
@@ -1508,7 +1499,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Luikerstraat+47/101+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Capucienessenstraat+7%2F102%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Capucienessenstraat+7%2F102%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1539,7 +1530,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-25" style="margin-top:12px;display:none">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1547,7 +1538,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Capucienessenstraat+7/102+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Capucienessenstraat+7%2F102%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Capucienessenstraat+7%2F102%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1583,7 +1574,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-26" style="margin-top:12px;display:none">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1591,7 +1582,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Tiensesteenweg+58/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+58%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Tiensesteenweg+58%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1627,7 +1618,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-27" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1635,7 +1626,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Naamsesteenweg+55+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Naamsesteenweg+55%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Naamsesteenweg+55%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1666,7 +1657,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-28" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1674,7 +1665,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+1+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+1%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+1%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1705,7 +1696,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-29" style="margin-top:12px;display:none">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1713,7 +1704,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Vissegatstraat+40+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Vissegatstraat+40%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Vissegatstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1745,7 +1736,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-30" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -1753,7 +1744,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Zoutstraat+18+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Zoutstraat+18%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Zoutstraat+18%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1784,8 +1775,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-31" style="margin-top:12px">
-      <div class="prop-top">
-        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/300x300/97898dd7647dfd1abf0417e629c9da95.jpg" alt="huur-31" loading="lazy">
+      <div class="prop-top-row">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/300x300/97898dd7647dfd1abf0417e629c9da95.jpg" alt="huur-31" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
         <h4>31. Tiensesteenweg 35, Sint-Truiden</h4>
@@ -1827,8 +1818,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Houtmarkt+12/101+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-      </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Houtmarkt+12%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Houtmarkt+12%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -1859,10 +1849,10 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-2" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <img loading="eager" src="img/prop_15_c4ff481c.jpg" alt="Sint-Anneke 26/101">
-      
+      </div>
       <div class="prop-body">
         <span class="tag tag-green">INTERESSANT</span>
         <h4>2. Sint-Anneke 26/101</h4>
@@ -1935,8 +1925,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/9+nieuwbouwprojecten" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-      </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Anneke+26%2F101&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Anneke+26%2F101" target="_blank">📍 Google Maps</a>
@@ -1963,7 +1952,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <p style="color:var(--muted);margin-bottom:12px">Onderstaande panden worden bereikbaar als Stefania's inkomen stijgt via BV Anseeuw of bij combinatie met Vlaamse woonlening.</p>
 
     <div class="card info prop-v2" data-prop="koop-6" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -1971,7 +1960,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Tongersesteenweg+8" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Tongersesteenweg+8&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Tongersesteenweg+8" target="_blank">📍 Google Maps</a>
@@ -2006,7 +1995,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-7" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
@@ -2014,7 +2003,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Kwadensteenweg+76" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Kwadensteenweg+76&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Kwadensteenweg+76" target="_blank">📍 Google Maps</a>
@@ -2048,7 +2037,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-8" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
@@ -2056,7 +2045,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Tiensesteenweg+50/201" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+50%2F201&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Tiensesteenweg+50%2F201" target="_blank">📍 Google Maps</a>
@@ -2090,7 +2079,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-9" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_18_76989142.jpg" alt="Festraetstraat 40" class="active" onerror="this.style.display='none'">
@@ -2098,7 +2087,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Festraetstraat+40" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Festraetstraat+40%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2130,7 +2119,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-10" style="margin-top:12px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <img loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/300x300/03e7e48df68370e319d9965e5bdf8605.jpg" alt="Festraetstraat 40">
       <div class="prop-body">
@@ -2165,8 +2154,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Gingelom+Steenweg+272" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
-      </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Gingelom%2C+Steenweg+272&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Gingelom%2C+Steenweg+272" target="_blank">📍 Google Maps</a>
@@ -2182,8 +2170,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
 
     <div class="card success prop-v2" style="margin-top:10px" data-prop="koop-new-27">
-      <div class="prop-top">
-        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/300x300/8fcc83b77e68797220190127ecb517af.jpg" alt="koop-new-27" loading="lazy">
+      <div class="prop-top-row">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/300x300/8fcc83b77e68797220190127ecb517af.jpg" alt="koop-new-27" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Meyers Vastgoed</span>
         <h4>27. Stapelstraat 50 ⭐</h4>
@@ -2255,7 +2243,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
   <!-- ============ TAB: KOOPWONINGEN ============ -->
   <div id="koop" class="section">
     <h2>🏡 Koopwoningen Sint-Truiden</h2>
-    <h3>Koopscenario — Berekening per Prijsklasse + Benodigd Inkomen <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span> <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span></h3>
+<h3>Koopscenario — Berekening per Prijsklasse + Benodigd Inkomen <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span> <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span></h3>
     <div class="card highlight">
       <p style="margin-bottom:12px"><strong>Hoeveel inkomen heeft Stefania nodig per prijsklasse?</strong> Berekend op basis van 40% aflossingsregel + leefoverschot €1.200/mnd (moeder + 2 kinderen).</p>
       <table>
@@ -2335,8 +2323,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Eengezinswoning+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-      </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Stapelstraat+50+%E2%AD%90&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Stapelstraat+50+%E2%AD%90" target="_blank">📍 Google Maps</a>
@@ -2355,7 +2342,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
@@ -2363,7 +2350,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Sint-Martenplein+8/104+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Sint-Martenplein+8%2F104%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Sint-Martenplein+8%2F104%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2382,7 +2369,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
@@ -2390,7 +2377,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1/302+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Schepen+Dejonghstraat+1%2F302%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1%2F302%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2409,7 +2396,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
@@ -2417,7 +2404,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Schurhoven+39+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Schurhoven+39%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Schurhoven+39%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2436,7 +2423,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
@@ -2444,7 +2431,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Parkstraat+15+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Parkstraat+15%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Parkstraat+15%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2467,13 +2454,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Extra Vondsten — Scan 27/3 middag</h3>
 
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Schoenmakersstraat 6, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Schoenmakersstraat+6+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Schoenmakersstraat+6%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Schoenmakersstraat+6%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2492,13 +2479,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Erberstraat 51, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Erberstraat+51+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Erberstraat+51%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Erberstraat+51%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2517,13 +2504,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Diesterstraat 48/001, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Diesterstraat+48/001+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Diesterstraat+48%2F001%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Diesterstraat+48%2F001%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2542,13 +2529,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Handelspand centrum, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Handelspand+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Handelspand+centrum%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Handelspand+centrum%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2567,13 +2554,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Stadswoning, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Stadswoning+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Stadswoning%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Stadswoning%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2592,13 +2579,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Huis Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Huis+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2617,13 +2604,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Prins Albertlaan 52/203, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Prins+Albertlaan+52/203+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=Prins+Albertlaan+52%2F203%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/Prins+Albertlaan+52%2F203%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2642,13 +2629,13 @@ details[open] .reactie-toggle::before{content:'▼ '}
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-top">
+      <div class="prop-top-row">
         <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">App. centrum, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/App.+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
-        <div class="prop-map">
+        <div class="prop-map-panel">
           <iframe src="https://maps.google.com/maps?q=App.+centrum%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="map-links">
             <a href="https://www.google.com/maps/search/App.+centrum%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -3928,7 +3915,7 @@ function calculateLoan() {
 // Run calculator on load
 calculateLoan();
 
-// (prop status/notes removed — dropdowns verwijderd)
+// (prop status removed)
 
 // ============ TABLE FILTER ============
 function filterTable() {
@@ -5143,7 +5130,7 @@ document.addEventListener('keydown', function(e) {
 'Type:':'Type:',
 'URGENT — NU CONTACTEREN':'URGENT — NU CONTACTEREN',
 'Ursulinenstraat 18/202, Sint-Truiden':'Ursulinenstraat 18/202, Sint-Truiden',
-'VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
+'VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
 'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven':'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven',
 'Vaak vergeten:':'Vaak vergeten:',
 'Van €1.600 → €2.300 netto = €700 meer per maand. Dat maakt het verschil tussen huurwoning en koopwoning!':'Van €1.600 → €2.300 net = €700 meer per mois. Dat maakt het verschil tussen huurwoning en koopwoning!',
