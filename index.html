@@ -373,7 +373,7 @@ document.getElementById('authPass').focus();
 </script>
 <header>
 <div class="container">
-<div class="badge">VERSIE 12.6 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+<div class="badge">VERSIE 12.7 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
 <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
 <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
 <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -402,7 +402,7 @@ document.getElementById('authPass').focus();
 <div class="grid grid-4">
 <div class="card stat"><div class="icon">👧👦</div><div class="num">2</div><div class="lbl">Kinderen</div></div>
 <div class="card stat"><div class="icon">💳</div><div class="num" style="color:var(--red)">€2.035</div><div class="lbl">Schuld/maand (5 leningen)</div></div>
-<div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl">Geschatte waarde woning*</div></div>
+<div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl"><a href="#schatting-uitleg" onclick="var ft=document.querySelector('.nav-tab[data-tab=financiering]');if(ft){ft.click();setTimeout(function(){document.getElementById('schatting-uitleg').scrollIntoView({behavior:'smooth'})},150);}return false;" style="color:var(--green);text-decoration:underline;cursor:pointer">Geschatte waarde woning*</a></div></div>
 <div class="card stat"><div class="icon">⚖️</div><div class="num" style="color:var(--yellow)">24/03</div><div class="lbl">Verzoekschrift ingediend</div></div>
 </div>
 <div class="grid grid-2">
@@ -463,11 +463,11 @@ document.getElementById('authPass').focus();
 <h3>Fase 1 — Eerste Zetten (Week 1-2) — URGENT</h3>
 <ul>
 <li><strong>A.</strong> Stefania wil <strong>zo snel mogelijk weg</strong> — huurwoning zoeken (Diestersteenweg 66 = direct beschikbaar)</li>
-<li><strong>B.</strong> Mr. Strauven vraagt dringende voorlopige maatregelen (apart verblijf, onderhoud, verblijfsregeling)</li>
-<li><strong>C.</strong> Medisch attest Dr. Anseeuw (depressie, angst)</li>
+<li><strong>B.</strong> Mr. Strauven bespreekt opties voor voorlopige maatregelen (enkel indien Marius niet meewerkt: apart verblijf, onderhoud, verblijfsregeling)</li>
+<li><strong>C.</strong> Optioneel: Medisch attest Dr. Anseeuw (depressie, angst) — enkel als bewijs later nodig is</li>
 <li><strong>D.</strong> Bewijsmateriaal verzamelen: WhatsApp, SMS, school — veiligstellen</li>
 <li><strong>E.</strong> Inventaris inboedel + bankafschriften vastleggen (foto's, timestamps)</li>
-<li><strong>F.</strong> Psycholoog raadplegen (Stefania + kinderen)</li>
+<li><strong>F.</strong> Stefania overweegt psycholoog voor zichzelf (eigen tempo, geen verplichting)</li>
 </ul>
 </div>
 <div class="grid grid-2">
@@ -2531,7 +2531,7 @@ document.getElementById('authPass').focus();
 <p>Na aankoop: premies voor isolatie, verwarmingsketel, beglazing. Tot 50% terugbetaling bij laag inkomen.</p>
 </div>
 </div>
-<h3>Waardeschatting Tongersesteenweg 287 — Gezinswoning</h3>
+<h3 id="schatting-uitleg">Waardeschatting Tongersesteenweg 287 — Gezinswoning</h3>
 <div class="card highlight">
 <p style="margin-bottom:12px"><strong>Gebaseerd op:</strong> Realo kenmerken + Immoweb prijsbarometer + vergelijkbare panden Tongersesteenweg.</p>
 <table>
@@ -2594,7 +2594,7 @@ document.getElementById('authPass').focus();
 <p style="margin-top:8px;font-size:13px"><strong>Conclusie:</strong> De woning is realistisch <strong>€320.000-€360.000</strong> waard. De €450.000 die eerder circuleerde is <strong>te hoog</strong> — dat zou enkel kloppen in perfecte staat met recente renovatie.</p>
 </div>
 <div class="card highlight" style="margin-top:12px">
-<h3>Aanbevolen Schatter: Jocelin Vannut</h3>
+<h3 id="jocelin-vannut">Aanbevolen Schatter: Jocelin Vannut</h3>
 <p><strong>Aanbevolen door Chantal Degucht</strong> (makelaar/kennis): Jocelin Vannut is een erkend schatter die <strong>realistisch (conservatief) schat</strong>. Dit is strategisch voordelig voor Stefania.</p>
 <ul>
 <li><strong>Naam:</strong> Jocelin Vannut — erkend schatter</li>
@@ -3424,6 +3424,14 @@ document.getElementById('authPass').focus();
 <p style="margin-top:4px">Bronnen: Immoweb, Zimmo, Vlaams Woningfonds, notaris.be, NEO Bemiddeling, Wikifin, Test-Aankoop, hypotheekwinkel.be, kredietadvies.be, Gemini Pro, DeepSeek/Kagi (80 bronnen)</p>
 </div>
 </footer>
+<div class="lightbox-overlay" id="lightbox">
+<button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+<button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();galleryNav(-1)">&#8249;</button>
+<button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();galleryNav(1)">&#8250;</button>
+<img id="lightboxImg" src="" alt="Vergroot" onclick="event.stopPropagation();galleryNav(1)">
+<div class="lightbox-counter" id="lightboxCounter"></div>
+<div class="lightbox-thumbs" id="lightboxThumbs"></div>
+</div>
 <script>
 // Tab navigation
 document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -3738,7 +3746,7 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+var _lb = document.getElementById('lightbox'); if (_lb) _lb.addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
 document.addEventListener('keydown', function(e) {
   if (!document.getElementById('lightbox').classList.contains('active')) return;
   if (e.key === 'Escape') closeLightbox();
@@ -3749,25 +3757,37 @@ document.addEventListener('keydown', function(e) {
 // Touch swipe
 (function() {
   var sx = 0, lb = document.getElementById('lightbox');
+  if (!lb) return;
   lb.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; });
   lb.addEventListener('touchend', function(e) { var d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 50) galleryNav(d > 0 ? -1 : 1); });
 })();
 
-// Attach gallery to all prop cards + photo count badges
-document.querySelectorAll('.prop-v2').forEach(function(card) {
-  var images = getGalleryForCard(card);
-  var imgEl = card.querySelector('.prop-img');
-  if (!imgEl) return;
-  if (images.length > 1) {
-    var badge = document.createElement('span');
-    badge.className = 'photo-count';
-    badge.textContent = String.fromCodePoint(0x1F4F7) + ' ' + images.length + " foto's";
-    badge.onclick = function(e) { e.stopPropagation(); openGallery(images, 0); };
-    imgEl.style.position = 'relative';
-    imgEl.appendChild(badge);
-  }
-  imgEl.style.cursor = 'pointer';
-  imgEl.onclick = function(e) { e.stopPropagation(); openGallery(images, 0); };
+// Attach gallery to all prop cards + photo count badges (re-runs on tab switch)
+function attachGalleryToCards() {
+  document.querySelectorAll('.prop-v2').forEach(function(card) {
+    if (card.dataset.galleryAttached) return;
+    var images = getGalleryForCard(card);
+    var imgEl = card.querySelector('.prop-img');
+    if (!imgEl) return;
+    if (images.length > 1) {
+      var badge = document.createElement('span');
+      badge.className = 'photo-count';
+      badge.textContent = String.fromCodePoint(0x1F4F7) + ' ' + images.length + " foto's";
+      badge.onclick = function(e) { e.stopPropagation(); openGallery(images, 0); };
+      imgEl.style.position = 'relative';
+      imgEl.appendChild(badge);
+    }
+    if (images.length > 0) {
+      imgEl.style.cursor = 'pointer';
+      imgEl.onclick = function(e) { e.stopPropagation(); openGallery(images, 0); };
+      card.dataset.galleryAttached = '1';
+    }
+  });
+}
+attachGalleryToCards();
+// Re-attach on tab switch (cards in hidden tabs may not match initially)
+document.querySelectorAll('.nav-tab').forEach(function(btn) {
+  btn.addEventListener('click', function() { setTimeout(attachGalleryToCards, 100); });
 });
 
 // ============ LAZY LOAD MAP IFRAMES ============
@@ -3886,16 +3906,37 @@ window.addEventListener('scroll', function() {
   }
 });
 
+
+// ============ SELF-TEST v12.7 ============
+(function selfTest() {
+  var errors = [];
+  var checks = [
+    ['lightbox', !!document.getElementById('lightbox'), 'Lightbox element missing'],
+    ['lightboxImg', !!document.getElementById('lightboxImg'), 'Lightbox image element missing'],
+    ['openGallery', typeof openGallery === 'function', 'openGallery function missing'],
+    ['galleryNav', typeof galleryNav === 'function', 'galleryNav function missing'],
+    ['closeLightbox', typeof closeLightbox === 'function', 'closeLightbox function missing'],
+    ['attachGalleryToCards', typeof attachGalleryToCards === 'function', 'attachGalleryToCards function missing'],
+    ['overzicht', !!document.getElementById('overzicht'), 'Overzicht section missing'],
+    ['huur', !!document.getElementById('huur'), 'Huur section missing'],
+    ['koop', !!document.getElementById('koop'), 'Koop section missing'],
+    ['financiering', !!document.getElementById('financiering'), 'Financiering section missing'],
+    ['tabs', document.querySelectorAll('.nav-tab').length >= 4, 'Not enough nav tabs'],
+    ['gallery-data', typeof GALLERY_DATA === 'object' && Object.keys(GALLERY_DATA).length > 0, 'GALLERY_DATA empty or missing']
+  ];
+  checks.forEach(function(c) {
+    if (!c[1]) errors.push('[FAIL] ' + c[0] + ': ' + c[2]);
+    else console.log('[PASS] ' + c[0]);
+  });
+  if (errors.length > 0) {
+    console.error('SELF-TEST: ' + errors.length + ' ERRORS');
+    errors.forEach(function(e) { console.error(e); });
+  } else {
+    console.log('SELF-TEST: ALL ' + checks.length + ' CHECKS PASSED (v12.7)');
+  }
+})();
 </script>
 </div></div></div>
-<div class="lightbox-overlay" id="lightbox">
-<button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-<button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();galleryNav(-1)">&#8249;</button>
-<button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();galleryNav(1)">&#8250;</button>
-<img id="lightboxImg" src="" alt="Vergroot" onclick="event.stopPropagation();galleryNav(1)">
-<div class="lightbox-counter" id="lightboxCounter"></div>
-<div class="lightbox-thumbs" id="lightboxThumbs"></div>
-</div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 </html>
