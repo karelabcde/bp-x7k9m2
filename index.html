@@ -265,13 +265,19 @@ details[open] .reactie-toggle::before{content:'▼ '}
 .lightbox-nav.next{right:20px}
 .lightbox-counter{color:#94a3b8;font-size:14px;margin-top:12px}
 
-</style>
+
+  .lang-switch{display:flex;justify-content:center;gap:8px;margin:12px 0}
+  .lang-btn{padding:6px 20px;border:2px solid rgba(99,102,241,0.4);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-weight:600;transition:all 0.3s}
+  .lang-btn:hover{border-color:var(--accent);color:var(--text)}
+  .lang-btn.active{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;border-color:transparent;box-shadow:0 4px 15px rgba(99,102,241,0.4)}
+
+  </style>
 </head>
 <body>
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 7.9 — LIVE TRACKER 26/03/2026</div>
+    <div class="badge">VERSIE 8.0 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -290,6 +296,10 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <div class="nav-tab" data-tab="inkomen"><span class="tab-icon">📈</span>Extra Inkomen</div>
     <div class="nav-tab" data-tab="trucs"><span class="tab-icon">💡</span>Slimme Trucs</div>
     <div class="nav-tab" data-tab="acties"><span class="tab-icon">✅</span>Actieplan</div>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="nl">🇧🇪 Nederlands</button>
+    <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
   </div>
 
   <!-- ============ TAB: OVERZICHT ============ -->
@@ -3878,7 +3888,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <footer>
   <div class="container">
-    <p>Project Stefania v7.9 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
+    <p>Project Stefania v8.0 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
     <p style="margin-top:4px">Bronnen: Immoweb, Zimmo, Vlaams Woningfonds, notaris.be, NEO Bemiddeling, Wikifin, Test-Aankoop, hypotheekwinkel.be, kredietadvies.be, Gemini Pro, DeepSeek/Kagi (80 bronnen)</p>
   </div>
 </footer>
@@ -4234,6 +4244,121 @@ document.addEventListener('keydown', function(e) {
         }
       });
     })();
+
+    
+    // FR/NL Translation System
+    var translations = {
+      // Nav tabs
+      'Overzicht': 'Aperçu',
+      'Strategie': 'Stratégie',
+      'Huurwoningen': 'Locations',
+      'Koopwoningen': 'Achats',
+      'Financiering': 'Financement',
+      'Juridisch': 'Juridique',
+      'Extra Inkomen': 'Revenus Extra',
+      'Slimme Trucs': 'Astuces',
+      'Actieplan': "Plan d'Action",
+      'Kantoren': 'Agences',
+      // Section headers
+      'Alle Vastgoedkantoren Sint-Truiden': 'Toutes les Agences Immobilières de Sint-Truiden',
+      'Strategische Analyse': 'Analyse Stratégique',
+      'Financiële Simulatie': 'Simulation Financière',
+      'Juridische Stappen': 'Démarches Juridiques',
+      'Extra Inkomstenbronnen': 'Sources de Revenus Supplémentaires',
+      // Property labels
+      'slpk': 'ch.',
+      'Appartement': 'Appartement',
+      'Huis': 'Maison',
+      'Duplex': 'Duplex',
+      'Penthouse': 'Penthouse',
+      'Nieuwbouw': 'Neuf',
+      'Woning': 'Habitation',
+      '— Status —': '— Statut —',
+      'Nieuw': 'Nouveau',
+      'Gemaild': 'Contacté',
+      'Gebeld': 'Appelé',
+      'Bezichtigd': 'Visité',
+      'Optie genomen': 'Option prise',
+      'Optie': 'Option prise',
+      'Afgevallen': 'Rejeté',
+      'Notitie...': 'Note...',
+      'Bron': 'Source',
+      'Maps': 'Carte',
+      'Bekijk op Google Maps': 'Voir sur Google Maps',
+      // Key content
+      'Doorzocht': 'Recherché',
+      'Spreekt GEEN Nederlands': 'Ne parle PAS néerlandais',
+      'Taalbarriere': 'Barrière linguistique',
+      'Huurwoningen — ': 'Locations — ',
+      'Koopwoningen — ': 'Achats — ',
+      'Nieuw Gevonden': 'Nouvellement trouvé',
+      'Extra Vondsten': 'Découvertes supplémentaires',
+      'via kantoren-scan': 'via scan des agences',
+      // Financiering
+      'Leningcalculator': 'Calculateur de prêt',
+      'Netto-inkomen': 'Revenu net',
+      'Extra inkomen': 'Revenu supplémentaire',
+      'Rentevoet': "Taux d'intérêt",
+      'Looptijd': 'Durée',
+      'Bereken': 'Calculer',
+      'Maximale lening': 'Prêt maximum',
+      'Maandlast': 'Mensualité',
+      // Stats
+      '48 Huurwoningen': '48 Locations',
+      '26 Koopwoningen': '26 Achats',
+      '23 kantoren': '23 agences',
+      // Header
+      'Scheiding & Nieuw Thuis': 'Divorce & Nouveau Foyer',
+      'LIVE TRACKER': 'SUIVI EN DIRECT',
+    };
+
+    var currentLang = 'nl';
+    var originalTexts = new Map();
+
+    function translatePage(lang) {
+      if (lang === 'nl') {
+        // Restore originals
+        originalTexts.forEach(function(origText, el) {
+          if (el.tagName === 'INPUT') el.placeholder = origText;
+          else el.textContent = origText;
+        });
+        document.documentElement.lang = 'nl';
+        return;
+      }
+      // Translate to FR
+      var allEls = document.querySelectorAll('h1,h2,h3,h4,p,span,a,button,option,th,td,li,label,div.prop-meta,div.prop-price');
+      allEls.forEach(function(el) {
+        if (el.children.length > 0 && el.tagName !== 'A' && el.tagName !== 'BUTTON' && el.tagName !== 'OPTION') return;
+        var text = el.textContent.trim();
+        if (!text) return;
+        for (var nl in translations) {
+          if (text.includes(nl)) {
+            if (!originalTexts.has(el)) originalTexts.set(el, el.textContent);
+            el.textContent = el.textContent.replace(nl, translations[nl]);
+          }
+        }
+      });
+      // Also translate placeholders
+      document.querySelectorAll('input[placeholder]').forEach(function(inp) {
+        var ph = inp.placeholder;
+        if (translations[ph]) {
+          if (!originalTexts.has(inp)) originalTexts.set(inp, ph);
+          inp.placeholder = translations[ph];
+        }
+      });
+      document.documentElement.lang = 'fr';
+    }
+
+    document.querySelector('.lang-switch').addEventListener('click', function(e) {
+      var btn = e.target.closest('.lang-btn');
+      if (!btn) return;
+      var lang = btn.dataset.lang;
+      if (lang === currentLang) return;
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      translatePage(lang);
+    });
 
     </script>
 
