@@ -145,17 +145,32 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
   th,td{padding:6px 8px}
 }
 
-/* PROPERTY CARDS V2 */
-.prop-v2{display:grid;grid-template-columns:180px 1fr;gap:0;overflow:hidden}
-.prop-v2 .prop-img{background:#1e293b;display:flex;align-items:center;justify-content:center;min-height:180px;position:relative;overflow:hidden}
-.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0}
+/* PROPERTY CARDS V3 — redesign */
+.prop-v2{display:grid;grid-template-columns:1fr;gap:0;overflow:hidden;border-radius:14px}
+.prop-v2 .prop-top{display:grid;grid-template-columns:1fr 260px;gap:0;min-height:220px}
+.prop-v2 .prop-img{background:#1e293b;display:flex;align-items:center;justify-content:center;min-height:220px;position:relative;overflow:hidden;cursor:pointer}
+.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;transition:transform 0.3s}
+.prop-v2 .prop-img:hover img{transform:scale(1.05)}
 .prop-v2 .prop-img .placeholder{color:var(--muted);font-size:13px;text-align:center;padding:12px}
 .prop-v2 .prop-img .placeholder span{display:block;font-size:32px;margin-bottom:4px}
-.prop-v2 .prop-body{padding:16px}
-.prop-v2 .prop-body h4{margin:0 0 4px}
-.prop-v2 .prop-contact{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:13px}
+.prop-v2 .prop-map{overflow:hidden;background:#0f172a;display:flex;flex-direction:column}
+.prop-v2 .prop-map iframe{width:100%;flex:1;border:0;min-height:160px;filter:brightness(0.85) contrast(1.1) saturate(0.8)}
+.prop-v2 .prop-map .map-links{display:flex;gap:8px;padding:6px 10px;background:rgba(15,23,42,0.95);font-size:12px}
+.prop-v2 .prop-map .map-links a{color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:4px}
+.prop-v2 .prop-map .map-links a:hover{text-decoration:underline;color:#a5b4fc}
+.prop-v2 .prop-body{padding:18px 20px}
+.prop-v2 .prop-body h4{margin:0 0 6px;font-size:1.05rem}
+.prop-v2 .prop-contact{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;font-size:13px;align-items:center}
 .prop-v2 .prop-contact a{color:var(--accent);text-decoration:none}
 .prop-v2 .prop-contact a:hover{text-decoration:underline}
+.prop-v2 .prop-price{font-size:1.4rem;font-weight:800;color:var(--green);margin:4px 0 6px}
+.prop-v2 .prop-meta{font-size:13px;color:var(--muted);margin:6px 0}
+@media(max-width:768px){
+  .prop-v2 .prop-top{grid-template-columns:1fr}
+  .prop-v2 .prop-img{min-height:180px}
+  .prop-v2 .prop-map{min-height:160px}
+  .prop-v2 .prop-map iframe{min-height:140px}
+}
 
 .status-gemaild{border-color:var(--yellow)!important}
 .status-gebeld{border-color:var(--orange)!important}
@@ -167,9 +182,6 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 .tbl-status{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:90px}
 .tbl-notes{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:120px}
 @media(max-width:768px){
-  .prop-v2{grid-template-columns:1fr}
-  .prop-v2 .prop-img{min-height:120px}
-  
   .tbl-status,.tbl-notes{width:70px}
 }
 
@@ -244,10 +256,10 @@ details[open] .reactie-toggle::before{content:'▼ '}
 .carousel-maps-btn:hover{background:rgba(99,102,241,0.8)}
 
 /* NICE PLACEHOLDERS v7.2 */
-.prop-placeholder-nice{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;min-height:180px;background:linear-gradient(135deg,#1e293b 0%,#0f172a 50%,#1a1a2e 100%);border-radius:10px;padding:16px;text-align:center}
-.placeholder-icon{font-size:40px;margin-bottom:8px;filter:grayscale(0.3)}
-.placeholder-addr{color:var(--muted);font-size:12px;font-weight:600;margin-bottom:8px;line-height:1.3}
-.placeholder-maps{color:var(--accent);font-size:11px;text-decoration:none;padding:4px 12px;border:1px solid var(--border);border-radius:6px;transition:all 0.2s}
+.prop-placeholder-nice{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;min-height:220px;background:linear-gradient(135deg,#1e293b 0%,#0f172a 50%,#1a1a2e 100%);border-radius:0;padding:20px;text-align:center}
+.placeholder-icon{font-size:52px;margin-bottom:10px;filter:grayscale(0.3)}
+.placeholder-addr{color:var(--muted);font-size:13px;font-weight:600;margin-bottom:10px;line-height:1.4}
+.placeholder-maps{display:none}
 .placeholder-maps:hover{background:rgba(99,102,241,0.15);border-color:var(--accent)}
 
 /* LIGHTBOX v7.2 */
@@ -481,7 +493,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
 
     <div class="card success prop-v2" style="margin-top:10px" data-prop="huur-new-49">
-      <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/300x300/8ba812c6ea17b6f0a7be87cde60cef2b.jpg" alt="huur-new-49" loading="lazy"></div>
+      <div class="prop-top">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/300x300/8ba812c6ea17b6f0a7be87cde60cef2b.jpg" alt="huur-new-49" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">De woonmakers</span>
         <h4>49. Grote Markt 31 ⭐</h4>
@@ -489,7 +502,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€800/mnd</div>
         <div class="prop-meta">🛏️ 2 slpk | 📐 84m² | Appartement</div>
         <p style="margin:6px 0"><strong>Toplocatie!</strong> Centrum Grote Markt. Alle winkels en scholen op wandelafstand. Geen kosten.</p>
-        <div class="prop-contact"><a href="tel:011988898">011 98 88 98</a> <span>De woonmakers</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21438120" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Grote+Markt+31+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:011988898">011 98 88 98</a> <span>De woonmakers</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21438120" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -503,7 +516,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€720/mnd (+€30)</div>
         <div class="prop-meta">🛏️ 2 slpk | 📐 80m² | Duplex</div>
         <p style="margin:6px 0"><strong>Goedkoopste 2slpk!</strong> Duplex met karakter. €750 all-in. Goede verbinding centrum.</p>
-        <div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Prins+Albertlaan+45+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -517,7 +530,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€875/mnd (+€25)</div>
         <div class="prop-meta">🛏️ 2 slpk | Appartement</div>
         <p style="margin:6px 0">Appartement 2 slaapkamers, Luikersteenweg. Particuliere verhuurder.</p>
-        <div class="prop-contact"><a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21358195" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Luikersteenweg+47+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21358195" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -531,7 +544,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€925/mnd</div>
         <div class="prop-meta">🛏️ 2 slpk | 📐 94m² | Appartement</div>
         <p style="margin:6px 0">Ruim app centrum, nabij Grote Markt. 94m². Geen extra kosten.</p>
-        <div class="prop-contact"><a href="tel:011672201">011 67 22 01</a> <span>Imanex</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21354677" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Houtmarkt+28+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:011672201">011 67 22 01</a> <span>Imanex</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21354677" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -545,7 +558,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€950/mnd (+€50)</div>
         <div class="prop-meta">🛏️ 2 slpk | 📐 100m² | Appartement</div>
         <p style="margin:6px 0">Ruim 100m² appartement. Particuliere verhuurder. Max budget.</p>
-        <div class="prop-contact"><a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21434836" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21434836" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -584,6 +597,14 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Grote+Markt+31+%E2%AD%90&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Grote+Markt+31+%E2%AD%90" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Grote+Markt+31+%E2%AD%90" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag tag-green">SUPER</span>
         <h4>1. Stapelstraat 50, Sint-Truiden</h4>
@@ -596,7 +617,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="mailto:claudio@meyersco.be">claudio@meyersco.be</a>
             <span>Meyers Vastgoed (Claudio)</span>
             <a href="https://vastgoed.meyersco.be" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-1">
@@ -612,12 +632,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Diestersteenweg 66, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Diestersteenweg+66%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Diestersteenweg+66%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Diestersteenweg+66%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span>
@@ -629,7 +658,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-contact">
           <a href="tel:0491492244">0491/49 22 44</a>
             <span>Eigenaar (rechtstreeks)</span>
-            <a href="https://www.google.com/maps/search/Diestersteenweg+66+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-2">
@@ -645,12 +673,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-3" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Terwouwenstraat 28, Zepperen</div>
             <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Terwouwenstraat+28%2C+Zepperen&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Terwouwenstraat+28%2C+Zepperen" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Terwouwenstraat+28%2C+Zepperen" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span>
@@ -665,7 +702,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="mailto:info@immovesta.be">info@immovesta.be</a>
             <span>Immo Vesta</span>
             <a href="https://immovesta.be" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Terwouwenstraat+28+Zepperen" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-3">
@@ -681,12 +717,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-4" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Sint-Trudostraat 22, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+22+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+22%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+22%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+22%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span>
@@ -696,7 +741,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 181m² | ⚡ EPC B | Huis</div>
         <p style="margin:6px 0">Ruim huis met 3 slaapkamers. Goede EPC B score. Centrum Sint-Truiden.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Sint-Trudostraat+22+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-4">
@@ -712,12 +756,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-5" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Tiensesteenweg 184/603, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Tiensesteenweg+184/603+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+184%2F603%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+184%2F603%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+184%2F603%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -727,7 +780,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement 6e verdieping. Gemeenschappelijke kosten €120/mnd.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Tiensesteenweg+184/603+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-5">
@@ -743,12 +795,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-6" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_00_ec2536e5.jpg" alt="Kennedylaan 19, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_01_fb5780a5.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_02_827796e0.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_03_afd1f899.jpg" alt="Kennedylaan 19, Sint-Truiden" onerror="this.style.display='none'">
             <button class="carousel-btn" style="left:4px" onclick="carouselNav(this,-1)">&#8249;</button><button class="carousel-btn" style="right:4px" onclick="carouselNav(this,1)">&#8250;</button><div class="carousel-counter">4 foto's</div>
             <a href="https://www.google.com/maps/search/Kennedylaan+19+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Kennedylaan+19%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Kennedylaan+19%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Kennedylaan+19%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -758,7 +819,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 77m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Compact appartement. 2 slaapkamers op 77m².</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Kennedylaan+19+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-6">
@@ -774,12 +834,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-7" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_04_15bf82d6.jpg" alt="Gorsemweg 11/101, Sint-Truiden" class="active" onerror="this.style.display='none'">
             
             <a href="https://www.google.com/maps/search/Gorsemweg+11/101+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Gorsemweg+11%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Gorsemweg+11%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Gorsemweg+11%2F101%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -789,7 +858,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 85m² | ⚡ EPC A | Appartement</div>
         <p style="margin:6px 0">Appartement met uitstekende EPC A. 85m², 2 slaapkamers. Gemeenschappelijke kosten €70.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Gorsemweg+11/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-7">
@@ -805,12 +873,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-8" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_05_e960379d.jpg" alt="Slagmolenstraat 30, Sint-Truiden" class="active" onerror="this.style.display='none'">
             
             <a href="https://www.google.com/maps/search/Slagmolenstraat+30+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Slagmolenstraat+30%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Slagmolenstraat+30%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Slagmolenstraat+30%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -820,7 +897,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 120m² | ⚡ EPC 264 | Huis</div>
         <p style="margin:6px 0">Huis 120m² met 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Slagmolenstraat+30+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-8">
@@ -836,12 +912,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-9" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Houtmarkt 28/301, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Houtmarkt+28/301+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Houtmarkt+28%2F301%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Houtmarkt+28%2F301%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Houtmarkt+28%2F301%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -851,7 +936,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 94m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement 3e verdieping. 94m², 2 slaapkamers. Centrum aan de Houtmarkt.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Houtmarkt+28/301+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-9">
@@ -867,12 +951,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-10" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Attenhovestraat 71, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Attenhovestraat+71+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Attenhovestraat+71%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Attenhovestraat+71%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Attenhovestraat+71%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -882,7 +975,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 108m² | ⚡ EPC A+++ | Huis</div>
         <p style="margin:6px 0">Passiefhuis met EPC A+++. 3 slaapkamers, 108m². Topkwaliteit energieprestatie.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Attenhovestraat+71+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-10">
@@ -898,12 +990,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-11" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Leopold II straat 28, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Leopold+II+straat+28+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Leopold+II+straat+28%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Leopold+II+straat+28%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Leopold+II+straat+28%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -913,7 +1014,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 4 slpk | 📐 169m² | ⚡ EPC C | Huis</div>
         <p style="margin:6px 0">Ruim huis met 4 slaapkamers. 169m². EPC C.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Leopold+II+straat+28+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-11">
@@ -929,12 +1029,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-12" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_06_4214f47b.jpg" alt="Stationsstraat 59/203, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_07_e08f397f.jpg" alt="Stationsstraat 59/203, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_08_6bdbc6f0.jpg" alt="Stationsstraat 59/203, Sint-Truiden" onerror="this.style.display='none'"><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Stationsstraat 59/203, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div>
             <button class="carousel-btn" style="left:4px" onclick="carouselNav(this,-1)">&#8249;</button><button class="carousel-btn" style="right:4px" onclick="carouselNav(this,1)">&#8250;</button><div class="carousel-counter">4 foto's</div>
             <a href="https://www.google.com/maps/search/Stationsstraat+59/203+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stationsstraat+59%2F203%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stationsstraat+59%2F203%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stationsstraat+59%2F203%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -944,7 +1053,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 67m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement 2e verdieping. 67m², 2 slaapkamers. Nabij station.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stationsstraat+59/203+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-12">
@@ -960,12 +1068,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-13" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_06_4214f47b.jpg" alt="Stationsstraat 59/102, Sint-Truiden" class="active" onerror="this.style.display='none'"><img loading="eager" src="img/prop_07_e08f397f.jpg" alt="Stationsstraat 59/102, Sint-Truiden" onerror="this.style.display='none'"><img loading="eager" src="img/prop_08_6bdbc6f0.jpg" alt="Stationsstraat 59/102, Sint-Truiden" onerror="this.style.display='none'">
             <button class="carousel-btn" style="left:4px" onclick="carouselNav(this,-1)">&#8249;</button><button class="carousel-btn" style="right:4px" onclick="carouselNav(this,1)">&#8250;</button><div class="carousel-counter">3 foto's</div>
             <a href="https://www.google.com/maps/search/Stationsstraat+59/102+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stationsstraat+59%2F102%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stationsstraat+59%2F102%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stationsstraat+59%2F102%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -975,7 +1092,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 95m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Ruimer appartement 1e verdieping. 95m², 3 slaapkamers. Nabij station.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stationsstraat+59/102+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-13">
@@ -991,12 +1107,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-14" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Sint-Trudostraat 34, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1006,7 +1131,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 100m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement 100m², 2 slaapkamers. Gemeenschappelijke kosten €50.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Sint-Trudostraat+34+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-14">
@@ -1022,12 +1146,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-15" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Houtmarkt 28/201, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Houtmarkt+28/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Houtmarkt+28%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Houtmarkt+28%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Houtmarkt+28%2F201%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1037,7 +1170,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 94m² | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement 2e verdieping Houtmarkt. 94m², 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Houtmarkt+28/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-15">
@@ -1053,12 +1185,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-16" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Stationsstraat 39/101, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Stationsstraat+39/101+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stationsstraat+39%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stationsstraat+39%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stationsstraat+39%2F101%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1068,7 +1209,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stationsstraat+39/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-16">
@@ -1084,12 +1224,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-17" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Stationsstraat 39/001, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Stationsstraat+39/001+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stationsstraat+39%2F001%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stationsstraat+39%2F001%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stationsstraat+39%2F001%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1099,7 +1248,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Gelijkvloers appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stationsstraat+39/001+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-17">
@@ -1115,12 +1263,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-18" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Kennedylaan 11, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Kennedylaan+11+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Kennedylaan+11%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Kennedylaan+11%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Kennedylaan+11%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1130,7 +1287,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | ⚡ EPC D | Appartement</div>
         <p style="margin:6px 0">Ruim appartement met 3 slaapkamers aan de Kennedylaan.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Kennedylaan+11+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-18">
@@ -1146,12 +1302,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-19" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Brustem-Dorp 90/201, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Brustem-Dorp+90/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Brustem-Dorp+90%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Brustem-Dorp+90%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Brustem-Dorp+90%2F201%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1161,7 +1326,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 117m² | ⚡ EPC C | Appartement</div>
         <p style="margin:6px 0">Appartement in Brustem. 117m², 3 slaapkamers. Nabij school De Boomhut! Gemeenschappelijke kosten €100.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Brustem-Dorp+90/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-19">
@@ -1177,12 +1341,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-20" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div><div class="prop-placeholder-nice" style="height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div class="placeholder-icon">📸</div><div class="placeholder-addr">Spoorwegstraat 9, Sint-Truiden</div><div style="font-size:11px;color:var(--muted)">Foto niet beschikbaar</div></div>
             <button class="carousel-btn" style="left:4px" onclick="carouselNav(this,-1)">&#8249;</button><button class="carousel-btn" style="right:4px" onclick="carouselNav(this,1)">&#8250;</button><div class="carousel-counter">4 foto's</div>
             <a href="https://www.google.com/maps/search/Spoorwegstraat+9+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Spoorwegstraat+9%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Spoorwegstraat+9%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Spoorwegstraat+9%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1192,7 +1365,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 172m² | ⚡ EPC C | Huis</div>
         <p style="margin:6px 0">Ruim huis 172m², 3 slaapkamers. EPC C.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Spoorwegstraat+9+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-20">
@@ -1208,12 +1380,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-21" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Boudewijnlaan 56, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Boudewijnlaan+56+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Boudewijnlaan+56%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Boudewijnlaan+56%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Boudewijnlaan+56%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1223,7 +1404,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 132m² | Huis</div>
         <p style="margin:6px 0">Huis 132m², 3 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Boudewijnlaan+56+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-21">
@@ -1239,12 +1419,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-22" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Zoutleeuwsesteenweg 128, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Zoutleeuwsesteenweg+128%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1254,7 +1443,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 4 slpk | Huis</div>
         <p style="margin:6px 0">Huis met 4 slaapkamers aan de Zoutleeuwsesteenweg.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Zoutleeuwsesteenweg+128+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-22">
@@ -1270,12 +1458,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-23" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Naamsesteenweg 184A, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Naamsesteenweg+184A+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Naamsesteenweg+184A%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Naamsesteenweg+184A%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Naamsesteenweg+184A%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">BUDGET</span>
@@ -1285,7 +1482,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 77m² | ⚡ EPC C | Huis</div>
         <p style="margin:6px 0">Budgetvriendelijk huis. 77m², 2 slaapkamers. EPC C. Laagste prijs huizen.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Naamsesteenweg+184A+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-23">
@@ -1301,12 +1497,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-24" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_14_a3275f92.jpg" alt="Luikerstraat 47/101, Sint-Truiden" class="active" onerror="this.style.display='none'">
             
             <a href="https://www.google.com/maps/search/Luikerstraat+47/101+Sint-Truiden" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Luikerstraat+47%2F101%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Luikerstraat+47%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Luikerstraat+47%2F101%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1316,7 +1521,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 121m² | Appartement</div>
         <p style="margin:6px 0">Ruim appartement 121m², 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Luikerstraat+47/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-24">
@@ -1332,12 +1536,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card success prop-v2" data-prop="huur-25" style="margin-top:12px;display:none">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Capucienessenstraat 7/102, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Capucienessenstraat+7/102+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Capucienessenstraat+7%2F102%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Capucienessenstraat+7%2F102%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Capucienessenstraat+7%2F102%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">BUDGET</span>
@@ -1352,7 +1565,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
             <span>RT Vastgoed</span>
             <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Capucienessenstraat+7/102+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-25">
@@ -1368,12 +1580,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-26" style="margin-top:12px;display:none">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Tiensesteenweg 58/201, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Tiensesteenweg+58/201+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+58%2F201%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+58%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+58%2F201%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1388,7 +1609,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
             <span>RT Vastgoed</span>
             <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Tiensesteenweg+58/201+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-26">
@@ -1404,12 +1624,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-27" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Naamsesteenweg 55, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Naamsesteenweg+55+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Naamsesteenweg+55%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Naamsesteenweg+55%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Naamsesteenweg+55%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1419,7 +1648,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 ~100m² | Appartement</div>
         <p style="margin:6px 0">Appartement ~100m², 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Naamsesteenweg+55+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-27">
@@ -1435,12 +1663,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-28" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Sint-Trudostraat 1, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Sint-Trudostraat+1+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Sint-Trudostraat+1%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+1%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Sint-Trudostraat+1%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1450,7 +1687,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 110m² | Appartement</div>
         <p style="margin:6px 0">Appartement 110m², 2 slaapkamers. Centrum.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Sint-Trudostraat+1+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-28">
@@ -1466,12 +1702,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card warning prop-v2" data-prop="huur-29" style="margin-top:12px;display:none">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Vissegatstraat 40, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Vissegatstraat+40+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Vissegatstraat+40%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Vissegatstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Vissegatstraat+40%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span>
@@ -1482,7 +1727,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <p style="margin:6px 0">Huis 113m², 2 slaapkamers. Entreehal, woon-/eetkamer, keuken, binnenplaats, bergruimte.</p>
         <div class="prop-contact">
           <a href="https://www.immoweb.be/nl/zoekertje/huis/te-huur/sint-truiden/3800/20402929" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Vissegatstraat+40+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-29">
@@ -1498,12 +1742,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-30" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Zoutstraat 18, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Zoutstraat+18+Sint-Truiden" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Zoutstraat+18%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Zoutstraat+18%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Zoutstraat+18%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
@@ -1513,7 +1766,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 101m² | Appartement</div>
         <p style="margin:6px 0">Appartement 101m², 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Zoutstraat+18+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-30">
@@ -1529,7 +1781,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="huur-31" style="margin-top:12px">
-      <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/300x300/97898dd7647dfd1abf0417e629c9da95.jpg" alt="huur-31" loading="lazy"></div>
+      <div class="prop-top">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/300x300/97898dd7647dfd1abf0417e629c9da95.jpg" alt="huur-31" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-blue">NIEUW</span>
         <h4>31. Tiensesteenweg 35, Sint-Truiden</h4>
@@ -1543,7 +1796,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="mailto:info@rtvastgoed.be">info@rtvastgoed.be</a>
             <span>RT Vastgoed</span>
             <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
-            <a href="https://www.google.com/maps/search/Tiensesteenweg+35+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="huur-31">
@@ -1572,6 +1824,14 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Houtmarkt+12/101+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+35%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+35%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+35%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag tag-yellow">GOED</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
         <h4>32. Houtmarkt 12/101, Sint-Truiden</h4>
@@ -1580,7 +1840,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <p style="margin:6px 0">Compact maar betaalbaar. 2 slaapkamers in centrum.</p>
         <div class="prop-contact">
           <a href="https://www.imanex.be/nl/te-huur" target="_blank" style="color:var(--accent)">🔗 Bron</a>
-          <a href="https://www.google.com/maps/search/Houtmarkt+12/101+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-1">
@@ -1596,7 +1855,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-2" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <img loading="eager" src="img/prop_15_c4ff481c.jpg" alt="Sint-Anneke 26/101">
       </div>
       <div class="prop-body">
@@ -1671,6 +1931,14 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/9+nieuwbouwprojecten" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Sint-Anneke+26%2F101&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Sint-Anneke+26%2F101" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Sint-Anneke+26%2F101" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag tag-yellow">DIVERSE</span>
         <h4>5. Diverse Nieuwbouwprojecten Sint-Truiden</h4>
@@ -1690,12 +1958,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <p style="color:var(--muted);margin-bottom:12px">Onderstaande panden worden bereikbaar als Stefania's inkomen stijgt via BV Anseeuw of bij combinatie met Vlaamse woonlening.</p>
 
     <div class="card info prop-v2" data-prop="koop-6" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Tongersesteenweg 8</div>
             <a href="https://www.google.com/maps/search/Tongersesteenweg+8" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Tongersesteenweg+8&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Tongersesteenweg+8" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Tongersesteenweg+8" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">INTERESSANT</span>
@@ -1709,7 +1986,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
           <a href="mailto:geert@pierco.be">geert@pierco.be</a>
           <span>Geert Pierco Vastgoed</span>
           <a href="https://www.pierco.be" target="_blank" class="prop-link">🔗 Website</a>
-          <a href="https://www.google.com/maps/search/Tongersesteenweg+8+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-6">
@@ -1725,12 +2001,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-7" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏠</div>
             <div class="placeholder-addr">Kwadensteenweg 76</div>
             <a href="https://www.google.com/maps/search/Kwadensteenweg+76" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Kwadensteenweg+76&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Kwadensteenweg+76" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Kwadensteenweg+76" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-green">NIEUWBOUW</span>
@@ -1743,7 +2028,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
           <a href="tel:011878787">011 87 87 87</a>
           <span>RT Vastgoed</span>
           <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
-          <a href="https://www.google.com/maps/search/Kwadensteenweg+76+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-7">
@@ -1759,12 +2043,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-8" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏢</div>
             <div class="placeholder-addr">Tiensesteenweg 50/201</div>
             <a href="https://www.google.com/maps/search/Tiensesteenweg+50/201" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Tiensesteenweg+50%2F201&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+50%2F201" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Tiensesteenweg+50%2F201" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">BEKIJKEN</span>
@@ -1777,7 +2070,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
           <a href="tel:011878787">011 87 87 87</a>
           <span>RT Vastgoed</span>
           <a href="https://rtvastgoed.be" target="_blank" class="prop-link">🔗 Website</a>
-          <a href="https://www.google.com/maps/search/Tiensesteenweg+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-8">
@@ -1793,12 +2085,21 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-9" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-carousel">
             <img loading="eager" src="img/prop_18_76989142.jpg" alt="Festraetstraat 40" class="active" onerror="this.style.display='none'">
             
             <a href="https://www.google.com/maps/search/Festraetstraat+40" target="_blank" class="carousel-maps-btn" title="Google Maps">&#128205;</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Festraetstraat+40%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag tag-yellow">BEKIJKEN</span>
@@ -1809,7 +2110,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <p style="margin:6px 0">Ruim appartement, 113m². Centrum Sint-Truiden.</p>
         <div class="prop-contact">
           <span>Janssen en Janssen</span>
-          <a href="https://www.google.com/maps/search/Festraetstraat+40+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-9">
@@ -1825,7 +2125,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     </div>
 
     <div class="card info prop-v2" data-prop="koop-10" style="margin-top:12px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <img loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/300x300/03e7e48df68370e319d9965e5bdf8605.jpg" alt="Festraetstraat 40">
       <div class="prop-body">
         <span class="tag tag-yellow">TOP RANGE</span>
@@ -1837,7 +2138,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-contact">
           <span>Via Immoweb</span>
           <a href="https://www.immoweb.be/en/classified/house/for-sale/sint-truiden/3800/11337648" target="_blank" class="prop-link">🔗 Immoweb</a>
-          <a href="https://www.google.com/maps/search/Rummenweg+14B+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         
         <div class="prop-reactie" data-reactie="koop-10">
@@ -1860,6 +2160,14 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Gingelom+Steenweg+272" target="_blank" class="placeholder-maps">&#128205; Bekijk op Google Maps</a>
           </div>
       </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Rummenweg+14B+%E2%80%94+Res.+Botanique&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Rummenweg+14B+%E2%80%94+Res.+Botanique" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Rummenweg+14B+%E2%80%94+Res.+Botanique" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag tag-yellow">BEKIJKEN</span>
         <h4>11. Steenweg 272, Gingelom (±8km)</h4>
@@ -1868,7 +2176,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
 
     <div class="card success prop-v2" style="margin-top:10px" data-prop="koop-new-27">
-      <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/300x300/8fcc83b77e68797220190127ecb517af.jpg" alt="koop-new-27" loading="lazy"></div>
+      <div class="prop-top">
+        <div class="prop-img"><img src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/300x300/8fcc83b77e68797220190127ecb517af.jpg" alt="koop-new-27" loading="lazy"></div>
       <div class="prop-body">
         <span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Meyers Vastgoed</span>
         <h4>27. Stapelstraat 50 ⭐</h4>
@@ -1876,7 +2185,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€199.000</div>
         <div class="prop-meta">🛏️ 2 slpk | Huis</div>
         <p style="margin:6px 0"><strong>Goedkoopste huis!</strong> Te renoveren. 2 slaapkamers. Registratierechten slechts 2% = €3.980.</p>
-        <div class="prop-contact"><a href="tel:011485886">011 48 58 86</a> <span>Meyers Vastgoed</span> <a href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21450392" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:011485886">011 48 58 86</a> <span>Meyers Vastgoed</span> <a href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21450392" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -1890,7 +2199,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€215.000</div>
         <div class="prop-meta">🛏️ 4 slpk | 📐 139m² | Huis</div>
         <p style="margin:6px 0"><strong>Ruim gezinshuis!</strong> 4 slaapkamers, 139m². Ideaal voor gezin met kinderen.</p>
-        <div class="prop-contact"><a href="tel:012233501">012 23 35 01</a> <span>Berlakonsult</span> <a href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21276420" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Erberstraat+15+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:012233501">012 23 35 01</a> <span>Berlakonsult</span> <a href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21276420" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -1904,7 +2213,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-price">€255.000</div>
         <div class="prop-meta">🛏️ 2 slpk | 📐 113m² | Appartement</div>
         <p style="margin:6px 0">Ruim appartement 113m². Nieuwbouw, 2 slaapkamers.</p>
-        <div class="prop-contact"><a href="tel:011199991">011 19 99 91</a> <span>Janssen en Janssen</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-koop/sint-truiden/3800/21436891" target="_blank" class="prop-link">🔗 Immoweb</a> <a href="https://www.google.com/maps/search/Festraetstraat+40+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a></div>
+        <div class="prop-contact"><a href="tel:011199991">011 19 99 91</a> <span>Janssen en Janssen</span> <a href="https://www.immoweb.be/nl/zoekertje/appartement/te-koop/sint-truiden/3800/21436891" target="_blank" class="prop-link">🔗 Immoweb</a></div>
         
       </div>
     </div>
@@ -1990,7 +2299,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 100m²</div>
         <p style="margin:6px 0">3 slaapkamers voor onder €200k!</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stationsstraat+2/407+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
@@ -2004,7 +2312,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 106m²</div>
         <p style="margin:6px 0">Betaalbaar! 2 slpk, 106m². Renovatie nodig?</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Adelardusstraat+10+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
@@ -2016,6 +2323,14 @@ details[open] .reactie-toggle::before{content:'▼ '}
             <a href="https://www.google.com/maps/search/Eengezinswoning+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
       </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stapelstraat+50+%E2%AD%90&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stapelstraat+50+%E2%AD%90" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stapelstraat+50+%E2%AD%90" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">DUO Vastgoed</span>
         <h4>14. Eengezinswoning centrum, Sint-Truiden</h4>
@@ -2023,17 +2338,25 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 101m²</div>
         <p style="margin:6px 0">Gezellige stadswoning in het hartje.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Eengezinswoning+centrum+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
             <div class="placeholder-addr">Sint-Martenplein 8/104, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Sint-Martenplein+8/104+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Sint-Martenplein+8%2F104%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Sint-Martenplein+8%2F104%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Sint-Martenplein+8%2F104%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
@@ -2042,17 +2365,25 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 90m²</div>
         <p style="margin:6px 0">3 slaapkamers op toplocatie Sint-Martenplein.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Sint-Martenplein+8/104+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
             <div class="placeholder-addr">Schepen Dejonghstraat 1/302, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1/302+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Schepen+Dejonghstraat+1%2F302%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1%2F302%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1%2F302%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
@@ -2061,17 +2392,25 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 95m²</div>
         <p style="margin:6px 0">Modern appartement, 2 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Schepen+Dejonghstraat+1/302+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
             <div class="placeholder-addr">Schurhoven 39, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Schurhoven+39+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Schurhoven+39%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Schurhoven+39%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Schurhoven+39%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">ERA Nobis</span>
@@ -2080,17 +2419,25 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 123m²</div>
         <p style="margin:6px 0">Ruime woning 123m² met tuin (315m² perceel).</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Schurhoven+39+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img">
+      <div class="prop-top">
+        <div class="prop-img">
         <div class="prop-placeholder-nice">
             <div class="placeholder-icon">🏡</div>
             <div class="placeholder-addr">Parkstraat 15, Sint-Truiden</div>
             <a href="https://www.google.com/maps/search/Parkstraat+15+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Bekijk op Google Maps</a>
           </div>
+      </div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Parkstraat+15%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Parkstraat+15%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Parkstraat+15%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
       </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">ImmoClee</span>
@@ -2099,7 +2446,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 120m²</div>
         <p style="margin:6px 0">Stadsappartement met berging. EPC D.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Parkstraat+15+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
@@ -2108,11 +2454,20 @@ details[open] .reactie-toggle::before{content:'▼ '}
     <h3 style="margin-top:24px;color:var(--accent)">Extra Vondsten — Scan 27/3 middag</h3>
 
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Schoenmakersstraat 6, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Schoenmakersstraat+6+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Schoenmakersstraat+6%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Schoenmakersstraat+6%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Schoenmakersstraat+6%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
         <h4>19. Schoenmakersstraat 6, Sint-Truiden</h4>
@@ -2120,16 +2475,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 130m²</div>
         <p style="margin:6px 0">Spotgoedkoop! 3 slpk, 130m². Renovatie nodig.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Schoenmakersstraat+6+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Erberstraat 51, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Erberstraat+51+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Erberstraat+51%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Erberstraat+51%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Erberstraat+51%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">ERA Nobis</span>
         <h4>20. Erberstraat 51, Sint-Truiden</h4>
@@ -2137,16 +2500,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 184m²</div>
         <p style="margin:6px 0">Ruim huis 184m² voor €180k. 3-4 slaapkamers.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Erberstraat+51+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Diesterstraat 48/001, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Diesterstraat+48/001+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Diesterstraat+48%2F001%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Diesterstraat+48%2F001%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Diesterstraat+48%2F001%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Aktimmo</span>
         <h4>21. Diesterstraat 48/001, Sint-Truiden</h4>
@@ -2154,16 +2525,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk</div>
         <p style="margin:6px 0">Wandelafstand van winkels, rustige ligging.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Diesterstraat+48/001+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Handelspand centrum, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Handelspand+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Handelspand+centrum%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Handelspand+centrum%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Handelspand+centrum%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Immoweb</span>
         <h4>22. Handelspand centrum, Sint-Truiden</h4>
@@ -2171,16 +2550,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk</div>
         <p style="margin:6px 0">Karaktervol handelspand. NIEUW op Immoweb.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Handelspand+centrum+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Stadswoning, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Stadswoning+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Stadswoning%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Stadswoning%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Stadswoning%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Immoweb</span>
         <h4>23. Stadswoning, Sint-Truiden</h4>
@@ -2188,16 +2575,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 4 slpk | 📐 139m²</div>
         <p style="margin:6px 0">Ruime stadswoning 4 slpk. Goede investering.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Stadswoning+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Huis Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Huis+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Immoweb</span>
         <h4>24. Huis Sint-Truiden</h4>
@@ -2205,16 +2600,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 3 slpk | 📐 152m²</div>
         <p style="margin:6px 0">Huis 152m², 3 slaapkamers. NIEUW.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Huis+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">Prins Albertlaan 52/203, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/Prins+Albertlaan+52/203+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=Prins+Albertlaan+52%2F203%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/Prins+Albertlaan+52%2F203%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/Prins+Albertlaan+52%2F203%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">ERA Nobis</span>
         <h4>25. Prins Albertlaan 52/203, Sint-Truiden</h4>
@@ -2222,16 +2625,24 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 103m²</div>
         <p style="margin:6px 0">Modern appartement, 2 slpk.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/Prins+Albertlaan+52/203+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
     <div class="card prop-v2" style="margin-top:10px">
-      <div class="prop-img"><div class="prop-placeholder-nice">
+      <div class="prop-top">
+        <div class="prop-img"><div class="prop-placeholder-nice">
         <div class="placeholder-icon">🏡</div>
         <div class="placeholder-addr">App. centrum, Sint-Truiden</div>
         <a href="https://www.google.com/maps/search/App.+centrum+Sint-Truiden" target="_blank" class="placeholder-maps">📍 Maps</a>
       </div></div>
+        <div class="prop-map">
+          <iframe src="https://maps.google.com/maps?q=App.+centrum%2C+Sint-Truiden&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-links">
+            <a href="https://www.google.com/maps/search/App.+centrum%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+            <a href="https://www.google.com/maps/search/App.+centrum%2C+Sint-Truiden" target="_blank">🛣️ Street View</a>
+          </div>
+        </div>
+      </div>
       <div class="prop-body">
         <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Immoweb</span>
         <h4>26. App. centrum, Sint-Truiden</h4>
@@ -2239,7 +2650,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
         <div class="prop-meta">🛏️ 2 slpk | 📐 113m²</div>
         <p style="margin:6px 0">Ruim appartement 113m². NIEUW.</p>
         <div class="prop-contact">
-          <a href="https://www.google.com/maps/search/App.+centrum+Sint-Truiden" target="_blank" class="gmaps-link">📍 Maps</a>
         </div>
         </div>
     </div>
