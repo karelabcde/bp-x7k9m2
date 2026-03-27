@@ -376,7 +376,7 @@ document.getElementById('authPass').focus();
 </script>
 <header>
 <div class="container">
-<div class="badge">VERSIE 12.8 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+<div class="badge">VERSIE 12.9 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
 <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
 <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
 <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -453,6 +453,20 @@ document.getElementById('authPass').focus();
 <!-- ============ TAB: STRATEGIE ============ -->
 <div class="section" id="strategie">
 <h2>🗡️ Battleplan — Echtscheidingsstrategie</h2>
+<div class="card" style="border-left:4px solid #ef5350;margin-top:16px">
+<h3>🏠 Strategie Woning Tongersesteenweg 287</h3>
+<div style="background:rgba(239,83,80,0.1);padding:12px;border-radius:8px;margin:8px 0">
+<p style="margin:0;font-weight:700;color:#ef5350">Stefania wil het huis NIET overnemen — uitgemaakte zaak.</p>
+</div>
+<p><strong>Plan:</strong> Verkoop aan derden, opbrengst 50/50 verdeeld.</p>
+<p><strong>Optie Marius:</strong> Als de reële waarde (geschat €320-360k) lager blijkt dan Marius' vraagprijs → Marius kan Karel's helft overkopen. <em>"Als je echt denkt dat het huis zoveel waard is, koop dan mijn helft."</em></p>
+<p><strong>Waarom sterk:</strong> Dit dwingt Marius om ofwel een realistische verkoopprijs te accepteren, ofwel zelf bij te leggen als hij het huis wil houden.</p>
+<ul style="margin:8px 0;padding-left:20px">
+<li>Leningen worden NIET overgenomen door Stefania (€210-225k scenario vervalt)</li>
+<li>Bij verkoop: leningen worden afgelost uit opbrengst, rest 50/50</li>
+<li>Schatter aanstellen voor objectieve waardebepaling</li>
+</ul>
+</div>
 <div class="card highlight">
 <h3>Fase 0 — Huidige Situatie (25/03/2026)</h3>
 <ul>
@@ -696,13 +710,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://vastgoed.meyersco.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-1">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -733,13 +753,19 @@ document.getElementById('authPass').focus();
 <span>Eigenaar (rechtstreeks)</span>
 </div>
 <div class="prop-reactie" data-reactie="huur-2">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -773,13 +799,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://immovesta.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-3">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -808,13 +840,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-4">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -843,13 +881,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-5">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -876,13 +920,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-6">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -908,13 +958,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-7">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -940,13 +996,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-8">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -975,13 +1037,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-9">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1008,13 +1076,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-10">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1041,13 +1115,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-11">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1074,13 +1154,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-12">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1107,13 +1193,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-13">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1142,13 +1234,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-14">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1177,13 +1275,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-15">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1210,13 +1314,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-16">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1243,13 +1353,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-17">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1276,13 +1392,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-18">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1309,13 +1431,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-19">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1342,13 +1470,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-20">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1375,13 +1509,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-21">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1408,13 +1548,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-22">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1441,13 +1587,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-23">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1473,13 +1625,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-24">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1511,13 +1669,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-25">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1549,13 +1713,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-26">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1582,13 +1752,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-27">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1615,13 +1791,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-28">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1649,13 +1831,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-huur/sint-truiden/3800/20402929" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-29">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1682,13 +1870,19 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 </div>
 <div class="prop-reactie" data-reactie="huur-30">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1714,13 +1908,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="huur-31">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 <p style="font-size:12px;color:var(--muted);margin-top:16px">H = Huis, A = Appartement, H+W = Handelspand + Woonst. Volledige lijst: 47 panden onderzocht (16 afgevallen wegens score 1-2).</p>
@@ -1744,13 +1944,19 @@ document.getElementById('authPass').focus();
 <a href="https://www.imanex.be/nl/te-huur" style="color:var(--accent)" target="_blank">🔗 Bron</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-1">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1779,13 +1985,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000" target="_blank">🔗 Immoweb</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-2">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-3" style="margin-top:12px">
@@ -1880,13 +2092,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://www.pierco.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-6">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1916,13 +2134,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-7">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1952,13 +2176,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-8">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -1987,13 +2217,19 @@ document.getElementById('authPass').focus();
 <span>Janssen en Janssen</span>
 </div>
 <div class="prop-reactie" data-reactie="koop-9">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -2078,13 +2314,19 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://www.aktimmo.be" target="_blank">🔗 Website</a>
 </div>
 <div class="prop-reactie" data-reactie="koop-11">
-<details>
-<summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-<div class="reactie-content">
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Samenvatting reactie..."></textarea>
-<textarea class="reactie-full" onchange="saveReactie(this)" placeholder="Volledig antwoord (plak email hier)..."></textarea>
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</details>
 </div>
 </div>
 </div>
@@ -3574,6 +3816,7 @@ function calculateLoan() {
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 18:00</td><td>Financiering details toegevoegd: Vlaamse Huursubsidie, OCMW, VMSW, Registratierechten, Verbouwlening</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 19:00</td><td>5 e-mail drafts aangemaakt voor makelaars (RT Vastgoed, Aktimmo, Pierco, Meyers, Immo Vesta)</td><td>✅ Verzonden</td></tr>
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 19:30</td><td>Contactstatus badges toegevoegd per pand (v9.1)</td><td>✅</td></tr>
+<tr><td style="padding:4px 6px;">27/03 23:30</td><td>v12.9: Fix statussen, property status tracking, FR vertaling hersteld, strategie woning bijgewerkt</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 20:00</td><td>137 extra FR vertalingen + TreeWalker translatePage (v9.2-v9.3)</td><td>✅</td></tr>
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 21:00</td><td>Beschikbaarheidscheck alle panden: Immoweb (9/10 ok), RT Vastgoed (3 weg), AKTIMMO (geen relevante)</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 21:00</td><td>Verwijderde panden gemarkeerd: huur-25 (Capucienessenstraat), huur-26 (Tiensesteenweg 58), huur-29 (Vissegatstraat 40)</td><td>✅</td></tr>
@@ -3656,6 +3899,33 @@ function updateCheckProgress() {
 restoreAllChecks();
 
 // ============ REACTIE TRACKING (localStorage) ============
+// ============ PROPERTY STATUS TRACKING (localStorage) ============
+const PROP_KEY = 'stefania_props_v1';
+
+function loadAllProps() {
+  try { return JSON.parse(localStorage.getItem(PROP_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+
+function savePropStatus(propId, status) {
+  const data = loadAllProps();
+  if (!data[propId]) data[propId] = {};
+  data[propId].status = status;
+  localStorage.setItem(PROP_KEY, JSON.stringify(data));
+}
+
+function restoreAllStatuses() {
+  const data = loadAllProps();
+  Object.keys(data).forEach(id => {
+    const card = document.querySelector('[data-prop="' + id + '"]');
+    if (!card) return;
+    const d = data[id];
+    // Restore status dropdown if exists
+    const sel = card.querySelector('.tbl-status');
+    if (sel && d.status) sel.value = d.status;
+  });
+}
+
 const REACTIE_KEY = 'stefania_reacties_v1';
 
 function saveReactie(el) {
@@ -3692,6 +3962,7 @@ function restoreAllReacties() {
   });
 }
 restoreAllReacties();
+restoreAllStatuses();
 
 // ============ HUUR CARD FILTER ============
 function filterHuurCards() {
@@ -3942,6 +4213,189 @@ window.addEventListener('scroll', function() {
 });
 
 
+// ============ FRENCH TRANSLATION v12.9 ============
+var currentLang = 'nl';
+var TR = {
+  // Header
+  'Project Stefania — Scheiding & Nieuw Thuis': 'Projet Stefania — Divorce & Nouveau Chez-soi',
+  'Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering & Juridisch': 'Stefania Gheonea vs. Marius-Catalin Gheonea — Stratégie, Logements, Financement & Juridique',
+  'VERTROUWELIJK — Enkel voor Karel Anseeuw & Mr. Frank Strauven': 'CONFIDENTIEL — Uniquement pour Karel Anseeuw & Me Frank Strauven',
+  // Nav tabs
+  'Overzicht': 'Aperçu',
+  'Strategie': 'Stratégie',
+  'Huurwoningen': 'Locations',
+  'Koopwoningen': 'Achats',
+  'Financiering': 'Financement',
+  'Juridisch': 'Juridique',
+  'Extra Inkomen': 'Revenu Supplémentaire',
+  'Slimme Trucs': 'Astuces',
+  'Actieplan': "Plan d'action",
+  // Dashboard
+  'Dashboard — Huidige Situatie': 'Tableau de bord — Situation actuelle',
+  'Kinderen': 'Enfants',
+  'Schuld/maand (5 leningen)': 'Dettes/mois (5 prêts)',
+  'Geschatte waarde woning*': 'Valeur estimée du logement*',
+  'Verzoekschrift ingediend': 'Requête déposée',
+  // Status labels
+  'Gemaild': 'Envoyé par mail',
+  'Gebeld': 'Appelé',
+  'Bezichtigd': 'Visité',
+  'Optie': 'Option',
+  'Afgevallen': 'Éliminé',
+  'Antwoord': 'Réponse',
+  // Property labels
+  'slpk': 'ch.',
+  'Huur': 'Loyer',
+  'Koop': 'Achat',
+  'Beschikbaar': 'Disponible',
+  'Niet meer beschikbaar': 'Plus disponible',
+  // Buttons & UI
+  'Alle statussen': 'Tous les statuts',
+  'Alle kamers': 'Toutes les chambres',
+  'Reset': 'Réinitialiser',
+  'Straatbeeld': 'Vue de rue',
+  'Kaart': 'Carte',
+  'Street View': 'Vue de rue',
+  'Google Maps': 'Google Maps',
+  'Bekijk op Google Maps': 'Voir sur Google Maps',
+  // Sections
+  'Alle': 'Tous',
+  'Panden': 'Biens',
+  'TOP': 'TOP',
+  'TOP picks': 'TOP sélection',
+  'Nieuw': 'Nouveau',
+  'Bekijken': 'À visiter',
+  // Finance
+  'Resultaat': 'Résultat',
+  'Totaal netto inkomen': 'Revenu net total',
+  'Max aflossing': 'Remboursement max',
+  'Max leenbedrag': 'Montant max du prêt',
+  'Bereken': 'Calculer',
+  'Netto inkomen Stefania': 'Revenu net Stefania',
+  'Extra inkomen': 'Revenu supplémentaire',
+  'Rentevoet': "Taux d'intérêt",
+  'Looptijd': 'Durée',
+  'jaar': 'ans',
+  // Contact
+  'Gecontacteerd per mail': 'Contacté par mail',
+  'Kort antwoord makelaar...': "Réponse courte de l'agent...",
+  'Samenvatting reactie...': 'Résumé de la réponse...',
+  'Volledig antwoord (plak email hier)...': "Réponse complète (collez l'email ici)...",
+  'Reactie makelaar': "Réponse de l'agent",
+  // Strategy - new
+  'Strategie Woning': 'Stratégie Logement',
+  'Verkoop aan derden': 'Vente à des tiers',
+  'Opbrengst 50/50': 'Produit 50/50',
+  // Logboek
+  'Logboek Acties': 'Journal des actions',
+  'Mail Tracker — Verzonden & Antwoorden': 'Suivi des mails — Envoyés & Réponses',
+  'Makelaar': 'Agent immobilier',
+  'Pand': 'Bien',
+  'Verzonden': 'Envoyé',
+  'Antwoord ontvangen': 'Réponse reçue',
+  'Wacht op antwoord': 'En attente de réponse',
+  'Wachtlijst': "Liste d'attente",
+  // Juridisch
+  'Verzoekschrift': 'Requête',
+  'Advocaat': 'Avocat',
+  'Vrederechter': 'Juge de paix',
+  'Echtscheiding': 'Divorce',
+  'Dringend': 'Urgent',
+  // Misc
+  'Bekijk': 'Voir',
+  'Meer info': "Plus d'infos",
+  'Website': 'Site web',
+  'Renovatie nodig': 'Rénovation nécessaire',
+  'Ideaal voor LuluPrint!': 'Idéal pour LuluPrint !',
+  'Centrum': 'Centre',
+  'Beschikbaar nu': 'Disponible maintenant',
+  'per maand': 'par mois',
+  'Zoeken...': 'Rechercher...',
+  'van': 'de',
+  'niet meer beschikbaar': 'plus disponible',
+  // Checklist
+  'Checklist': 'Liste de contrôle',
+  'Afronden': 'Finaliser',
+  // Footer
+  'Vertrouwelijk document': 'Document confidentiel',
+  'Laatste update': 'Dernière mise à jour',
+
+  'Strategie Woning Tongersesteenweg 287': 'Stratégie Logement Tongersesteenweg 287',
+  'Stefania wil het huis NIET overnemen — uitgemaakte zaak.': 'Stefania NE VEUT PAS reprendre la maison — c\'est décidé.',
+  'Verkoop aan derden, opbrengst 50/50 verdeeld.': 'Vente à des tiers, produit partagé 50/50.',
+  'Als de reële waarde (geschat €320-360k) lager blijkt dan Marius\' vraagprijs → Marius kan Karel\'s helft overkopen.': 'Si la valeur réelle (estimée €320-360k) s\'avère inférieure au prix demandé par Marius → Marius peut racheter la moitié de Karel.',
+  'Waarom sterk:': 'Pourquoi c\'est fort :',
+  'Leningen worden NIET overgenomen door Stefania (€210-225k scenario vervalt)': 'Les prêts ne sont PAS repris par Stefania (scénario €210-225k annulé)',
+  'Bij verkoop: leningen worden afgelost uit opbrengst, rest 50/50': 'En cas de vente : les prêts sont remboursés sur le produit, le reste 50/50',
+  'Schatter aanstellen voor objectieve waardebepaling': 'Désigner un expert pour une évaluation objective',
+};
+
+function translatePage(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+
+  // Use TreeWalker to find all text nodes
+  var walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  var dict = lang === 'fr' ? TR : invertDict(TR);
+  var node;
+  while (node = walker.nextNode()) {
+    var text = node.textContent.trim();
+    if (!text || text.length < 2) continue;
+    // Skip script/style content
+    var parent = node.parentElement;
+    if (!parent) continue;
+    var tag = parent.tagName;
+    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA' || tag === 'INPUT') continue;
+
+    // Try exact match first
+    if (dict[text]) {
+      node.textContent = node.textContent.replace(text, dict[text]);
+      continue;
+    }
+
+    // Try partial matches for longer texts
+    var keys = Object.keys(dict).sort(function(a,b) { return b.length - a.length; });
+    for (var i = 0; i < keys.length; i++) {
+      if (text.indexOf(keys[i]) !== -1) {
+        node.textContent = node.textContent.replace(keys[i], dict[keys[i]]);
+        break; // one replacement per node to avoid conflicts
+      }
+    }
+  }
+
+  // Translate placeholders
+  document.querySelectorAll('[placeholder]').forEach(function(el) {
+    var ph = el.getAttribute('placeholder');
+    if (dict[ph]) el.setAttribute('placeholder', dict[ph]);
+  });
+
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+var _invertedTR = null;
+function invertDict(d) {
+  if (_invertedTR) return _invertedTR;
+  _invertedTR = {};
+  Object.keys(d).forEach(function(k) { _invertedTR[d[k]] = k; });
+  return _invertedTR;
+}
+
+// Lang button click handlers
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    translatePage(btn.dataset.lang);
+  });
+});
+
 // ============ SELF-TEST v12.8 ============
 
 /* Street View toggle in map panel */
@@ -4015,7 +4469,10 @@ document.addEventListener('click', function(e) {
     ['tabs', document.querySelectorAll('.nav-tab').length >= 4, 'Not enough nav tabs'],
     ['gallery-data', typeof GALLERY_DATA === 'object' && Object.keys(GALLERY_DATA).length > 0, 'GALLERY_DATA empty or missing'],
     ['toggleMapSV', typeof toggleMapSV === 'function', 'toggleMapSV function missing'],
-    ['sv-toggles', document.querySelectorAll('.map-toggle').length > 0, 'No Street View toggle buttons found']
+    ['sv-toggles', document.querySelectorAll('.map-toggle').length > 0, 'No Street View toggle buttons found'],
+    ['loadAllProps', typeof loadAllProps === 'function', 'loadAllProps function missing'],
+    ['translatePage', typeof translatePage === 'function', 'translatePage function missing'],
+    ['lang-btns', document.querySelectorAll('.lang-btn').length === 2, 'Language buttons missing']
   ];
   checks.forEach(function(c) {
     if (!c[1]) errors.push('[FAIL] ' + c[0] + ': ' + c[2]);
@@ -4025,7 +4482,7 @@ document.addEventListener('click', function(e) {
     console.error('SELF-TEST: ' + errors.length + ' ERRORS');
     errors.forEach(function(e) { console.error(e); });
   } else {
-    console.log('SELF-TEST: ALL ' + checks.length + ' CHECKS PASSED (v12.8)');
+    console.log('SELF-TEST: ALL ' + checks.length + ' CHECKS PASSED (v12.9)');
   }
 })();
 </script>
