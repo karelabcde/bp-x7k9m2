@@ -147,10 +147,12 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 
 /* PROPERTY CARDS V3 — redesign */
 .prop-v2{display:grid;grid-template-columns:1fr;gap:0;overflow:hidden;border-radius:14px}
-.prop-v2 .prop-top{display:grid;grid-template-columns:1fr 260px;gap:0;min-height:220px}
-.prop-v2 .prop-img{background:#1e293b;display:flex;align-items:center;justify-content:center;min-height:220px;position:relative;overflow:hidden;cursor:pointer}
-.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;transition:transform 0.3s}
+.prop-v2 .prop-top{display:grid;grid-template-columns:2fr 1fr;gap:0;min-height:240px}
+.prop-v2 .prop-img{background:#1e293b;min-height:240px;overflow:hidden;cursor:pointer;position:relative}
+.prop-v2 .prop-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
 .prop-v2 .prop-img:hover img{transform:scale(1.05)}
+.prop-v2 .prop-carousel{min-height:220px;border-radius:0}
+.prop-v2 .prop-carousel img{image-rendering:auto}
 .prop-v2 .prop-img .placeholder{color:var(--muted);font-size:13px;text-align:center;padding:12px}
 .prop-v2 .prop-img .placeholder span{display:block;font-size:32px;margin-bottom:4px}
 .prop-v2 .prop-map{overflow:hidden;background:#0f172a;display:flex;flex-direction:column}
@@ -320,7 +322,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 10.9 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+    <div class="badge">VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -2243,6 +2245,12 @@ details[open] .reactie-toggle::before{content:'▼ '}
       <p><strong>Tip:</strong> Op Immoweb staan momenteel 34 huizen en 63 appartementen te koop in Sint-Truiden. Filter op max €250.000 en 2+ slaapkamers voor de meest relevante resultaten. Nieuwbouwappartementen bieden vaak betere EPC en lagere registratierechten.</p>
     </div>
 
+    
+  </div>
+
+  <!-- ============ TAB: KOOPWONINGEN ============ -->
+  <div id="koop" class="section">
+    <h2>🏡 Koopwoningen Sint-Truiden</h2>
     <h3>Koopscenario — Berekening per Prijsklasse + Benodigd Inkomen <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span> <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">&#9993; Gemaild aan RT Vastgoed</span></h3>
     <div class="card highlight">
       <p style="margin-bottom:12px"><strong>Hoeveel inkomen heeft Stefania nodig per prijsklasse?</strong> Berekend op basis van 40% aflossingsregel + leefoverschot €1.200/mnd (moeder + 2 kinderen).</p>
@@ -5129,7 +5137,7 @@ document.addEventListener('keydown', function(e) {
 'Type:':'Type:',
 'URGENT — NU CONTACTEREN':'URGENT — NU CONTACTEREN',
 'Ursulinenstraat 18/202, Sint-Truiden':'Ursulinenstraat 18/202, Sint-Truiden',
-'VERSIE 10.9 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 10.9 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
+'VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 11.1 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
 'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven':'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven',
 'Vaak vergeten:':'Vaak vergeten:',
 'Van €1.600 → €2.300 netto = €700 meer per maand. Dat maakt het verschil tussen huurwoning en koopwoning!':'Van €1.600 → €2.300 net = €700 meer per mois. Dat maakt het verschil tussen huurwoning en koopwoning!',
