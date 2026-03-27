@@ -3798,6 +3798,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     tab.classList.add('active');
     var section = document.getElementById(tab.dataset.tab);
+    if (!section) return;
     section.classList.add('active');
     // Clone-replace broken images to force browser reload
     setTimeout(function() {
