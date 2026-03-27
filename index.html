@@ -313,7 +313,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 10.1 — LIVE TRACKER 27/03/2026</div>
+    <div class="badge">VERSIE 10.2 — LIVE TRACKER 27/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -4152,6 +4152,18 @@ function calculateLoan() {
         <div class="fin-row total"><span class="label">Max leenbedrag</span><span class="value pos">€${Math.round(maxLoan).toLocaleString()}</span></div>
       </div>
       
+<div class="card" style="margin-top:18px; border-left:4px solid #43a047;">
+<h3>📬 Mail Tracker — Verzonden & Antwoorden</h3>
+<table style="width:100%;font-size:0.88em;border-collapse:collapse;">
+<tr style="background:#e8f5e9;font-weight:bold;"><td style="padding:6px;">Makelaar</td><td>Pand</td><td>Verzonden</td><td>Status</td><td>Antwoord</td></tr>
+<tr><td style="padding:4px 6px;">RT Vastgoed</td><td>Capucienessenstraat 7, Tiensesteenweg 58, Tiensesteenweg 35</td><td>27/03</td><td>⏳ Wacht op antwoord</td><td>—</td></tr>
+<tr style="background:#f5f5f5;"><td style="padding:4px 6px;">AKTIMMO</td><td>Tichelrijstraat — Res. Nieuwpoort</td><td>27/03</td><td>⏳ Wacht op antwoord</td><td>—</td></tr>
+<tr><td style="padding:4px 6px;">Pierco</td><td>Sint-Anneke 26/101</td><td>27/03</td><td>⏳ Wacht op antwoord</td><td>—</td></tr>
+<tr style="background:#f5f5f5;"><td style="padding:4px 6px;">Meyers & Co</td><td>Stapelstraat 50</td><td>27/03</td><td>⏳ Wacht op antwoord</td><td>—</td></tr>
+<tr><td style="padding:4px 6px;">Immovesta</td><td>Terwouwenstraat 28</td><td>27/03</td><td>⏳ Wacht op antwoord</td><td>—</td></tr>
+</table>
+</div>
+
 <div class="card" style="margin-top:18px; border-left:4px solid #1565c0;">
 <h3>📋 Logboek Acties</h3>
 <table style="width:100%;font-size:0.88em;border-collapse:collapse;">
@@ -4160,12 +4172,13 @@ function calculateLoan() {
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 14:00</td><td>FR/NL taalswitch gefixed (v8.1-v8.3) — nav-tabs, h1, text-node approach</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 17:00</td><td>Immoweb-scan avond — 5 nieuwe huurpanden + 3 kooppanden gevonden (v9.0)</td><td>✅</td></tr>
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 18:00</td><td>Financiering details toegevoegd: Vlaamse Huursubsidie, OCMW, VMSW, Registratierechten, Verbouwlening</td><td>✅</td></tr>
-<tr><td style="padding:4px 6px;">27/03 19:00</td><td>5 e-mail drafts aangemaakt voor makelaars (RT Vastgoed, Aktimmo, Pierco, Meyers, Immo Vesta)</td><td>📧 Drafts klaar</td></tr>
+<tr><td style="padding:4px 6px;">27/03 19:00</td><td>5 e-mail drafts aangemaakt voor makelaars (RT Vastgoed, Aktimmo, Pierco, Meyers, Immo Vesta)</td><td>✅ Verzonden</td></tr>
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 19:30</td><td>Contactstatus badges toegevoegd per pand (v9.1)</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 20:00</td><td>137 extra FR vertalingen + TreeWalker translatePage (v9.2-v9.3)</td><td>✅</td></tr>
 <tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 21:00</td><td>Beschikbaarheidscheck alle panden: Immoweb (9/10 ok), RT Vastgoed (3 weg), AKTIMMO (geen relevante)</td><td>✅</td></tr>
 <tr><td style="padding:4px 6px;">27/03 21:00</td><td>Verwijderde panden gemarkeerd: huur-25 (Capucienessenstraat), huur-26 (Tiensesteenweg 58), huur-29 (Vissegatstraat 40)</td><td>✅</td></tr>
-<tr style="background:#e8f5e9;"><td style="padding:4px 6px;font-weight:bold;">VOLGENDE</td><td>Mails versturen naar makelaars (5 drafts klaar) + telefonisch contact (3 makelaars)</td><td>⏳ Wacht op Karel</td></tr>
+<tr style="background:#f5f5f5;"><td style="padding:4px 6px;">27/03 22:00</td><td>5 mails verzonden naar makelaars: RT Vastgoed, AKTIMMO, Pierco, Meyers & Co, Immovesta</td><td>✅ Verzonden</td></tr>
+<tr style="background:#e8f5e9;"><td style="padding:4px 6px;font-weight:bold;">VOLGENDE</td><td>Antwoorden afwachten van makelaars + telefonisch follow-up indien nodig (3-5 dagen)</td><td>⏳ Wacht op antwoord</td></tr>
 </table>
 </div>
 
@@ -4574,6 +4587,12 @@ document.addEventListener('keydown', function(e) {
 'Immoweb advertentie verwijderd':'Annonce Immoweb supprimée',
 'Drafts klaar':'Brouillons prêts',
 'niet verstuurd':'non envoyé',
+'Mail Tracker — Verzonden & Antwoorden':'Suivi Mails — Envoyés & Réponses',
+'Makelaar':'Agent immobilier',
+'Verzonden':'Envoyé',
+'Antwoord':'Réponse',
+'Wacht op antwoord':'En attente de réponse',
+'5 mails verzonden naar makelaars: RT Vastgoed, AKTIMMO, Pierco, Meyers & Co, Immovesta':'5 mails envoyés aux agents: RT Vastgoed, AKTIMMO, Pierco, Meyers & Co, Immovesta',
 
 'Kernprobleem & Prioriteiten':'Problème Central & Priorités',
 'Kernprobleem &amp; Prioriteiten':'Problème Central & Priorités',
