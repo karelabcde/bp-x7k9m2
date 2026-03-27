@@ -277,7 +277,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 8.2 — LIVE TRACKER 26/03/2026</div>
+    <div class="badge">VERSIE 8.3 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -4309,6 +4309,8 @@ document.addEventListener('keydown', function(e) {
       '23 kantoren': '23 agences',
       // Header
       'Scheiding & Nieuw Thuis': 'Divorce & Nouveau Foyer',
+      'Scheiding': 'Divorce',
+      'Nieuw Thuis': 'Nouveau Foyer',
       'LIVE TRACKER': 'SUIVI EN DIRECT',
     };
 
@@ -4359,10 +4361,13 @@ document.addEventListener('keydown', function(e) {
         }
         var text = el.textContent.trim();
         if (!text) return;
-        for (var nl in translations) {
+        var sortedKeys = Object.keys(translations).sort(function(a,b){return b.length - a.length;});
+        for (var i = 0; i < sortedKeys.length; i++) {
+          var nl = sortedKeys[i];
           if (text.includes(nl)) {
             if (!originalTexts.has(el)) originalTexts.set(el, el.textContent);
             el.textContent = el.textContent.replace(nl, translations[nl]);
+            text = el.textContent.trim();
           }
         }
       });
