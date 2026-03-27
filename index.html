@@ -302,7 +302,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 9.2 — LIVE TRACKER 26/03/2026</div>
+    <div class="badge">VERSIE 9.3 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -4662,61 +4662,57 @@ document.addEventListener('keydown', function(e) {
         originalTexts.forEach(function(entry, el) {
           if (el.nodeType === 3) { el.textContent = entry; return; }
           if (el.tagName === 'INPUT') el.placeholder = entry;
+          else if (el.tagName === 'OPTION') el.textContent = entry;
           else el.textContent = entry;
         });
         document.documentElement.lang = 'nl';
         return;
       }
-      // Translate nav-tabs: target text nodes (not spans which hold emojis)
-      document.querySelectorAll('.nav-tab').forEach(function(tab) {
-        for (var i = 0; i < tab.childNodes.length; i++) {
-          var node = tab.childNodes[i];
-          if (node.nodeType === 3) { // text node
-            var t = node.textContent.trim();
-            if (t && translations[t]) {
-              if (!originalTexts.has(node)) originalTexts.set(node, node.textContent);
-              node.textContent = node.textContent.replace(t, translations[t]);
-            }
-          }
-        }
-      });
-      // Translate regular elements
-      var allEls = document.querySelectorAll('h1,h2,h3,h4,p,span,a,button,option,th,td,li,label,div.prop-meta,div.prop-price');
-      allEls.forEach(function(el) {
-        if (el.closest('.nav-tab')) return; // skip nav-tab children
-        if (el.children.length > 0 && el.tagName !== 'A' && el.tagName !== 'BUTTON' && el.tagName !== 'OPTION') {
-          // For parent elements, translate child spans
-          el.querySelectorAll('span').forEach(function(sp) {
-            if (sp.closest('.nav-tab')) return;
-            var t = sp.textContent.trim();
-            if (!t) return;
-            for (var nl in translations) {
-              if (t.includes(nl)) {
-                if (!originalTexts.has(sp)) originalTexts.set(sp, sp.textContent);
-                sp.textContent = sp.textContent.replace(nl, translations[nl]);
-              }
-            }
-          });
-          return;
-        }
-        var text = el.textContent.trim();
-        if (!text) return;
-        var sortedKeys = Object.keys(translations).sort(function(a,b){return b.length - a.length;});
+      // Sort keys by length descending (longest match first)
+      var sortedKeys = Object.keys(translations).sort(function(a,b){return b.length - a.length;});
+      
+      // Walk ALL text nodes in the document body and translate them
+      var walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
+      var textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+      
+      textNodes.forEach(function(node) {
+        var text = node.textContent.trim();
+        if (!text || text.length < 2) return;
+        // Skip script/style content
+        var parent = node.parentElement;
+        if (!parent) return;
+        var tag = parent.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return;
+        
+        var changed = false;
+        var newText = node.textContent;
         for (var i = 0; i < sortedKeys.length; i++) {
           var nl = sortedKeys[i];
-          if (text.includes(nl)) {
-            if (!originalTexts.has(el)) originalTexts.set(el, el.textContent);
-            el.textContent = el.textContent.replace(nl, translations[nl]);
-            text = el.textContent.trim();
+          if (newText.indexOf(nl) !== -1) {
+            if (!changed) {
+              if (!originalTexts.has(node)) originalTexts.set(node, node.textContent);
+              changed = true;
+            }
+            newText = newText.split(nl).join(translations[nl]);
           }
         }
+        if (changed) node.textContent = newText;
       });
+      
       // Translate placeholders
       document.querySelectorAll('input[placeholder]').forEach(function(inp) {
         var ph = inp.placeholder;
-        if (translations[ph]) {
-          if (!originalTexts.has(inp)) originalTexts.set(inp, ph);
-          inp.placeholder = translations[ph];
+        for (var i = 0; i < sortedKeys.length; i++) {
+          if (ph.indexOf(sortedKeys[i]) !== -1) {
+            if (!originalTexts.has(inp)) originalTexts.set(inp, inp.placeholder);
+            inp.placeholder = inp.placeholder.split(sortedKeys[i]).join(translations[sortedKeys[i]]);
+          }
         }
       });
       // Translate select options
