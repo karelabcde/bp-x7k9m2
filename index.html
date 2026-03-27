@@ -271,7 +271,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <header>
   <div class="container">
-    <div class="badge">VERSIE 7.7 — LIVE TRACKER 26/03/2026</div>
+    <div class="badge">VERSIE 7.8 — LIVE TRACKER 26/03/2026</div>
     <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
     <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
     <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -3504,7 +3504,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <footer>
   <div class="container">
-    <p>Project Stefania v7.7 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
+    <p>Project Stefania v7.8 — Samengesteld door Dr. Karel Anseeuw met AI-ondersteuning — 26/03/2026</p>
     <p style="margin-top:4px">Bronnen: Immoweb, Zimmo, Vlaams Woningfonds, notaris.be, NEO Bemiddeling, Wikifin, Test-Aankoop, hypotheekwinkel.be, kredietadvies.be, Gemini Pro, DeepSeek/Kagi (80 bronnen)</p>
   </div>
 </footer>
@@ -3516,7 +3516,18 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     tab.classList.add('active');
-    document.getElementById(tab.dataset.tab).classList.add('active');
+    var section = document.getElementById(tab.dataset.tab);
+    section.classList.add('active');
+    // Force-load images in newly visible tab
+    setTimeout(function() {
+      section.querySelectorAll('img').forEach(function(img) {
+        if (!img.complete || img.naturalWidth === 0) {
+          var src = img.getAttribute('src');
+          img.removeAttribute('src');
+          setTimeout(function() { img.setAttribute('src', src); }, 10);
+        }
+      });
+    }, 50);
   });
 });
 
@@ -3808,7 +3819,22 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight') lightboxNav(1);
 });
 
-</script>
+
+    // Preload all images regardless of tab visibility
+    window.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('img').forEach(function(img) {
+        img.loading = 'eager';
+        if (!img.complete || img.naturalWidth === 0) {
+          var src = img.getAttribute('src');
+          if (src) {
+            var preload = new Image();
+            preload.src = src;
+          }
+        }
+      });
+    });
+
+    </script>
 
 </body>
 </html>
