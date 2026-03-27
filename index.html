@@ -345,12 +345,42 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 /* Tag enhancements */
 .tag{padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+
+/* FILTER BAR v12.4 */
+.prop-filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:12px 16px;background:var(--bg2);border-radius:12px;margin:16px 0;border:1px solid var(--border)}
+.prop-filter-bar input[type="text"]{flex:1;min-width:180px;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;outline:none}
+.prop-filter-bar input[type="text"]:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(99,102,241,0.2)}
+.prop-filter-bar select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;cursor:pointer}
+.prop-filter-bar .filter-count{font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.prop-filter-bar .filter-reset{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--accent);font-size:12px;cursor:pointer;transition:all 0.2s}
+.prop-filter-bar .filter-reset:hover{background:rgba(99,102,241,0.15)}
+
+/* ACCORDION CARDS v12.4 */
+.prop-v2 .prop-body{max-height:none;overflow:visible;transition:max-height 0.3s ease}
+.prop-v2.collapsed .prop-body{max-height:0;overflow:hidden;padding:0 20px}
+.prop-v2.collapsed .prop-top-row{cursor:pointer}
+.prop-v2 .prop-header-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;cursor:pointer;user-select:none;background:rgba(99,102,241,0.05);border-bottom:1px solid var(--border)}
+.prop-v2 .prop-header-bar h4{margin:0;font-size:14px}
+.prop-v2 .prop-header-bar .prop-price-sm{color:var(--green);font-weight:700;font-size:14px}
+.prop-v2 .prop-header-bar .prop-toggle{font-size:16px;color:var(--muted);transition:transform 0.2s}
+.prop-v2.collapsed .prop-header-bar .prop-toggle{transform:rotate(-90deg)}
+
+/* BACK TO TOP */
+.back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:20px;cursor:pointer;z-index:200;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:opacity 0.2s}
+.back-to-top.visible{display:flex}
+
+@media(max-width:768px){
+  .prop-filter-bar{flex-direction:column;gap:6px}
+  .prop-filter-bar input[type="text"]{min-width:100%}
+  .prop-filter-bar .filter-count{margin-left:0;margin-top:4px}
+}
+
 </style>
 </head>
 <body>
 <header>
 <div class="container">
-<div class="badge">VERSIE 12.3 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+<div class="badge">VERSIE 12.4 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
 <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
 <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
 <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -507,6 +537,29 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <div class="section" id="huur">
 <h2>🏠 Huurwoningen — Sint-Truiden &amp; Omgeving <span class="badge-count" id="huurCount">31</span></h2>
 <p style="color:var(--muted);margin-bottom:16px">47 panden onderzocht, 31 geselecteerd. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, Rentola, 2dehands.</p>
+<div class="prop-filter-bar" id="huurFilter">
+<input type="text" placeholder="🔍 Zoek op adres, makelaar..." id="huurSearch" oninput="filterCards('huur')">
+<select id="huurBudget" onchange="filterCards('huur')">
+<option value="">💰 Alle prijzen</option>
+<option value="800">Max €800/mnd</option>
+<option value="900">Max €900/mnd</option>
+<option value="1000">Max €1.000/mnd</option>
+<option value="1200">Max €1.200/mnd</option>
+</select>
+<select id="huurStatus" onchange="filterCards('huur')">
+<option value="">📋 Alle statussen</option>
+<option value="TOP">⭐ TOP picks</option>
+<option value="NIEUW">🆕 Nieuw</option>
+<option value="BEKIJKEN">👀 Bekijken</option>
+</select>
+<select id="huurRooms" onchange="filterCards('huur')">
+<option value="">🛏️ Alle kamers</option>
+<option value="2">Min. 2 slpk</option>
+<option value="3">Min. 3 slpk</option>
+</select>
+<button class="filter-reset" onclick="resetFilter('huur')">✕ Reset</button>
+<span class="filter-count" id="huurFilterCount"></span>
+</div>
 <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
 <div class="card success prop-v2" data-prop="huur-new-49" style="margin-top:10px">
 <div class="prop-top-row"><div class="prop-img"><img alt="huur-new-49" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/800x600/8ba812c6ea17b6f0a7be87cde60cef2b.jpg"/></div><div class="prop-map-panel">
@@ -2013,6 +2066,23 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <!-- ============ TAB: KOOPWONINGEN ============ -->
 <div class="section" id="koop">
 <h2>🏡 Koopwoningen Sint-Truiden</h2>
+<div class="prop-filter-bar" id="koopFilter">
+<input type="text" placeholder="🔍 Zoek op adres, makelaar..." id="koopSearch" oninput="filterCards('koop')">
+<select id="koopBudget" onchange="filterCards('koop')">
+<option value="">💰 Alle prijzen</option>
+<option value="200000">Max €200.000</option>
+<option value="250000">Max €250.000</option>
+<option value="300000">Max €300.000</option>
+</select>
+<select id="koopStatus" onchange="filterCards('koop')">
+<option value="">📋 Alle statussen</option>
+<option value="TOP">⭐ TOP picks</option>
+<option value="NIEUW">🆕 Nieuw</option>
+<option value="BEKIJKEN">👀 Bekijken</option>
+</select>
+<button class="filter-reset" onclick="resetFilter('koop')">✕ Reset</button>
+<span class="filter-count" id="koopFilterCount"></span>
+</div>
 <h3>Koopscenario — Berekening per Prijsklasse + Benodigd Inkomen <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">✉ Gemaild aan RT Vastgoed</span> <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80;margin-left:6px">✉ Gemaild aan RT Vastgoed</span></h3>
 <div class="card highlight">
 <p style="margin-bottom:12px"><strong>Hoeveel inkomen heeft Stefania nodig per prijsklasse?</strong> Berekend op basis van 40% aflossingsregel + leefoverschot €1.200/mnd (moeder + 2 kinderen).</p>
@@ -4709,7 +4779,7 @@ document.addEventListener('keydown', function(e) {
 'Type:':'Type:',
 'URGENT — NU CONTACTEREN':'URGENT — NU CONTACTEREN',
 'Ursulinenstraat 18/202, Sint-Truiden':'Ursulinenstraat 18/202, Sint-Truiden',
-'VERSIE 12.3 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.3 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
+'VERSIE 12.4 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.4 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
 'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven':'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven',
 'Vaak vergeten:':'Vaak vergeten:',
 'Van €1.600 → €2.300 netto = €700 meer per maand. Dat maakt het verschil tussen huurwoning en koopwoning!':'Van €1.600 → €2.300 net = €700 meer per mois. Dat maakt het verschil tussen huurwoning en koopwoning!',
@@ -5308,11 +5378,109 @@ document.addEventListener('keydown', function(e) {
     observer.observe(iframe);
   });
 })();
+
+// === FILTER SYSTEM v12.4 ===
+function filterCards(section) {
+  var searchEl = document.getElementById(section + 'Search');
+  var budgetEl = document.getElementById(section + 'Budget');
+  var statusEl = document.getElementById(section + 'Status');
+  var roomsEl = document.getElementById(section + 'Rooms');
+  
+  var search = searchEl ? searchEl.value.toLowerCase() : '';
+  var budget = budgetEl ? budgetEl.value : '';
+  var status = statusEl ? statusEl.value : '';
+  var rooms = roomsEl ? roomsEl.value : '';
+  
+  var sectionEl = document.getElementById(section);
+  if (!sectionEl) return;
+  var cards = sectionEl.querySelectorAll('.prop-v2');
+  var shown = 0, total = 0;
+  
+  cards.forEach(function(card) {
+    total++;
+    var text = card.textContent.toLowerCase();
+    var show = true;
+    
+    // Search filter
+    if (search && text.indexOf(search) === -1) show = false;
+    
+    // Status filter
+    if (status && show) {
+      var tags = card.querySelectorAll('.tag');
+      var hasStatus = false;
+      tags.forEach(function(t) {
+        if (t.textContent.trim().toUpperCase().indexOf(status) > -1) hasStatus = true;
+      });
+      if (!hasStatus) show = false;
+    }
+    
+    // Budget filter (huur = monthly, koop = purchase price)
+    if (budget && show) {
+      var priceEl = card.querySelector('.prop-price');
+      if (priceEl) {
+        var priceText = priceEl.textContent.replace(/[^0-9,.]/g, '').replace('.', '').replace(',', '.');
+        var price = parseFloat(priceText);
+        if (!isNaN(price) && price > parseFloat(budget)) show = false;
+      }
+    }
+    
+    // Rooms filter
+    if (rooms && show) {
+      var metaEl = card.querySelector('.prop-meta');
+      if (metaEl) {
+        var match = metaEl.textContent.match(/(\d+)\s*slpk/);
+        if (match && parseInt(match[1]) < parseInt(rooms)) show = false;
+      }
+    }
+    
+    card.style.display = show ? '' : 'none';
+    if (show) shown++;
+  });
+  
+  var countEl = document.getElementById(section + 'FilterCount');
+  if (countEl) {
+    if (search || budget || status || rooms) {
+      countEl.textContent = shown + ' van ' + total + ' panden';
+    } else {
+      countEl.textContent = total + ' panden';
+    }
+  }
+}
+
+function resetFilter(section) {
+  var searchEl = document.getElementById(section + 'Search');
+  var budgetEl = document.getElementById(section + 'Budget');
+  var statusEl = document.getElementById(section + 'Status');
+  var roomsEl = document.getElementById(section + 'Rooms');
+  if (searchEl) searchEl.value = '';
+  if (budgetEl) budgetEl.value = '';
+  if (statusEl) statusEl.value = '';
+  if (roomsEl) roomsEl.value = '';
+  filterCards(section);
+}
+
+// Init counts
+filterCards('huur');
+filterCards('koop');
+
+// === BACK TO TOP BUTTON ===
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('backToTop');
+  if (btn) {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }
+});
+
 </script>
 </div></div></div>
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
 <button class="lightbox-close" onclick="closeLightbox()">×</button>
 <img alt="Vergroot" id="lightboxImg" src=""/>
 </div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 </html>
