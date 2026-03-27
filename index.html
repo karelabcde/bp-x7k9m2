@@ -337,11 +337,30 @@ details[open] .reactie-toggle::before{content:'▼ '}
 .prop-img::after{content:'🔍';position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);padding:4px 8px;border-radius:6px;font-size:14px;opacity:0;transition:opacity 0.2s}
 .prop-img:hover::after{opacity:1}
 
-/* Lightbox overlay */
-.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;justify-content:center;align-items:center;cursor:zoom-out}
+
+/* GALLERY LIGHTBOX v12.6 */
+.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;justify-content:center;align-items:center;cursor:default;flex-direction:column}
 .lightbox-overlay.active{display:flex}
-.lightbox-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 0 40px rgba(0,0,0,0.5)}
-.lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:32px;cursor:pointer;background:rgba(0,0,0,0.5);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none}
+.lightbox-overlay img{max-width:90vw;max-height:75vh;object-fit:contain;border-radius:8px;box-shadow:0 0 40px rgba(0,0,0,0.5);cursor:default}
+.lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:32px;cursor:pointer;background:rgba(0,0,0,0.5);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;z-index:1002}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;cursor:pointer;background:rgba(0,0,0,0.5);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;z-index:1002;transition:background 0.2s}
+.lightbox-nav:hover{background:rgba(99,102,241,0.7)}
+.lightbox-prev{left:16px}
+.lightbox-next{right:16px}
+.lightbox-counter{color:#94a3b8;font-size:13px;margin-top:12px;user-select:none}
+.lightbox-thumbs{display:flex;gap:4px;margin-top:10px;max-width:90vw;overflow-x:auto;padding:4px 0}
+.lightbox-thumbs img{width:56px;height:42px;object-fit:cover;border-radius:4px;cursor:pointer;opacity:0.5;transition:opacity 0.2s;border:2px solid transparent;flex-shrink:0}
+.lightbox-thumbs img.active{opacity:1;border-color:var(--accent,#6366f1)}
+.lightbox-thumbs img:hover{opacity:0.8}
+
+/* Photo count badge on property cards */
+.prop-img .photo-count{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;z-index:5}
+.prop-img .photo-count:hover{background:rgba(99,102,241,0.8)}
+
+/* Virtual tour button */
+.prop-vr-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;background:rgba(99,102,241,0.15);color:var(--accent,#6366f1);font-size:11px;font-weight:600;text-decoration:none;border:1px solid rgba(99,102,241,0.3);transition:all 0.2s;margin-left:6px}
+.prop-vr-btn:hover{background:rgba(99,102,241,0.3)}
+
 
 /* Tag enhancements */
 .tag{padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:0.3px}
@@ -407,7 +426,7 @@ document.getElementById('authPass').focus();
 </script>
 <header>
 <div class="container">
-<div class="badge">VERSIE 12.5 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+<div class="badge">VERSIE 12.6 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
 <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
 <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
 <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -618,7 +637,7 @@ document.getElementById('authPass').focus();
 <div class="prop-price">€720/mnd (+€30)</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 80m² | Duplex</div>
 <p style="margin:6px 0"><strong>Goedkoopste 2slpk!</strong> Duplex met karakter. €750 all-in. Goede verbinding centrum.</p>
-<div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a class="prop-vr-btn" href="https://www.aktimmo.be/vastgoed-virtual-reality/" target="_blank">🏠 Virtual Tour</a> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank">🔗 Immoweb</a></div>
 </div>
 </div>
 <div class="card prop-v2" data-prop="huur-new-51" style="margin-top:10px">
@@ -4806,7 +4825,7 @@ document.addEventListener('keydown', function(e) {
 'Type:':'Type:',
 'URGENT — NU CONTACTEREN':'URGENT — NU CONTACTEREN',
 'Ursulinenstraat 18/202, Sint-Truiden':'Ursulinenstraat 18/202, Sint-Truiden',
-'VERSIE 12.5 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.5 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
+'VERSIE 12.6 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.6 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
 'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven':'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven',
 'Vaak vergeten:':'Vaak vergeten:',
 'Van €1.600 → €2.300 netto = €700 meer per maand. Dat maakt het verschil tussen huurwoning en koopwoning!':'Van €1.600 → €2.300 net = €700 meer per mois. Dat maakt het verschil tussen huurwoning en koopwoning!',
