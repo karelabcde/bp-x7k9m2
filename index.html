@@ -351,8 +351,8 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <div style="text-align:center;max-width:400px;padding:40px">
 <div style="font-size:48px;margin-bottom:16px">🔒</div>
 <h2 style="color:#e2e8f0;margin-bottom:8px">Project Stefania</h2>
-<p style="color:#94a3b8;font-size:13px;margin-bottom:24px">Dit document is vertrouwelijk.<br>Voer het wachtwoord in om verder te gaan.</p>
-<input type="password" id="authPass" placeholder="Wachtwoord" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:15px;text-align:center;outline:none;margin-bottom:12px" onkeydown="if(event.key==='Enter')checkAuth()">
+<p style="color:#94a3b8;font-size:13px;margin-bottom:24px">Dit document is vertrouwelijk.<br/>Voer het wachtwoord in om verder te gaan.</p>
+<input id="authPass" onkeydown="if(event.key==='Enter')checkAuth()" placeholder="Wachtwoord" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:15px;text-align:center;outline:none;margin-bottom:12px" type="password"/>
 <button onclick="checkAuth()" style="width:100%;padding:12px;border-radius:10px;border:none;background:#6366f1;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Toegang</button>
 <p id="authError" style="color:#f87171;font-size:12px;margin-top:10px;display:none">Verkeerd wachtwoord</p>
 </div>
@@ -548,7 +548,7 @@ document.getElementById('authPass').focus();
 <h2>🏠 Huurwoningen — Sint-Truiden &amp; Omgeving <span class="badge-count" id="huurCount">31</span></h2>
 <p style="color:var(--muted);margin-bottom:16px">47 panden onderzocht, 31 geselecteerd. Laatst bijgewerkt: 26/03/2026. Bronnen: Immoweb, Zimmo, RT Vastgoed, TVR Vastgoed, Rentola, 2dehands.</p>
 <div class="prop-filter-bar" id="huurFilter">
-<input type="text" placeholder="🔍 Zoek op adres, makelaar..." id="huurSearch" oninput="filterCards('huur')">
+<input id="huurSearch" oninput="filterCards('huur')" placeholder="🔍 Zoek op adres, makelaar..." type="text"/>
 <select id="huurBudget" onchange="filterCards('huur')">
 <option value="">💰 Alle prijzen</option>
 <option value="800">Max €800/mnd</option>
@@ -576,8 +576,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Grote+Markt+31%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Grote+Markt+31%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8150844,5.1845362" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8150844,5.1845362" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8150844,5.1845362)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -589,82 +588,10 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0"><strong>Toplocatie!</strong> Centrum Grote Markt. Alle winkels en scholen op wandelafstand. Geen kosten.</p>
 <div class="prop-contact"><a href="tel:011988898">011 98 88 98</a> <span>De woonmakers</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21438120" target="_blank">🔗 Immoweb</a></div>
 </div>
-<div class="card success prop-v2" data-prop="huur-new-50" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-50" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/c012c640-0898-45c3-b4a8-7cd6a3498907/800x600/4192aba47d74c8c5de77489a30e5e3ac.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Prins+Albertlaan+45%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Prins+Albertlaan+45%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8182375,5.1794671" target="_blank">🛣️ Street View</a>
 
-<span class="map-toggle" onclick="toggleMapSV(this,50.8182375,5.1794671)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">AKTIMMO</span>
-<h4>50. Prins Albertlaan 45 ⭐</h4>
-<div class="contact-badge phone">📞 Telefonisch te contacteren<span class="contact-date">27/03/2026 — 011 67 39 00 — AKTIMMO</span></div>
-<div class="prop-price">€720/mnd (+€30)</div>
-<div class="prop-meta">🛏️ 2 slpk | 📐 80m² | Duplex</div>
-<p style="margin:6px 0"><strong>Goedkoopste 2slpk!</strong> Duplex met karakter. €750 all-in. Goede verbinding centrum.</p>
-<div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a class="prop-vr-btn" href="https://www.aktimmo.be/vastgoed-virtual-reality/" target="_blank">🏠 Virtual Tour</a> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
-<div class="card prop-v2" data-prop="huur-new-51" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-51" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/e73ecb11-4a51-41fb-ad09-814c255a365a/800x600/40e665af3f00ee995bf1c4fec8e494a9.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Luikersteenweg+47%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Luikersteenweg+47%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8109353,5.1903498" target="_blank">🛣️ Street View</a>
 
-<span class="map-toggle" onclick="toggleMapSV(this,50.8109353,5.1903498)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-blue">NIEUW</span>
-<h4>51. Luikersteenweg 47</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
-<div class="prop-price">€875/mnd (+€25)</div>
-<div class="prop-meta">🛏️ 2 slpk | Appartement</div>
-<p style="margin:6px 0">Appartement 2 slaapkamers, Luikersteenweg. Particuliere verhuurder.</p>
-<div class="prop-contact"><a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21358195" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
-<div class="card prop-v2" data-prop="huur-new-52" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-52" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/8dc06e3a-8451-4afb-8a65-91787454815e/800x600/312c78796e01a3c4a732b6a2069a01eb.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Houtmarkt+28%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Houtmarkt+28%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
 
-<span class="map-toggle" onclick="toggleMapSV(this,50.8171616,5.1902929)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-blue">NIEUW</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
-<h4>52. Houtmarkt 28</h4>
-<div class="contact-badge phone">📞 Telefonisch te contacteren<span class="contact-date">27/03/2026 — 011 67 22 01 — Imanex</span></div>
-<div class="prop-price">€925/mnd</div>
-<div class="prop-meta">🛏️ 2 slpk | 📐 94m² | Appartement</div>
-<p style="margin:6px 0">Ruim app centrum, nabij Grote Markt. 94m². Geen extra kosten.</p>
-<div class="prop-contact"><a href="tel:011672201">011 67 22 01</a> <span>Imanex</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21354677" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
-<div class="card prop-v2" data-prop="huur-new-53" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-53" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/1f4fe28b-bb7a-4ba2-90ab-454fc67763be/800x600/c35c0057135a90024a79d57462bd2e74.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8191349,5.1860289" target="_blank">🛣️ Street View</a>
 
-<span class="map-toggle" onclick="toggleMapSV(this,50.8191349,5.1860289)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-blue">NIEUW</span>
-<h4>53. Sint-Trudostraat 34</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
-<div class="prop-price">€950/mnd (+€50)</div>
-<div class="prop-meta">🛏️ 2 slpk | 📐 100m² | Appartement</div>
-<p style="margin:6px 0">Ruim 100m² appartement. Particuliere verhuurder. Max budget.</p>
-<div class="prop-contact"><a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21434836" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
 <div class="card highlight">
 <h3>Stefania's Voorkeuren</h3>
 <div class="grid grid-3">
@@ -674,7 +601,7 @@ document.getElementById('authPass').focus();
 </div>
 </div>
 <div class="card-filter">
-<input id="huurFilter" oninput="filterHuurCards()" placeholder="Zoek op adres, prijs, type..." type="text"/>
+<input id="huurFilter" oninput="filterHuurCards()" placeholder="Zoek op adres, prijs, type..." type="text">
 <select id="huurStatusFilter" onchange="filterHuurCards()">
 <option value="">Alle statussen</option>
 <option value="nieuw">Nieuw</option>
@@ -685,17 +612,9 @@ document.getElementById('authPass').focus();
 <option value="afgevallen">Afgevallen</option>
 </select>
 <span class="count" id="huurVisible">28 van 31 (3 niet meer beschikbaar)</span>
-</div>
+</input></div>
 <h3>Alle 39 Panden</h3>
-<div class="card success prop-v2" data-prop="huur-1" style="margin-top:12px">
-<div class="prop-img">
-<div class="prop-placeholder-nice">
-<div class="placeholder-icon">🏪</div>
-<div class="placeholder-addr">Stapelstraat 50, Sint-Truiden</div>
-<a class="placeholder-maps" href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank">📍 Bekijk op Google Maps</a>
-</div>
-</div>
-</div>
+
 <div class="prop-body">
 <span class="tag tag-green">SUPER</span>
 <h4>1. Stapelstraat 50, Sint-Truiden</h4>
@@ -725,6 +644,152 @@ document.getElementById('authPass').focus();
 </div>
 </div>
 </div>
+</div><div class="card success prop-v2" data-prop="huur-1" style="margin-top:12px">
+<div class="prop-img">
+<div class="prop-placeholder-nice">
+<div class="placeholder-icon">🏪</div>
+<div class="placeholder-addr">Stapelstraat 50, Sint-Truiden</div>
+<a class="placeholder-maps" href="https://www.google.com/maps/search/Stapelstraat+50+Sint-Truiden" target="_blank">📍 Bekijk op Google Maps</a>
+</div>
+</div>
+<div class="prop-reactie" data-reactie="huur-1">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div><div class="card prop-v2" data-prop="huur-new-53" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-53" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/1f4fe28b-bb7a-4ba2-90ab-454fc67763be/800x600/c35c0057135a90024a79d57462bd2e74.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8191349,5.1860289" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.8191349,5.1860289)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-blue">NIEUW</span>
+<h4>53. Sint-Trudostraat 34</h4>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="prop-price">€950/mnd (+€50)</div>
+<div class="prop-meta">🛏️ 2 slpk | 📐 100m² | Appartement</div>
+<p style="margin:6px 0">Ruim 100m² appartement. Particuliere verhuurder. Max budget.</p>
+<div class="prop-contact"><a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21434836" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="huur-new-53">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
+</div><div class="card prop-v2" data-prop="huur-new-52" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-52" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/8dc06e3a-8451-4afb-8a65-91787454815e/800x600/312c78796e01a3c4a732b6a2069a01eb.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Houtmarkt+28%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Houtmarkt+28%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.8171616,5.1902929)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-blue">NIEUW</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Imanex</span>
+<h4>52. Houtmarkt 28</h4>
+<div class="contact-badge phone">📞 Telefonisch te contacteren<span class="contact-date">27/03/2026 — 011 67 22 01 — Imanex</span></div>
+<div class="prop-price">€925/mnd</div>
+<div class="prop-meta">🛏️ 2 slpk | 📐 94m² | Appartement</div>
+<p style="margin:6px 0">Ruim app centrum, nabij Grote Markt. 94m². Geen extra kosten.</p>
+<div class="prop-contact"><a href="tel:011672201">011 67 22 01</a> <span>Imanex</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21354677" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="huur-new-52">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
+</div><div class="card prop-v2" data-prop="huur-new-51" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-51" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/e73ecb11-4a51-41fb-ad09-814c255a365a/800x600/40e665af3f00ee995bf1c4fec8e494a9.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Luikersteenweg+47%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Luikersteenweg+47%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8109353,5.1903498" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.8109353,5.1903498)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-blue">NIEUW</span>
+<h4>51. Luikersteenweg 47</h4>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="prop-price">€875/mnd (+€25)</div>
+<div class="prop-meta">🛏️ 2 slpk | Appartement</div>
+<p style="margin:6px 0">Appartement 2 slaapkamers, Luikersteenweg. Particuliere verhuurder.</p>
+<div class="prop-contact"><a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-huur/sint-truiden/3800/21358195" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="huur-new-51">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
+</div><div class="card success prop-v2" data-prop="huur-new-50" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-50" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/c012c640-0898-45c3-b4a8-7cd6a3498907/800x600/4192aba47d74c8c5de77489a30e5e3ac.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Prins+Albertlaan+45%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Prins+Albertlaan+45%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8182375,5.1794671" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.8182375,5.1794671)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">AKTIMMO</span>
+<h4>50. Prins Albertlaan 45 ⭐</h4>
+<div class="contact-badge phone">📞 Telefonisch te contacteren<span class="contact-date">27/03/2026 — 011 67 39 00 — AKTIMMO</span></div>
+<div class="prop-price">€720/mnd (+€30)</div>
+<div class="prop-meta">🛏️ 2 slpk | 📐 80m² | Duplex</div>
+<p style="margin:6px 0"><strong>Goedkoopste 2slpk!</strong> Duplex met karakter. €750 all-in. Goede verbinding centrum.</p>
+<div class="prop-contact"><a href="tel:011673900">011 67 39 00</a> <span>AKTIMMO</span> <a class="prop-vr-btn" href="https://www.aktimmo.be/vastgoed-virtual-reality/" target="_blank">🏠 Virtual Tour</a> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/duplex/te-huur/sint-truiden/3800/21380230" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="huur-new-50">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
 </div>
 <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
 <div class="prop-top-row"><div class="prop-img">
@@ -737,8 +802,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Diestersteenweg+66%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Diestersteenweg+66%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.820753,5.1838228" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.820753,5.1838228" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.820753,5.1838228)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -780,8 +844,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Terwouwenstraat+28%2C+Zepperen%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Terwouwenstraat+28%2C+Zepperen%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8293096,5.2622107" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8293096,5.2622107" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8293096,5.2622107)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -826,8 +889,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Trudostraat+22%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Sint-Trudostraat+22%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8189249,5.1863538" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8189249,5.1863538" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8189249,5.1863538)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -867,8 +929,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Tiensesteenweg+184%2F603%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Tiensesteenweg+184%2F603%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8135804,5.1637991" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8135804,5.1637991" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8135804,5.1637991)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -1023,8 +1084,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Houtmarkt+28%2F301%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Houtmarkt+28%2F301%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8171616,5.1902929)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -1220,8 +1280,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Trudostraat+34%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Sint-Trudostraat+34%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8191349,5.1860289" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8191349,5.1860289" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8191349,5.1860289)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -1261,8 +1320,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Houtmarkt+28%2F201%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Houtmarkt+28%2F201%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8171616,5.1902929" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.8171616,5.1902929)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -2000,28 +2058,43 @@ document.getElementById('authPass').focus();
 </div>
 </div>
 </div>
-<div class="card info prop-v2" data-prop="koop-3" style="margin-top:12px">
-<div class="prop-top-row"><div class="prop-img">
-<img alt="Sint-Truiden centrum app" loading="eager" src="img/prop_16_0a3ecd5d.jpg"/>
-</div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Truiden+centrum&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Sint-Truiden+centrum" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/search/Sint-Truiden+centrum" target="_blank">🛣️ Street View</a>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-yellow">BEKIJKEN</span>
-<h4>3. Sint-Truiden centrum</h4>
-<div class="contact-badge unavail">❌ Geen specifieke Immoweb-listing gevonden</div>
-<div class="prop-price" style="color:var(--green)">€229.000</div>
-<div class="prop-meta">🛏️ 2 slpk | 🏢 App 3e verd | 🅿️ 2 parkings | 📍 Rustig &amp; centraal</div>
-<p style="margin:6px 0">Derde verdieping, twee parkeerplaatsen. Rustige ligging in het centrum. Nadeel: geen lift vermeld.</p>
+
+
+
+<div class="prop-body">
+<span class="tag tag-yellow">DIVERSE</span>
+<h4>5. Diverse Nieuwbouwprojecten Sint-Truiden</h4>
+<div class="contact-badge unavail">❌ Verzamelpagina — geen individueel pand</div>
+<div class="prop-price" style="color:var(--green)">€200.000 — €250.000</div>
+<div class="prop-meta">🛏️ 1-2 slpk | 🏢 Nieuwbouw app | ⚡ EPC A-B | 📐 Variabel</div>
+<p style="margin:6px 0">9 nieuwbouwprojecten beschikbaar in Sint-Truiden. Voordeel: 2% registratierechten, lage energiekosten, moderne afwerking. Ideaal voor Vlaamse Woonlening.</p>
 <div class="prop-contact">
-<a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000" target="_blank">🔗 Immoweb zoeken</a>
+<a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000&amp;flags=isNewlyBuilt" target="_blank">🔗 Immoweb nieuwbouw filter</a>
 </div>
 </div>
+</div><div class="card info prop-v2" data-prop="koop-5" style="margin-top:12px">
+<div class="prop-img">
+<div class="prop-placeholder-nice">
+<div class="placeholder-icon">🏗️</div>
+<div class="placeholder-addr">9 nieuwbouwprojecten</div>
+<a class="placeholder-maps" href="https://www.google.com/maps/search/9+nieuwbouwprojecten" target="_blank">📍 Bekijk op Google Maps</a>
 </div>
-<div class="card info prop-v2" data-prop="koop-4" style="margin-top:12px">
+</div>
+<div class="prop-reactie" data-reactie="koop-5">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div><div class="card info prop-v2" data-prop="koop-4" style="margin-top:12px">
 <div class="prop-top-row"><div class="prop-img">
 <img alt="Res. Clockhempoort" loading="eager" src="img/prop_17_ac1f185b.jpg"/>
 </div><div class="prop-map-panel">
@@ -2040,28 +2113,55 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 <a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000&amp;propertySubtypes=FLAT_STUDIO,APARTMENT" target="_blank">🔗 Immoweb nieuwbouw</a>
 </div>
+<div class="prop-reactie" data-reactie="koop-4">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
+</div></div>
+</div><div class="card info prop-v2" data-prop="koop-3" style="margin-top:12px">
+<div class="prop-top-row"><div class="prop-img">
+<img alt="Sint-Truiden centrum app" loading="eager" src="img/prop_16_0a3ecd5d.jpg"/>
+</div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Sint-Truiden+centrum&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Sint-Truiden+centrum" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/search/Sint-Truiden+centrum" target="_blank">🛣️ Street View</a>
 </div>
-<div class="card info prop-v2" data-prop="koop-5" style="margin-top:12px">
-<div class="prop-img">
-<div class="prop-placeholder-nice">
-<div class="placeholder-icon">🏗️</div>
-<div class="placeholder-addr">9 nieuwbouwprojecten</div>
-<a class="placeholder-maps" href="https://www.google.com/maps/search/9+nieuwbouwprojecten" target="_blank">📍 Bekijk op Google Maps</a>
-</div>
-</div>
-</div>
-<div class="prop-body">
-<span class="tag tag-yellow">DIVERSE</span>
-<h4>5. Diverse Nieuwbouwprojecten Sint-Truiden</h4>
-<div class="contact-badge unavail">❌ Verzamelpagina — geen individueel pand</div>
-<div class="prop-price" style="color:var(--green)">€200.000 — €250.000</div>
-<div class="prop-meta">🛏️ 1-2 slpk | 🏢 Nieuwbouw app | ⚡ EPC A-B | 📐 Variabel</div>
-<p style="margin:6px 0">9 nieuwbouwprojecten beschikbaar in Sint-Truiden. Voordeel: 2% registratierechten, lage energiekosten, moderne afwerking. Ideaal voor Vlaamse Woonlening.</p>
+</div></div><div class="prop-body">
+<span class="tag tag-yellow">BEKIJKEN</span>
+<h4>3. Sint-Truiden centrum</h4>
+<div class="contact-badge unavail">❌ Geen specifieke Immoweb-listing gevonden</div>
+<div class="prop-price" style="color:var(--green)">€229.000</div>
+<div class="prop-meta">🛏️ 2 slpk | 🏢 App 3e verd | 🅿️ 2 parkings | 📍 Rustig &amp; centraal</div>
+<p style="margin:6px 0">Derde verdieping, twee parkeerplaatsen. Rustige ligging in het centrum. Nadeel: geen lift vermeld.</p>
 <div class="prop-contact">
-<a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000&amp;flags=isNewlyBuilt" target="_blank">🔗 Immoweb nieuwbouw filter</a>
+<a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000" target="_blank">🔗 Immoweb zoeken</a>
 </div>
+<div class="prop-reactie" data-reactie="koop-3">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
+</div></div>
 </div>
 <h3 style="margin-top:24px">Hogere Range — €250.000-€355.000 (bij hoger inkomen)</h3>
 <p style="color:var(--muted);margin-bottom:12px">Onderstaande panden worden bereikbaar als Stefania's inkomen stijgt via BV Anseeuw of bij combinatie met Vlaamse woonlening.</p>
@@ -2202,8 +2302,7 @@ document.getElementById('authPass').focus();
 <iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Festraetstraat+40%2C+Sint-Truiden%E2%9C%89+Gemaild+aan+Janssen+%26+Janssen&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden%E2%9C%89+Gemaild+aan+Janssen+%26+Janssen" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.80882,5.1940538" target="_blank">🛣️ Street View</a>
-
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.80882,5.1940538" target="_blank">🛣️ Street View</a>
 <span class="map-toggle" onclick="toggleMapSV(this,50.80882,5.1940538)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
 </div>
 </div></div><div class="prop-body">
@@ -2234,86 +2333,15 @@ document.getElementById('authPass').focus();
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-10" style="margin-top:12px">
-<div class="card info prop-v2" data-prop="koop-11" style="margin-top:12px">
-<div class="prop-img">
-<div class="prop-placeholder-nice">
-<div class="placeholder-icon">🏠</div>
-<div class="placeholder-addr">Gingelom, Steenweg 272</div>
-<a class="placeholder-maps" href="https://www.google.com/maps/search/Gingelom+Steenweg+272" target="_blank">📍 Bekijk op Google Maps</a>
-</div>
-</div>
-</div>
+
 <div class="prop-body">
 <span class="tag tag-yellow">BEKIJKEN</span>
 <h4>11. Steenweg 272, Gingelom (±8km)</h4>
 <div class="contact-badge unavail">❌ Immoweb-listing offline / verwijderd</div>
 <div class="prop-price" style="color:var(--green)">€300.000</div>
 <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (Immoweb-scan 27/3 avond)</h3>
-<div class="card success prop-v2" data-prop="koop-new-27" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-27" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/800x600/8fcc83b77e68797220190127ecb517af.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Stapelstraat+50%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Stapelstraat+50%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.8152163,5.1826233" target="_blank">🛣️ Street View</a>
 
-<span class="map-toggle" onclick="toggleMapSV(this,50.8152163,5.1826233)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Meyers Vastgoed</span>
-<h4>27. Stapelstraat 50 ⭐</h4>
-<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — claudio@meyersco.be</span></div>
-<div class="prop-price">€199.000</div>
-<div class="prop-meta">🛏️ 2 slpk | Huis</div>
-<p style="margin:6px 0"><strong>Goedkoopste huis!</strong> Te renoveren. 2 slaapkamers. Registratierechten slechts 2% = €3.980.</p>
-<div class="prop-contact"><a href="tel:011485886">011 48 58 86</a> <span>Meyers Vastgoed</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21450392" target="_blank">🔗 Immoweb</a></div>
-</div>
-<div class="card success prop-v2" data-prop="koop-new-28" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-28" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/389d61d1-546e-47f4-a9df-119b5f659d6a/800x600/d46f9e83e229157a4beb915c9df40f30.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Erberstraat+15%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Erberstraat+15%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.7795514,5.2131138" target="_blank">🛣️ Street View</a>
-
-<span class="map-toggle" onclick="toggleMapSV(this,50.7795514,5.2131138)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Berlakonsult</span>
-<h4>28. Erberstraat 15 ⭐</h4>
-<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — kristof@berlassur.be</span></div>
-<div class="prop-price">€215.000</div>
-<div class="prop-meta">🛏️ 4 slpk | 📐 139m² | Huis</div>
-<p style="margin:6px 0"><strong>Ruim gezinshuis!</strong> 4 slaapkamers, 139m². Ideaal voor gezin met kinderen.</p>
-<div class="prop-contact"><a href="tel:012233501">012 23 35 01</a> <span>Berlakonsult</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21276420" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
-<div class="card prop-v2" data-prop="koop-new-29" style="margin-top:10px">
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-29" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/800x600/3ba3e0150d90d5a769e3ab3a33371cc0.jpg"/></div><div class="prop-map-panel">
-<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Festraetstraat+40%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-<div class="map-links">
-<a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
-<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.80882,5.1940538" target="_blank">🛣️ Street View</a>
-
-<span class="map-toggle" onclick="toggleMapSV(this,50.80882,5.1940538)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
-</div>
-</div></div><div class="prop-body">
-<span class="tag tag-blue">NIEUW</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Janssen en Janssen</span>
-<h4>29. Festraetstraat 40</h4>
-<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@aktimmo.be</span></div>
-<div class="prop-price">€255.000</div>
-<div class="prop-meta">🛏️ 2 slpk | 📐 113m² | Appartement</div>
-<p style="margin:6px 0">Ruim appartement 113m². Nieuwbouw, 2 slaapkamers.</p>
-<div class="prop-contact"><a href="tel:011199991">011 19 99 91</a> <span>Janssen en Janssen</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-koop/sint-truiden/3800/21436891" target="_blank">🔗 Immoweb</a></div>
-</div>
-</div>
-<div class="prop-meta">🛏️ 3+ slpk | 🏠 Open bebouwing gelijkvloers | 📍 Rustig Gingelom</div>
-<p style="margin:6px 0">Charmante gelijkvloerse open bebouwing. Rustige ligging. Goed onderhouden gezinswoning. ±8km van Sint-Truiden centrum.</p>
-<div class="prop-contact">
-<a href="tel:011673900">011 67 39 00</a>
-<a href="mailto:info@aktimmo.be">info@aktimmo.be</a>
-<span>Aktimmo</span>
-<a class="prop-link" href="https://www.aktimmo.be" target="_blank">🔗 Website</a>
-</div>
-<div class="prop-reactie" data-reactie="koop-11">
+<div class="prop-reactie" data-reactie="koop-10">
 <div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
 <label style="font-weight:600;white-space:nowrap">Status:</label>
 <select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
@@ -2327,9 +2355,7 @@ document.getElementById('authPass').focus();
 </select>
 <textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
 </div>
-</div>
-</div>
-</div>
+</div></div>
 <div class="note">
 <p><strong>Tip:</strong> Op Immoweb staan momenteel 34 huizen en 63 appartementen te koop in Sint-Truiden. Filter op max €250.000 en 2+ slaapkamers voor de meest relevante resultaten. Nieuwbouwappartementen bieden vaak betere EPC en lagere registratierechten.</p>
 </div>
@@ -2337,7 +2363,7 @@ document.getElementById('authPass').focus();
 <div class="section" id="koop">
 <h2>🏡 Koopwoningen Sint-Truiden</h2>
 <div class="prop-filter-bar" id="koopFilter">
-<input type="text" placeholder="🔍 Zoek op adres, makelaar..." id="koopSearch" oninput="filterCards('koop')">
+<input id="koopSearch" oninput="filterCards('koop')" placeholder="🔍 Zoek op adres, makelaar..." type="text"/>
 <select id="koopBudget" onchange="filterCards('koop')">
 <option value="">💰 Alle prijzen</option>
 <option value="200000">Max €200.000</option>
@@ -2398,7 +2424,6 @@ document.getElementById('authPass').focus();
 <div class="card prop-v2" style="margin-top:10px">
 <div class="card prop-v2" style="margin-top:10px">
 <div class="card prop-v2" style="margin-top:10px">
-
 </div>
 <div class="prop-top-row"><div class="prop-img">
 <div class="prop-placeholder-nice">
@@ -3035,11 +3060,11 @@ document.getElementById('authPass').focus();
 <h4>Simulatie-calculator</h4>
 <div class="calc-input">
 <label>Huidig netto inkomen Stefania (LuluPrint)
-          <input id="calcIncome" step="100" type="number" value="1600"/>
-</label>
+          <input id="calcIncome" step="100" type="number" value="1600">
+</input></label>
 <label>Extra netto via BV Karel
-          <input id="calcExtra" step="100" type="number" value="400"/>
-</label>
+          <input id="calcExtra" step="100" type="number" value="400">
+</input></label>
 <label>Rentevoet (%)
           <input id="calcRate" step="0.1" type="number" value="2.5"/>
 </label>
@@ -3445,13 +3470,13 @@ document.getElementById('authPass').focus();
 <div class="card highlight" style="margin-top:20px">
 <h3>Samenvatting: Het Optimale Pad</h3>
 <p style="font-size:15px;line-height:1.8;margin-top:10px">
-<strong style="color:var(--green)">Stap 1:</strong> Nu inschrijven bij SHM + OCMW contacteren (kost niets, grote impact)<br/>
+<strong style="color:var(--green)">Stap 1:</strong> Nu inschrijven bij SHM + OCMW contacteren (kost niets, grote impact)<br>
 <strong style="color:var(--accent)">Stap 2:</strong> Direct bezichtigen — top-5 huurwoningen + top-3 koopwoningen<br/>
 <strong style="color:var(--yellow)">Stap 3:</strong> Inkomen optimaliseren via BV (€1.600 → €2.300 netto)<br/>
 <strong style="color:var(--red)">Stap 4:</strong> Schatter inschakelen voor boedelverdeling (Jocelin Vannut)<br/>
 <strong style="color:var(--green)">Stap 5:</strong> Tweefasen-strategie: eerst huren voor stabiliteit, dan kopen met VWL<br/>
 <strong style="color:var(--accent)">Resultaat:</strong> Binnen 3-6 maanden eigen woning, financieel gezond, kinderen stabiel
-      </p>
+      </br></p>
 </div>
 </div>
 <div class="section" id="kantoren" style="display:none">
@@ -3702,10 +3727,10 @@ document.getElementById('authPass').focus();
 </div>
 </footer>
 <div class="lightbox-overlay" id="lightbox">
-<button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-<button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();galleryNav(-1)">&#8249;</button>
-<button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();galleryNav(1)">&#8250;</button>
-<img id="lightboxImg" src="" alt="Vergroot" onclick="event.stopPropagation();galleryNav(1)">
+<button class="lightbox-close" onclick="closeLightbox()">×</button>
+<button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();galleryNav(-1)">‹</button>
+<button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();galleryNav(1)">›</button>
+<img alt="Vergroot" id="lightboxImg" onclick="event.stopPropagation();galleryNav(1)" src=""/>
 <div class="lightbox-counter" id="lightboxCounter"></div>
 <div class="lightbox-thumbs" id="lightboxThumbs"></div>
 </div>
@@ -4486,7 +4511,133 @@ document.addEventListener('click', function(e) {
   }
 })();
 </script>
-</div></div></div>
+</div><div class="card success prop-v2" data-prop="koop-new-27" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-27" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/800x600/8fcc83b77e68797220190127ecb517af.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Stapelstraat+50%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Stapelstraat+50%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.8152163,5.1826233" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.8152163,5.1826233)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Meyers Vastgoed</span>
+<h4>27. Stapelstraat 50 ⭐</h4>
+<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — claudio@meyersco.be</span></div>
+<div class="prop-price">€199.000</div>
+<div class="prop-meta">🛏️ 2 slpk | Huis</div>
+<p style="margin:6px 0"><strong>Goedkoopste huis!</strong> Te renoveren. 2 slaapkamers. Registratierechten slechts 2% = €3.980.</p>
+<div class="prop-contact"><a href="tel:011485886">011 48 58 86</a> <span>Meyers Vastgoed</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21450392" target="_blank">🔗 Immoweb</a></div>
+</div>
+
+
+<div class="prop-meta">🛏️ 3+ slpk | 🏠 Open bebouwing gelijkvloers | 📍 Rustig Gingelom</div>
+<p style="margin:6px 0">Charmante gelijkvloerse open bebouwing. Rustige ligging. Goed onderhouden gezinswoning. ±8km van Sint-Truiden centrum.</p>
+<div class="prop-contact">
+<a href="tel:011673900">011 67 39 00</a>
+<a href="mailto:info@aktimmo.be">info@aktimmo.be</a>
+<span>Aktimmo</span>
+<a class="prop-link" href="https://www.aktimmo.be" target="_blank">🔗 Website</a>
+</div>
+<div class="prop-reactie" data-reactie="koop-11">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div>
+</div><div class="card prop-v2" data-prop="koop-new-29" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-29" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/800x600/3ba3e0150d90d5a769e3ab3a33371cc0.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Festraetstraat+40%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Festraetstraat+40%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.80882,5.1940538" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.80882,5.1940538)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-blue">NIEUW</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Janssen en Janssen</span>
+<h4>29. Festraetstraat 40</h4>
+<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@aktimmo.be</span></div>
+<div class="prop-price">€255.000</div>
+<div class="prop-meta">🛏️ 2 slpk | 📐 113m² | Appartement</div>
+<p style="margin:6px 0">Ruim appartement 113m². Nieuwbouw, 2 slaapkamers.</p>
+<div class="prop-contact"><a href="tel:011199991">011 19 99 91</a> <span>Janssen en Janssen</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/appartement/te-koop/sint-truiden/3800/21436891" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="koop-new-29">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
+</div><div class="card success prop-v2" data-prop="koop-new-28" style="margin-top:10px">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-28" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/389d61d1-546e-47f4-a9df-119b5f659d6a/800x600/d46f9e83e229157a4beb915c9df40f30.jpg"/></div><div class="prop-map-panel">
+<iframe allowfullscreen="" data-src="https://maps.google.com/maps?q=Erberstraat+15%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+<div class="map-links">
+<a href="https://www.google.com/maps/search/Erberstraat+15%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
+<a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=50.7795514,5.2131138" target="_blank">🛣️ Street View</a>
+<span class="map-toggle" onclick="toggleMapSV(this,50.7795514,5.2131138)" title="Wissel kaart/straatbeeld">📷 Straatbeeld</span>
+</div>
+</div></div><div class="prop-body">
+<span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Berlakonsult</span>
+<h4>28. Erberstraat 15 ⭐</h4>
+<div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — kristof@berlassur.be</span></div>
+<div class="prop-price">€215.000</div>
+<div class="prop-meta">🛏️ 4 slpk | 📐 139m² | Huis</div>
+<p style="margin:6px 0"><strong>Ruim gezinshuis!</strong> 4 slaapkamers, 139m². Ideaal voor gezin met kinderen.</p>
+<div class="prop-contact"><a href="tel:012233501">012 23 35 01</a> <span>Berlakonsult</span> <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-koop/sint-truiden/3800/21276420" target="_blank">🔗 Immoweb</a></div>
+<div class="prop-reactie" data-reactie="koop-new-28">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div>
+</div><div class="card info prop-v2" data-prop="koop-11" style="margin-top:12px">
+<div class="prop-img">
+<div class="prop-placeholder-nice">
+<div class="placeholder-icon">🏠</div>
+<div class="placeholder-addr">Gingelom, Steenweg 272</div>
+<a class="placeholder-maps" href="https://www.google.com/maps/search/Gingelom+Steenweg+272" target="_blank">📍 Bekijk op Google Maps</a>
+</div>
+</div>
+<div class="prop-reactie" data-reactie="koop-11">
+<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
+<label style="font-weight:600;white-space:nowrap">Status:</label>
+<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
+<option value="">— Kies —</option>
+<option value="gemaild">✉ Gemaild</option>
+<option value="gebeld">📞 Gebeld</option>
+<option value="antwoord">💬 Antwoord</option>
+<option value="bezichtigd">👀 Bezichtigd</option>
+<option value="optie">⭐ Optie</option>
+<option value="afgevallen">❌ Afgevallen</option>
+</select>
+<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+</div>
+</div></div></div></div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </body>
 </html>
