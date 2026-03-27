@@ -3914,50 +3914,7 @@ function calculateLoan() {
 // Run calculator on load
 calculateLoan();
 
-// ============ PROPERTY STATUS & NOTES (localStorage) ============
-const PROP_KEY = 'stefania_props_v1';
-
-;
-  // Determine what changed
-  if (false || el.classList.contains('tbl-status')) {
-    data[id].status = el.value;
-  }
-  if (false || el.classList.contains('tbl-notes')) {
-    data[id].notes = el.value;
-  }
-  localStorage.setItem(PROP_KEY, JSON.stringify(data));
-  // Visual feedback: update card border color based on status
-  applyStatusStyle(row, el.closest('[data-prop]').querySelector('.tbl-status')?.value || data[id].status);
-}
-
-function loadAllProps() {
-  try { return JSON.parse(localStorage.getItem(PROP_KEY)) || {}; }
-  catch(e) { return {}; }
-}
-
-function applyStatusStyle(el, status) {
-  // Remove all status classes
-  el.classList.remove('status-gemaild','status-gebeld','status-bezichtigd','status-optie','status-afgevallen');
-  if (status) el.classList.add('status-' + status);
-}
-
-function restoreAllProps() {
-  const data = loadAllProps();
-  Object.keys(data).forEach(id => {
-    const row = document.querySelector('[data-prop="' + id + '"]');
-    if (!row) return;
-    const d = data[id];
-    // Restore status
-    const sel = row.querySelector('.tbl-status');
-    if (sel && d.status) { sel.value = d.status; applyStatusStyle(row, d.status); }
-    // Restore notes
-    const notes = row.querySelector('.tbl-notes');
-    if (notes && d.notes) notes.value = d.notes;
-  });
-}
-
-// Restore on page load
-restoreAllProps();
+// (prop status/notes removed — dropdowns verwijderd)
 
 // ============ TABLE FILTER ============
 function filterTable() {
