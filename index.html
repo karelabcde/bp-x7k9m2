@@ -309,12 +309,48 @@ details[open] .reactie-toggle::before{content:'▼ '}
   border-left: 4px solid #c62828 !important;
 }
 
+
+/* V12 POLISH — enhanced visuals */
+.prop-v2{transition:transform 0.2s,box-shadow 0.2s}
+.prop-v2:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.prop-v2 .prop-body .prop-price{font-size:1.5rem;font-weight:800;color:var(--green);margin:6px 0 8px;letter-spacing:-0.5px}
+.prop-v2 .prop-body .prop-meta{font-size:13px;color:var(--muted);margin:6px 0;padding:6px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.prop-v2 .prop-body p{font-size:13.5px;line-height:1.5;margin:8px 0}
+.prop-v2 .prop-body h4{font-size:1.1rem;font-weight:700}
+.prop-v2 .prop-contact{padding:8px 0;border-top:1px solid var(--border);margin-top:10px}
+.prop-v2 .prop-contact a{padding:3px 8px;border-radius:4px;transition:background 0.2s}
+.prop-v2 .prop-contact a:hover{background:rgba(99,102,241,0.15)}
+
+/* Contact badges enhanced */
+.contact-badge{display:flex;align-items:center;gap:6px;padding:8px 12px;margin:6px 0;border-radius:8px;font-size:13px;font-weight:500}
+.contact-badge.mail{background:rgba(5,46,22,0.6);border-left:4px solid var(--green);color:var(--green)}
+.contact-badge.phone{background:rgba(30,58,138,0.4);border-left:4px solid var(--accent);color:#93c5fd}
+.contact-badge.unavail{background:rgba(69,10,10,0.5);border-left:4px solid var(--red);color:#fca5a5}
+.contact-badge .contact-date{display:block;font-size:11px;opacity:0.7;margin-left:auto}
+
+/* Map panel hover */
+.prop-map-panel .map-links a{padding:4px 10px;border-radius:4px;transition:background 0.2s}
+.prop-map-panel .map-links a:hover{background:rgba(99,102,241,0.2)}
+
+/* Image lightbox */
+.prop-img{cursor:pointer;position:relative}
+.prop-img::after{content:'🔍';position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);padding:4px 8px;border-radius:6px;font-size:14px;opacity:0;transition:opacity 0.2s}
+.prop-img:hover::after{opacity:1}
+
+/* Lightbox overlay */
+.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1000;justify-content:center;align-items:center;cursor:zoom-out}
+.lightbox-overlay.active{display:flex}
+.lightbox-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 0 40px rgba(0,0,0,0.5)}
+.lightbox-close{position:absolute;top:20px;right:20px;color:#fff;font-size:32px;cursor:pointer;background:rgba(0,0,0,0.5);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none}
+
+/* Tag enhancements */
+.tag{padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:0.3px}
 </style>
 </head>
 <body>
 <header>
 <div class="container">
-<div class="badge">VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
+<div class="badge">VERSIE 12.2 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd</div>
 <h1>Project Stefania — Scheiding &amp; Nieuw Thuis</h1>
 <div class="subtitle">Stefania Gheonea vs. Marius-Catalin Gheonea — Strategie, Woningen, Financiering &amp; Juridisch</div>
 <div style="margin-top:8px"><span style="background:rgba(66,133,244,0.3);color:#8ab4f8;padding:3px 10px;border-radius:8px;font-size:10px">✓ Gereviewed door Gemini Pro — 27 mrt 2026</span></div>
@@ -475,7 +511,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <div class="card success prop-v2" data-prop="huur-new-49" style="margin-top:10px">
 
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-49" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/300x300/8ba812c6ea17b6f0a7be87cde60cef2b.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-49" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/64d8ad9f-7be5-467c-8026-66c0333fb489/800x600/8ba812c6ea17b6f0a7be87cde60cef2b.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Stapelstraat+50%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Stapelstraat+50%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -493,7 +529,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <div class="card success prop-v2" data-prop="huur-new-50" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-50" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/c012c640-0898-45c3-b4a8-7cd6a3498907/300x300/4192aba47d74c8c5de77489a30e5e3ac.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-50" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/c012c640-0898-45c3-b4a8-7cd6a3498907/800x600/4192aba47d74c8c5de77489a30e5e3ac.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Prins+Albertlaan+45&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Prins+Albertlaan+45" target="_blank">📍 Google Maps</a>
@@ -511,7 +547,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 </div>
 <div class="card prop-v2" data-prop="huur-new-51" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-51" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/e73ecb11-4a51-41fb-ad09-814c255a365a/300x300/40e665af3f00ee995bf1c4fec8e494a9.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-51" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/e73ecb11-4a51-41fb-ad09-814c255a365a/800x600/40e665af3f00ee995bf1c4fec8e494a9.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Luikersteenweg+47&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Luikersteenweg+47" target="_blank">📍 Google Maps</a>
@@ -529,7 +565,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 </div>
 <div class="card prop-v2" data-prop="huur-new-52" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-52" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/8dc06e3a-8451-4afb-8a65-91787454815e/300x300/312c78796e01a3c4a732b6a2069a01eb.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-52" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/8dc06e3a-8451-4afb-8a65-91787454815e/800x600/312c78796e01a3c4a732b6a2069a01eb.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Houtmarkt+28&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Houtmarkt+28" target="_blank">📍 Google Maps</a>
@@ -547,7 +583,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 </div>
 <div class="card prop-v2" data-prop="huur-new-53" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-53" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/1f4fe28b-bb7a-4ba2-90ab-454fc67763be/300x300/c35c0057135a90024a79d57462bd2e74.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-new-53" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/1f4fe28b-bb7a-4ba2-90ab-454fc67763be/800x600/c35c0057135a90024a79d57462bd2e74.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Sint-Trudostraat+34&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Sint-Trudostraat+34" target="_blank">📍 Google Maps</a>
@@ -1710,7 +1746,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <div class="card info prop-v2" data-prop="huur-31" style="margin-top:12px">
 
 
-<div class="prop-top-row"><div class="prop-img"><img alt="huur-31" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/300x300/97898dd7647dfd1abf0417e629c9da95.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="huur-31" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/839403c5-67ce-45d3-bbd1-4e2b027cf976/800x600/97898dd7647dfd1abf0417e629c9da95.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Houtmarkt+12%2F101%2C+Sint-Truiden&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Houtmarkt+12%2F101%2C+Sint-Truiden" target="_blank">📍 Google Maps</a>
@@ -2058,7 +2094,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 <div class="card success prop-v2" data-prop="koop-new-27" style="margin-top:10px">
 
 
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-27" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/300x300/8fcc83b77e68797220190127ecb517af.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-27" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/53594334-a11c-4812-bddd-8676c24317e1/800x600/8fcc83b77e68797220190127ecb517af.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Stapelstraat+50&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Stapelstraat+50" target="_blank">📍 Google Maps</a>
@@ -2076,7 +2112,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 
 <div class="card success prop-v2" data-prop="koop-new-28" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-28" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/389d61d1-546e-47f4-a9df-119b5f659d6a/300x300/d46f9e83e229157a4beb915c9df40f30.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-28" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/389d61d1-546e-47f4-a9df-119b5f659d6a/800x600/d46f9e83e229157a4beb915c9df40f30.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Erberstraat+15&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Erberstraat+15" target="_blank">📍 Google Maps</a>
@@ -2094,7 +2130,7 @@ details[open] .reactie-toggle::before{content:'▼ '}
 </div>
 <div class="card prop-v2" data-prop="koop-new-29" style="margin-top:10px">
 
-<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-29" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/300x300/3ba3e0150d90d5a769e3ab3a33371cc0.jpg"/></div><div class="prop-map-panel">
+<div class="prop-top-row"><div class="prop-img"><img alt="koop-new-29" loading="lazy" src="https://media-resize.immowebstatic.be/classifieds/ce008705-62f4-4cf7-b780-f66a145cb991/800x600/3ba3e0150d90d5a769e3ab3a33371cc0.jpg"/></div><div class="prop-map-panel">
 <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Festraetstraat+40&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
 <div class="map-links">
 <a href="https://www.google.com/maps/search/Festraetstraat+40" target="_blank">📍 Google Maps</a>
@@ -4878,7 +4914,7 @@ document.addEventListener('keydown', function(e) {
 'Type:':'Type:',
 'URGENT — NU CONTACTEREN':'URGENT — NU CONTACTEREN',
 'Ursulinenstraat 18/202, Sint-Truiden':'Ursulinenstraat 18/202, Sint-Truiden',
-'VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.0 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
+'VERSIE 12.2 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd':'VERSIE 12.2 — LIVE TRACKER 27/03/2026 — 20 makelaars gecontacteerd',
 'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven':'VERTROUWELIJK — Enkel voor Karel Anseeuw &amp; Mr. Frank Strauven',
 'Vaak vergeten:':'Vaak vergeten:',
 'Van €1.600 → €2.300 netto = €700 meer per maand. Dat maakt het verschil tussen huurwoning en koopwoning!':'Van €1.600 → €2.300 net = €700 meer per mois. Dat maakt het verschil tussen huurwoning en koopwoning!',
@@ -5437,6 +5473,31 @@ document.addEventListener('keydown', function(e) {
       translatePage(lang);
     });
 
-    </script>
-</div></div></div></body>
+    
+
+// ============ LIGHTBOX ============
+document.querySelectorAll('.prop-img').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    var img = el.querySelector('img');
+    if (!img) return;
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightboxImg');
+    lbImg.src = img.src;
+    lb.classList.add('active');
+    e.stopPropagation();
+  });
+});
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</div></div></div>
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightboxImg" src="" alt="Vergroot">
+</div>
+</body>
 </html>
