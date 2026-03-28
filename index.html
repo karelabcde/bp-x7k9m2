@@ -4315,6 +4315,11 @@ var TR = {
   'Leningen worden NIET overgenomen door Stefania (€210-225k scenario vervalt)': 'Les prêts ne sont PAS repris par Stefania (scénario €210-225k annulé)',
   'Bij verkoop: leningen worden afgelost uit opbrengst, rest 50/50': 'En cas de vente : les prêts sont remboursés sur le produit, le reste 50/50',
   'Schatter aanstellen voor objectieve waardebepaling': 'Désigner un expert pour une évaluation objective',
+  // Quick-action buttons
+  '✉️ Gemaild': '✉️ Envoyé',
+  '📩 Antwoord': '📩 Réponse',
+  // Title attributes
+  'Wissel kaart/straatbeeld': 'Basculer carte/vue de rue',
 };
 
 function translatePage(lang) {
@@ -4360,6 +4365,12 @@ function translatePage(lang) {
   document.querySelectorAll('[placeholder]').forEach(function(el) {
     var ph = el.getAttribute('placeholder');
     if (dict[ph]) el.setAttribute('placeholder', dict[ph]);
+  });
+
+  // Translate title attributes
+  document.querySelectorAll('[title]').forEach(function(el) {
+    var t = el.getAttribute('title');
+    if (dict[t]) el.setAttribute('title', dict[t]);
   });
 
   // Update lang buttons
