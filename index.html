@@ -342,7 +342,15 @@ details[open] .reactie-toggle::before{content:'▼ '}
 }
 
 
-</style>
+
+    /* Mail modal styles */
+    #mail-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center; }
+    #mail-modal.active { display:flex; }
+    #mail-modal .modal-content { background:var(--card-bg,#1e1e2e); border-radius:12px; padding:24px; max-width:600px; width:90%; max-height:80vh; overflow-y:auto; position:relative; }
+    #mail-modal .modal-close { position:absolute; top:8px; right:12px; font-size:24px; cursor:pointer; color:#888; }
+    #mail-modal .modal-title { margin-top:0; margin-bottom:16px; font-size:18px; font-weight:600; }
+
+    </style>
 </head>
 <body>
 <div id="authOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center">
@@ -403,7 +411,8 @@ document.getElementById('authPass').focus();
 <div class="grid grid-4">
 <div class="card stat"><div class="icon">👧👦</div><div class="num">2</div><div class="lbl">Kinderen</div></div>
 <div class="card stat"><div class="icon">💳</div><div class="num" style="color:var(--red)">€2.035</div><div class="lbl">Schuld/maand (5 leningen)</div></div>
-<div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl"><a href="#schatting-uitleg" onclick="var ft=document.querySelector('.nav-tab[data-tab=financiering]');if(ft){ft.click();setTimeout(function(){document.getElementById('schatting-uitleg').scrollIntoView({behavior:'smooth'})},150);}return false;" style="color:var(--green);text-decoration:underline;cursor:pointer">Geschatte waarde woning*</a></div></div>
+<div class="card stat"><div class="icon">🏡</div><div class="num" style="color:var(--green)">€320-360k</div><div class="lbl"><a href="#schatting-uitleg" onclick="var ft=document.querySelector('.nav-tab[data-tab=financiering]');if(ft){ft.click();setTimeout(function(){
+      fixPlaceholderPhotos();document.getElementById('schatting-uitleg').scrollIntoView({behavior:'smooth'})},150);}return false;" style="color:var(--green);text-decoration:underline;cursor:pointer">Geschatte waarde woning*</a></div></div>
 <div class="card stat"><div class="icon">⚖️</div><div class="num" style="color:var(--yellow)">24/03</div><div class="lbl">Verzoekschrift ingediend</div></div>
 </div>
 <div class="grid grid-2">
@@ -615,7 +624,7 @@ document.getElementById('authPass').focus();
 </div></div><div class="prop-body">
 <span class="tag tag-blue">NIEUW</span>
 <h4>51. Luikersteenweg 47</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
 <div class="prop-price">€875/mnd (+€25)</div>
 <div class="prop-meta">🛏️ 2 slpk | Appartement</div>
 <p style="margin:6px 0">Appartement 2 slaapkamers, Luikersteenweg. Particuliere verhuurder.</p>
@@ -651,7 +660,7 @@ document.getElementById('authPass').focus();
 </div></div><div class="prop-body">
 <span class="tag tag-blue">NIEUW</span>
 <h4>53. Sint-Trudostraat 34</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
 <div class="prop-price">€950/mnd (+€50)</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 100m² | Appartement</div>
 <p style="margin:6px 0">Ruim 100m² appartement. Particuliere verhuurder. Max budget.</p>
@@ -751,7 +760,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-green">TOP</span>
 <h4>3. Terwouwenstraat 28, Zepperen</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@immovesta.be</span></div>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">⚠️ Antwoord Immovesta (Moyra Collin) 27/03 — Selectieproces bezig. Vraagt wat Stefania precies zoekt. Mogelijks nieuw aanbod.</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord Immovesta (Moyra Collin) 27/03 — Selectieproces bezig. Vraagt wat Stefania precies zoekt. Mogelijks nieuw aanbod.</div>
 <div class="prop-price">€1.300/mnd</div>
 <div class="prop-meta">🛏️ 4 slpk | ⚡ EPC D | Huis</div>
 <p style="margin:6px 0">Ruime halfopen woning. Vloerverwarming op gas. 2 garages + terras. Landelijk. <strong>Beschikbaar: 01/05/2026</strong></p>
@@ -782,8 +791,8 @@ document.getElementById('authPass').focus();
 <span class="tag tag-green">TOP</span>
 <h4>4. Sint-Trudostraat 22, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@immok.be (Century 21 Immo K)</span></div>
-<div class="contact-badge" style="background:#e8f5e9;border-left:4px solid #4caf50;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#1b5e20;">✅ Antwoord Stien François / Century 21 ImmoK 27/03 — Pand beschikbaar! Bezoek mogelijk wo 01/04 voormiddag. Huurprijs vast €1.050. EPC in bijlage.</div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-immok-confirm">✅ Bevestiging ImmoK (Stien François) 30/03 — Afspraak wo 01/04 om 11:30, Sint-Trudostraat 22. Individueel op afspraak. Prescreening formulier in bijlage.</div>
+<div class="contact-badge" style="background:#e8f5e9;border-left:4px solid #4caf50;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#1b5e20;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Stien François / Century 21 ImmoK 27/03 — Pand beschikbaar! Bezoek mogelijk wo 01/04 voormiddag. Huurprijs vast €1.050. EPC in bijlage.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-immok-confirm" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Bevestiging ImmoK (Stien François) 30/03 — Afspraak wo 01/04 om 11:30, Sint-Trudostraat 22. Individueel op afspraak. Prescreening formulier in bijlage.</div>
 <div class="prop-price">€1.050/mnd</div>
 <div class="prop-meta">🛏️ 3 slpk | 📐 181m² | ⚡ EPC B | Huis</div>
 <p style="margin:6px 0">Ruim huis met 3 slaapkamers. Goede EPC B score. Centrum Sint-Truiden.</p>
@@ -810,7 +819,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-yellow">GOED</span>
 <h4>5. Tiensesteenweg 184/603, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@imanex.be</span></div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-tiense-green">✅ Antwoord Imanex (Frank Strauven) 28/03 — Pand beschikbaar. Prijs niet bespreekbaar, geen huur-koop. Bezoek di 31/03 om 19u aan ingang binnenplein De Kleine Markt. Bevestiging gevraagd.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-tiense-green" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Imanex (Frank Strauven) 28/03 — Pand beschikbaar. Prijs niet bespreekbaar, geen huur-koop. Bezoek di 31/03 om 19u aan ingang binnenplein De Kleine Markt. Bevestiging gevraagd.</div>
 <div class="prop-price">€880/mnd + €120</div>
 <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Appartement 6e verdieping. Gemeenschappelijke kosten €120/mnd.</p>
@@ -935,7 +944,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-yellow">GOED</span>
 <h4>10. Attenhovestraat 71, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@immovadis.be (Immovadis)</span></div>
-<div class="contact-badge" style="background:#fbe9e7;border-left:4px solid #f44336;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#b71c1c;">❌ Antwoord Immovesta 28/03 — Pand staat niet te huur bij hen. Verkeerde makelaar gecontacteerd.</div>
+<div class="contact-badge" style="background:#fbe9e7;border-left:4px solid #f44336;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#b71c1c;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">❌ Antwoord Immovesta 28/03 — Pand staat niet te huur bij hen. Verkeerde makelaar gecontacteerd.</div>
 <div class="prop-price">€1.150/mnd</div>
 <div class="prop-meta">🛏️ 3 slpk | 📐 108m² | ⚡ EPC A+++ | Huis</div>
 <p style="margin:6px 0">Passiefhuis met EPC A+++. 3 slaapkamers, 108m². Topkwaliteit energieprestatie.</p>
@@ -961,7 +970,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-yellow">GOED</span>
 <h4>11. Leopold II straat 28, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — hallo@duovastgoed.be (Duo Vastgoed)</span></div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-duo-green">✅ UPDATE Duo Vastgoed 30/03 — Pand OPNIEUW beschikbaar! Vorige kandidaat teruggetrokken. Kandidaatstellingsformulier invullen en bezorgen.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-duo-green" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ UPDATE Duo Vastgoed 30/03 — Pand OPNIEUW beschikbaar! Vorige kandidaat teruggetrokken. Kandidaatstellingsformulier invullen en bezorgen.</div>
 <div class="prop-price">€1.150/mnd</div>
 <div class="prop-meta">🛏️ 4 slpk | 📐 169m² | ⚡ EPC C | Huis</div>
 <p style="margin:6px 0">Ruim huis met 4 slaapkamers. 169m². EPC C.</p>
@@ -987,7 +996,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-yellow">GOED</span>
 <h4>12. Stationsstraat 59/203, Sint-Truiden <span class="tag" style="background:rgba(74,222,128,0.2);color:#4ade80">✉ Gemaild aan makelaar</span></h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@heylenvastgoed.be (Heylen Vastgoed)</span></div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-heylen-green">✅ Antwoord Heylen Vastgoed (Lennert Coningx) 30/03 — Beide app (203 + 102) beschikbaar! Bezoek op afspraak. Huurprijs en huur-koop navragen bij eigenaar. Tel 0497 36 33 77.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-heylen-green" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Heylen Vastgoed (Lennert Coningx) 30/03 — Beide app (203 + 102) beschikbaar! Bezoek op afspraak. Huurprijs en huur-koop navragen bij eigenaar. Tel 0497 36 33 77.</div>
 <div class="prop-price">€1.045/mnd</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 67m² | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Appartement 2e verdieping. 67m², 2 slaapkamers. Nabij station.</p>
@@ -1013,7 +1022,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-yellow">GOED</span>
 <h4>13. Stationsstraat 59/102, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@heylenvastgoed.be (Heylen Vastgoed)</span></div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-heylen-green">✅ Antwoord Heylen Vastgoed (Lennert Coningx) 30/03 — Beide app (203 + 102) beschikbaar! Bezoek op afspraak. Huurprijs en huur-koop navragen bij eigenaar. Tel 0497 36 33 77.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-heylen-green" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Heylen Vastgoed (Lennert Coningx) 30/03 — Beide app (203 + 102) beschikbaar! Bezoek op afspraak. Huurprijs en huur-koop navragen bij eigenaar. Tel 0497 36 33 77.</div>
 <div class="prop-price">€1.280/mnd</div>
 <div class="prop-meta">🛏️ 3 slpk | 📐 95m² | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Ruimer appartement 1e verdieping. 95m², 3 slaapkamers. Nabij station.</p>
@@ -1039,7 +1048,7 @@ document.getElementById('authPass').focus();
 </div></div><div class="prop-body">
 <span class="tag tag-yellow">GOED</span>
 <h4>14. Sint-Trudostraat 34, Sint-Truiden</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
 <div class="prop-price">€950/mnd + €50</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 100m² | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Appartement 100m², 2 slaapkamers. Gemeenschappelijke kosten €50.</p>
@@ -1090,7 +1099,7 @@ document.getElementById('authPass').focus();
 </div></div><div class="prop-body">
 <span class="tag tag-yellow">GOED</span>
 <h4>16. Stationsstraat 39/101, Sint-Truiden</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
 <div class="prop-price">€1.200/mnd + €40</div>
 <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
@@ -1115,7 +1124,7 @@ document.getElementById('authPass').focus();
 </div></div><div class="prop-body">
 <span class="tag tag-yellow">GOED</span>
 <h4>17. Stationsstraat 39/001, Sint-Truiden</h4>
-<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
+<div class="contact-badge" style="background:#fff3e0;border-left:4px solid #ff9800;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;color:#5d4037;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">🏠 Privé-eigenaar — enkel via Immoweb contactformulier</div>
 <div class="prop-price">€1.200/mnd + €40</div>
 <div class="prop-meta">🛏️ 2 slpk | ⚡ EPC D | Appartement</div>
 <p style="margin:6px 0">Gelijkvloers appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
@@ -1241,7 +1250,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-blue">NIEUW</span>
 <h4>22. Zoutleeuwsesteenweg 128, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — nobis@era.be (ERA Immopunt)</span></div>
-<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-era-orange">⚠️ Antwoord ERA Nobis (Cecile Corstjens) 30/03 — Vraagt adressen door om bij juist kantoor na te vragen. Heeft zelf Hasseltsesteenweg 116A te huur in Sint-Truiden.</div>
+<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-era-orange" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord ERA Nobis (Cecile Corstjens) 30/03 — Vraagt adressen door om bij juist kantoor na te vragen. Heeft zelf Hasseltsesteenweg 116A te huur in Sint-Truiden.</div>
 <div class="prop-price">€1.100/mnd</div>
 <div class="prop-meta">🛏️ 4 slpk | Huis</div>
 <p style="margin:6px 0">Huis met 4 slaapkamers aan de Zoutleeuwsesteenweg.</p>
@@ -1401,7 +1410,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-blue">NIEUW</span>
 <h4>28. Sint-Trudostraat 1, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@vastgoedvogels.be (Vastgoed Vogels)</span></div>
-<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-vogels-orange">⚠️ Antwoord Werner Vogels 28/03 — Verkeerde prijs op kantoor geafficheerd. Juiste huurprijs: €950 + €80 kosten. Beschikbaar vanaf 1/7/2026. EPC A.</div>
+<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-vogels-orange" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord Werner Vogels 28/03 — Verkeerde prijs op kantoor geafficheerd. Juiste huurprijs: €950 + €80 kosten. Beschikbaar vanaf 1/7/2026. EPC A.</div>
 <div class="prop-price">€950/mnd + €80</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 110m² | Appartement</div>
 <p style="margin:6px 0">Appartement 110m², 2 slaapkamers. Centrum.</p>
@@ -1453,7 +1462,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-blue">NIEUW</span>
 <h4>30. Zoutstraat 18, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — nobis@era.be (ERA Immopunt)</span></div>
-<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-era-orange">⚠️ Antwoord ERA Nobis (Cecile Corstjens) 30/03 — Vraagt adressen door om bij juist kantoor na te vragen. Heeft zelf Hasseltsesteenweg 116A te huur in Sint-Truiden.</div>
+<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-era-orange" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord ERA Nobis (Cecile Corstjens) 30/03 — Vraagt adressen door om bij juist kantoor na te vragen. Heeft zelf Hasseltsesteenweg 116A te huur in Sint-Truiden.</div>
 <div class="prop-price">€1.100/mnd</div>
 <div class="prop-meta">🛏️ 2 slpk | 📐 101m² | Appartement</div>
 <p style="margin:6px 0">Appartement 101m², 2 slaapkamers.</p>
@@ -1473,8 +1482,8 @@ document.getElementById('authPass').focus();
 <span class="tag tag-blue">NIEUW</span>
 <h4>31. Tiensesteenweg 35, Sint-Truiden</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — info@rtvastgoed.be</span></div>
-<div class="contact-badge" style="background:#e8f5e9;border-left:4px solid #43a047;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;">✅ Antwoord Lars Renard (RT Vastgoed) 27/03 — Bezichtiging mogelijk. Prelude direct vrij bij akte. Groenwinning nieuwbouw sept 2026. 4 PDF bijlagen ontvangen.</div>
-<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-rt-orange">⚠️ Antwoord RT Vastgoed (Lars Renard) 27/03 — Groenwinning: nieuwbouw, oplevering sept 2026, prijs nauwelijks bespreekbaar. Prelude: goede staat, vrij bij akte, bod mogelijk. Bezichtiging telefonisch.</div>
+<div class="contact-badge" style="background:#e8f5e9;border-left:4px solid #43a047;padding:6px 10px;margin:4px 0;font-size:0.85em;border-radius:6px;" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Lars Renard (RT Vastgoed) 27/03 — Bezichtiging mogelijk. Prelude direct vrij bij akte. Groenwinning nieuwbouw sept 2026. 4 PDF bijlagen ontvangen.</div>
+<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-rt-orange" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord RT Vastgoed (Lars Renard) 27/03 — Groenwinning: nieuwbouw, oplevering sept 2026, prijs nauwelijks bespreekbaar. Prelude: goede staat, vrij bij akte, bod mogelijk. Bezichtiging telefonisch.</div>
 <div class="prop-price">€1.000/mnd</div>
 <div class="prop-meta">🛏️ 2 slpk | Appartement</div>
 <p style="margin:6px 0">Duplex-appartement 3e verdieping. Lift, open keuken, terras, ensuite badkamer. Zonnepanelen. Gemeenschappelijke kosten €60/mnd.</p>
@@ -1522,7 +1531,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-green">INTERESSANT</span>
 <h4>2. Sint-Anneke 26/101</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — geert@pierco.be</span></div>
-<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-pierco-orange">⚠️ Antwoord Pierco (Geert Pierco) 27/03 — Mail doorgestuurd naar collega Christophe die dit pand beheert. Wacht op contact.</div>
+<div class="contact-badge" style="background:#fff3e0;color:#5d4037;border-left:4px solid #ff9800;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-pierco-orange" onclick="showMailModal(this.innerText)" style="cursor:pointer;">⚠️ Antwoord Pierco (Geert Pierco) 27/03 — Mail doorgestuurd naar collega Christophe die dit pand beheert. Wacht op contact.</div>
 <div class="prop-price" style="color:var(--green)">€235.000</div>
 <div class="prop-meta">🛏️ 2 slpk | 🏢 App gelijkvloers | 📍 Centraal</div>
 <p style="margin:6px 0">Gelijkvloers appartement, centraal gelegen. Vlotte bereikbaarheid scholen en winkels.</p>
@@ -1756,7 +1765,7 @@ document.getElementById('authPass').focus();
 <span class="tag tag-green">TOP</span> <span class="tag" style="background:rgba(99,102,241,0.2);color:var(--accent)">Berlakonsult</span>
 <h4>28. Erberstraat 15 ⭐</h4>
 <div class="contact-badge mail">📧 Gecontacteerd per mail<span class="contact-date">27/03/2026 — kristof@berlassur.be</span></div>
-<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-berla-green">✅ Antwoord Berlakonsult (Kristof Vandevorst) 27/03 — Vraagprijs €215.000, bod mogelijk. Bezoek wo middag, do of vr. Info + EPC + asbestattest in bijlage.</div>
+<div class="contact-badge" style="background:#e8f5e9;color:#1b5e20;border-left:4px solid #4caf50;padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px" data-tr="badge-berla-green" onclick="showMailModal(this.innerText)" style="cursor:pointer;">✅ Antwoord Berlakonsult (Kristof Vandevorst) 27/03 — Vraagprijs €215.000, bod mogelijk. Bezoek wo middag, do of vr. Info + EPC + asbestattest in bijlage.</div>
 <div class="prop-price">€215.000</div>
 <div class="prop-meta">🛏️ 4 slpk | 📐 139m² | Huis</div>
 <p style="margin:6px 0"><strong>Ruim gezinshuis!</strong> 4 slaapkamers, 139m². Ideaal voor gezin met kinderen.</p>
@@ -3967,8 +3976,61 @@ document.addEventListener('click', function(e) {
     console.log('SELF-TEST: ALL ' + checks.length + ' CHECKS PASSED (v13.7)');
   }
 })();
-</script>
+
+    // Fix placeholder photos door GALLERY_DATA te gebruiken
+    function fixPlaceholderPhotos() {
+      const placeholders = document.querySelectorAll('.prop-placeholder-nice');
+      placeholders.forEach(placeholder => {
+        // Zoek naar parent card met immoweb link
+        const card = placeholder.closest('.prop-card') || placeholder.parentElement;
+        if (!card) return;
+        
+        // Zoek naar immoweb link in deze card
+        const immowebLink = card.querySelector('a[href*="immoweb.be"]');
+        if (!immowebLink) return;
+        
+        // Extract immoweb ID van de href
+        const href = immowebLink.getAttribute('href');
+        const match = href.match(/property\/([0-9]+)/);
+        if (!match) return;
+        
+        const immowebId = match[1];
+        
+        // Check of GALLERY_DATA deze ID heeft
+        if (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA[immowebId] && GALLERY_DATA[immowebId].length > 0) {
+          const firstPhotoUrl = GALLERY_DATA[immowebId][0];
+          
+          // Vervang placeholder door echte foto
+          const img = document.createElement('img');
+          img.src = firstPhotoUrl;
+          img.alt = 'Property Photo';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          
+          placeholder.replaceWith(img);
+        }
+      });
+    }
+
+    
+    // Toggle mail modal
+    function showMailModal(badgeText) {
+      document.getElementById('modal-badge-text').textContent = badgeText;
+      document.getElementById('mail-modal').classList.add('active');
+    }
+
+    </script>
 </div></div></div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-</body>
+
+    <!-- Mail modal voor antwoord badges -->
+    <div id="mail-modal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="document.getElementById('mail-modal').classList.remove('active')">&times;</span>
+        <h3 class="modal-title" id="modal-badge-text"></h3>
+      </div>
+    </div>
+
+    </body>
 </html>
