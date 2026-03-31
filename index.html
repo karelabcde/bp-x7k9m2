@@ -171,13 +171,11 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 .status-afgevallen{opacity:0.5}
 .prop-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--accent);text-decoration:none}
 .prop-link:hover{text-decoration:underline}
-.tbl-status{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:90px}
 .tbl-notes{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);font-size:11px;width:120px}
 @media(max-width:768px){
   .prop-v2 .prop-top-row{grid-template-columns:1fr}
   .prop-v2 .prop-img{min-height:160px}
   .prop-v2 .prop-map-panel{min-height:150px}
-  .tbl-status,.tbl-notes{width:70px}
 }
 
 /* SEARCH FILTER */
@@ -218,7 +216,6 @@ footer{border-top:2px solid var(--border);padding:24px 0;text-align:center;color
 .carousel-dot.active{background:#fff}
 
 /* REACTIE TRACKING */
-.prop-reactie{margin-top:8px}
 .reactie-toggle{cursor:pointer;font-size:13px;color:var(--accent);padding:6px 0;list-style:none}
 .reactie-toggle::-webkit-details-marker{display:none}
 .reactie-toggle::before{content:'▶ ';font-size:10px}
@@ -345,9 +342,6 @@ details[open] .reactie-toggle::before{content:'▼ '}
 }
 
 
-.tbl-status{padding:5px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px;cursor:pointer;min-width:130px}
-.tbl-status:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 2px rgba(99,102,241,0.3)}
-.prop-status-row label{color:var(--text)}
 </style>
 </head>
 <body>
@@ -708,21 +702,7 @@ document.getElementById('authPass').focus();
 <span>Meyers Vastgoed (Claudio)</span>
 <a class="prop-link" href="https://vastgoed.meyersco.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-1">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-new-49','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-new-49','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card success prop-v2" data-prop="huur-2" style="margin-top:12px">
@@ -750,21 +730,7 @@ document.getElementById('authPass').focus();
 <a href="tel:0491492244">0491/49 22 44</a>
 <span>Eigenaar (rechtstreeks)</span>
 </div>
-<div class="prop-reactie" data-reactie="huur-2">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-2','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-2','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card success prop-v2" data-prop="huur-3" style="margin-top:12px">
@@ -795,21 +761,7 @@ document.getElementById('authPass').focus();
 <span>Immo Vesta</span>
 <a class="prop-link" href="https://immovesta.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-3">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-3','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-3','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card success prop-v2" data-prop="huur-4" style="margin-top:12px">
@@ -837,21 +789,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruim huis met 3 slaapkamers. Goede EPC B score. Centrum Sint-Truiden.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-4">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-4','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-4','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-5" style="margin-top:12px">
@@ -878,21 +816,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 6e verdieping. Gemeenschappelijke kosten €120/mnd.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-5">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-5','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-5','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-6" style="margin-top:12px">
@@ -917,21 +841,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Compact appartement. 2 slaapkamers op 77m².</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-6">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-6','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-6','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-7" style="margin-top:12px">
@@ -955,21 +865,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement met uitstekende EPC A. 85m², 2 slaapkamers. Gemeenschappelijke kosten €70.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-7">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-7','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-7','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-8" style="margin-top:12px">
@@ -993,21 +889,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Huis 120m² met 2 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-8">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-8','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-8','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-9" style="margin-top:12px">
@@ -1033,21 +915,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 3e verdieping. 94m², 2 slaapkamers. Centrum aan de Houtmarkt.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-9">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-9','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-9','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-10" style="margin-top:12px">
@@ -1073,21 +941,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Passiefhuis met EPC A+++. 3 slaapkamers, 108m². Topkwaliteit energieprestatie.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-10">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-10','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-10','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-11" style="margin-top:12px">
@@ -1113,21 +967,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruim huis met 4 slaapkamers. 169m². EPC C.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-11">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-11','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-11','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-12" style="margin-top:12px">
@@ -1153,21 +993,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 2e verdieping. 67m², 2 slaapkamers. Nabij station.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-12">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-12','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-12','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-13" style="margin-top:12px">
@@ -1193,21 +1019,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruimer appartement 1e verdieping. 95m², 3 slaapkamers. Nabij station.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-13">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-13','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-13','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-14" style="margin-top:12px">
@@ -1233,21 +1045,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 100m², 2 slaapkamers. Gemeenschappelijke kosten €50.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-14">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-14','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-14','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-15" style="margin-top:12px">
@@ -1273,21 +1071,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 2e verdieping Houtmarkt. 94m², 2 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-15">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-15','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-15','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-16" style="margin-top:12px">
@@ -1312,21 +1096,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-16">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-16','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-16','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-17" style="margin-top:12px">
@@ -1351,21 +1121,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Gelijkvloers appartement nabij station. Gemeenschappelijke kosten €40/mnd.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-17">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-17','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-17','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-18" style="margin-top:12px">
@@ -1390,21 +1146,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruim appartement met 3 slaapkamers aan de Kennedylaan.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-18">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-18','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-18','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-19" style="margin-top:12px">
@@ -1429,21 +1171,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement in Brustem. 117m², 3 slaapkamers. Nabij school De Boomhut! Gemeenschappelijke kosten €100.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-19">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-19','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-19','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-20" style="margin-top:12px">
@@ -1468,21 +1196,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruim huis 172m², 3 slaapkamers. EPC C.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-20">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-20','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-20','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-21" style="margin-top:12px">
@@ -1507,21 +1221,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Huis 132m², 3 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-21">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-21','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-21','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-22" style="margin-top:12px">
@@ -1547,21 +1247,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Huis met 4 slaapkamers aan de Zoutleeuwsesteenweg.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-22">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-22','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-22','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card success prop-v2" data-prop="huur-23" style="margin-top:12px">
@@ -1586,21 +1272,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Budgetvriendelijk huis. 77m², 2 slaapkamers. EPC C. Laagste prijs huizen.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-23">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-23','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-23','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-24" style="margin-top:12px">
@@ -1624,21 +1296,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Ruim appartement 121m², 2 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-24">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-24','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-24','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card success prop-v2" data-prop="huur-25" style="margin-top:12px;display:none">
@@ -1668,21 +1326,7 @@ document.getElementById('authPass').focus();
 <span>RT Vastgoed</span>
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-25">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-25','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-25','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-26" style="margin-top:12px;display:none">
@@ -1712,21 +1356,7 @@ document.getElementById('authPass').focus();
 <span>RT Vastgoed</span>
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-26">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-26','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-26','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-27" style="margin-top:12px">
@@ -1751,21 +1381,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement ~100m², 2 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-27">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-27','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-27','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-28" style="margin-top:12px">
@@ -1791,21 +1407,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 110m², 2 slaapkamers. Centrum.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-28">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-28','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-28','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card warning prop-v2" data-prop="huur-29" style="margin-top:12px;display:none">
@@ -1831,21 +1433,7 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 <a class="prop-link" href="https://www.immoweb.be/nl/zoekertje/huis/te-huur/sint-truiden/3800/20402929" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-29">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-29','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-29','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-30" style="margin-top:12px">
@@ -1871,21 +1459,7 @@ document.getElementById('authPass').focus();
 <p style="margin:6px 0">Appartement 101m², 2 slaapkamers.</p>
 <div class="prop-contact">
 </div>
-<div class="prop-reactie" data-reactie="huur-30">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-30','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-30','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="huur-31" style="margin-top:12px">
@@ -1910,21 +1484,7 @@ document.getElementById('authPass').focus();
 <span>RT Vastgoed</span>
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="huur-31">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-31','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-31','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 <p style="font-size:12px;color:var(--muted);margin-top:16px">H = Huis, A = Appartement, H+W = Handelspand + Woonst. Volledige lijst: 47 panden onderzocht (16 afgevallen wegens score 1-2).</p>
 <h3 style="margin-top:24px;color:var(--accent)">Nieuw Gevonden (via kantoren-scan 27/3)</h3>
@@ -1946,21 +1506,7 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 <a href="https://www.imanex.be/nl/te-huur" style="color:var(--accent)" target="_blank">🔗 Bron</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-1">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('huur-31','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('huur-31','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-2" style="margin-top:12px">
@@ -1987,21 +1533,7 @@ document.getElementById('authPass').focus();
 <a class="prop-link" href="https://www.pierco.be" target="_blank">🔗 Website</a>
 <a class="prop-link" href="https://www.immoweb.be/nl/zoekresultaten?searchType=Sale&amp;postalCodes=BE-3800&amp;maxPrice=250000" target="_blank">🔗 Immoweb</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-2">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-2','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-2','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 <div class="card info prop-v2" data-prop="koop-3" style="margin-top:12px">
 <div class="prop-top-row"><div class="prop-img">
@@ -2094,21 +1626,7 @@ document.getElementById('authPass').focus();
 <span>Geert Pierco Vastgoed</span>
 <a class="prop-link" href="https://www.pierco.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-6">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-6','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-6','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-7" style="margin-top:12px">
@@ -2136,21 +1654,7 @@ document.getElementById('authPass').focus();
 <span>RT Vastgoed</span>
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-7">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-7','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-7','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-8" style="margin-top:12px">
@@ -2178,21 +1682,7 @@ document.getElementById('authPass').focus();
 <span>RT Vastgoed</span>
 <a class="prop-link" href="https://rtvastgoed.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-8">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-8','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-8','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-9" style="margin-top:12px">
@@ -2218,21 +1708,7 @@ document.getElementById('authPass').focus();
 <div class="prop-contact">
 <span>Janssen en Janssen</span>
 </div>
-<div class="prop-reactie" data-reactie="koop-9">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-9','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-9','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 <div class="card info prop-v2" data-prop="koop-10" style="margin-top:12px">
@@ -2313,21 +1789,7 @@ document.getElementById('authPass').focus();
 <span>Aktimmo</span>
 <a class="prop-link" href="https://www.aktimmo.be" target="_blank">🔗 Website</a>
 </div>
-<div class="prop-reactie" data-reactie="koop-11">
-<div class="prop-status-row" style="display:flex;gap:8px;align-items:center;margin:8px 0;padding:8px 12px;background:rgba(99,102,241,0.08);border-radius:8px;font-size:13px">
-<label style="font-weight:600;white-space:nowrap">Status:</label>
-<select class="tbl-status" onchange="savePropStatus(this.closest('[data-prop]').dataset.prop, this.value)">
-<option value="">— Kies —</option>
-<option selected="" value="gemaild">✉ Gemaild</option>
-<option value="gebeld">📞 Gebeld</option>
-<option value="antwoord">💬 Antwoord</option>
-<option value="bezichtigd">👀 Bezichtigd</option>
-<option value="optie">⭐ Optie</option>
-<option value="afgevallen">❌ Afgevallen</option>
-</select>
-<textarea class="reactie-summary" onchange="saveReactie(this)" placeholder="Kort antwoord makelaar..." style="flex:1;min-height:32px;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);resize:vertical"></textarea><span style="display:flex;gap:4px;flex-shrink:0"><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='gemaild';savePropStatus('koop-new-27','gemaild');this.style.background='rgba(99,102,241,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.1);color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap" type="button">✉️ Gemaild</button><button onclick="this.closest('[data-prop]').querySelector('.tbl-status').value='antwoord';savePropStatus('koop-new-27','antwoord');this.style.background='rgba(74,222,128,0.3)'" style="padding:4px 8px;border-radius:5px;border:1px solid rgba(74,222,128,0.3);background:rgba(74,222,128,0.1);color:var(--green);font-size:11px;cursor:pointer;white-space:nowrap" type="button">📩 Antwoord</button></span>
-</div>
-</div>
+
 </div>
 </div>
 
@@ -2355,18 +1817,7 @@ document.getElementById('authPass').focus();
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
-        </div>
-        <div class="prop-reactie" data-reactie="huur-32">
-          <details>
-            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-            <div class="reactie-content">
-              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
-              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
+        </div></div>
 
     <div class="card info prop-v2" data-prop="huur-33" style="margin-top:12px">
       <div class="prop-img">
@@ -2392,18 +1843,7 @@ document.getElementById('authPass').focus();
             <option value="">— Status —</option><option value="nieuw">Nieuw</option><option value="gemaild">Gemaild</option><option value="gebeld">Gebeld</option><option value="bezichtigd">Bezichtigd</option><option value="optie">Optie genomen</option><option value="afgevallen">Afgevallen</option>
           </select>
           <textarea class="prop-notes" placeholder="Notities..." onchange="saveProp(this)"></textarea>
-        </div>
-        <div class="prop-reactie" data-reactie="huur-33">
-          <details>
-            <summary class="reactie-toggle">💬 Reactie makelaar <span class="reactie-badge" style="display:none">1</span></summary>
-            <div class="reactie-content">
-              <textarea class="reactie-summary" placeholder="Samenvatting reactie..." onchange="saveReactie(this)"></textarea>
-              <textarea class="reactie-full" placeholder="Volledig antwoord (plak email hier)..." onchange="saveReactie(this)"></textarea>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
+        </div></div>
 
 <div class="note">
 <p><strong>Tip:</strong> Op Immoweb staan momenteel 34 huizen en 63 appartementen te koop in Sint-Truiden. Filter op max €250.000 en 2+ slaapkamers voor de meest relevante resultaten. Nieuwbouwappartementen bieden vaak betere EPC en lagere registratierechten.</p>
@@ -3981,62 +3421,13 @@ function loadAllProps() {
   catch(e) { return {}; }
 }
 
-function savePropStatus(propId, status) {
-  const data = loadAllProps();
-  if (!data[propId]) data[propId] = {};
-  data[propId].status = status;
-  localStorage.setItem(PROP_KEY, JSON.stringify(data));
-}
 
-function restoreAllStatuses() {
-  const data = loadAllProps();
-  Object.keys(data).forEach(id => {
-    const card = document.querySelector('[data-prop="' + id + '"]');
-    if (!card) return;
-    const d = data[id];
-    // Restore status dropdown if exists
-    const sel = card.querySelector('.tbl-status');
-    if (sel && d.status) sel.value = d.status;
-  });
-}
 
-const REACTIE_KEY = 'stefania_reacties_v1';
 
-function saveReactie(el) {
-  const box = el.closest('[data-reactie]');
-  if (!box) return;
-  const id = box.dataset.reactie;
-  const data = loadAllReacties();
-  if (!data[id]) data[id] = {};
-  if (el.classList.contains('reactie-summary')) data[id].summary = el.value;
-  if (el.classList.contains('reactie-full')) data[id].full = el.value;
-  localStorage.setItem(REACTIE_KEY, JSON.stringify(data));
-  // Show badge if has content
-  const badge = box.querySelector('.reactie-badge');
-  if (badge) badge.style.display = (data[id].summary || data[id].full) ? 'inline' : 'none';
-}
 
-function loadAllReacties() {
-  try { return JSON.parse(localStorage.getItem(REACTIE_KEY)) || {}; }
   catch(e) { return {}; }
 }
 
-function restoreAllReacties() {
-  const data = loadAllReacties();
-  Object.keys(data).forEach(id => {
-    const box = document.querySelector('[data-reactie="' + id + '"]');
-    if (!box) return;
-    const d = data[id];
-    const summary = box.querySelector('.reactie-summary');
-    const full = box.querySelector('.reactie-full');
-    if (summary && d.summary) summary.value = d.summary;
-    if (full && d.full) full.value = d.full;
-    const badge = box.querySelector('.reactie-badge');
-    if (badge && (d.summary || d.full)) badge.style.display = 'inline';
-  });
-}
-restoreAllReacties();
-restoreAllStatuses();
 
 // ============ HUUR CARD FILTER ============
 function filterHuurCards() {
@@ -4352,7 +3743,6 @@ var TR = {
   'jaar': 'ans',
   // Contact
   'Gecontacteerd per mail': 'Contacté par mail',
-  'Kort antwoord makelaar...': "Réponse courte de l'agent...",
   'Samenvatting reactie...': 'Résumé de la réponse...',
   'Volledig antwoord (plak email hier)...': "Réponse complète (collez l'email ici)...",
   'Reactie makelaar': "Réponse de l'agent",
